@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
-def index(response):
-    return HttpResponse("<h1>Tech with tim!</h1>")
+def index(request):
+    # return HttpResponse("<h1>Tech with tim!</h1>")
+    return render(request, 'main/base.html')
