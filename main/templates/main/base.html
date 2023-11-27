@@ -53,13 +53,14 @@
     <title>{% block title %} Present Planner {% endblock %}</title>
 </head>
 <body>
-    <div class="sidenav">
+<div class="sidenav">
         {% if not user.is_authenticated %}
             <a href="/home/">Home</a>
             <a href="/login/">Zaloguj</a>
             <a href="/register/">Rejestracja</a>
         {% elif  user.is_authenticated %}
             <a href="/home/">Home</a>
+            <a href="/create/">Stwórz listę</a>
             <a href="/logout/">Wyloguj</a>
         {% endif %}
     </div>
