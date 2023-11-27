@@ -2,11 +2,18 @@
 
 {% block content %}
 
-  <h1>Create a New List</h1>
-  <form method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Create List</button>
-  </form>
+
+
+    <div class="form-container">
+        <h1 class="witaj">Stwórz nową listę</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="id_tytul">Tytuł listy:</label>
+            {{ form.tytul }}
+            <label for="id_opis">Opis listy:</label>
+            {{ form.opis }}
+            <button type="submit" class="btn btn-outline-dark btn-lg">Stwórz listę</button>
+        </form>
+    </div>
 
 {% endblock %}
