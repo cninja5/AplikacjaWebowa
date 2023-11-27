@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from main.models import CustomUser
+from main.models import Uzytkownicy
 
 RODZAJE_PLCI = (
     ('m', 'Mężczyzna',),
@@ -22,5 +22,5 @@ class CustomUserCreationForm(UserCreationForm):
     zdjProfilu = forms.FileField()
 
     class Meta:
-        model = CustomUser
+        model = Uzytkownicy
         fields = UserCreationForm.Meta.fields + ('plec', 'zdjProfilu', )

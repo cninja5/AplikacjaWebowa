@@ -8,25 +8,7 @@ RodzajePlci = (
     ('K', 'Kobieta',),
 )
 
-class Uzytkownicy(models.Model):
-    login = models.CharField(max_length=30)
-    haslo = models.CharField(max_length=30)
-
-class DaneUzytkownicy(models.Model):
-    login = models.ForeignKey(Uzytkownicy,on_delete=models.CASCADE)
-    imie = models.CharField(max_length=30)
-    nazwisko = models.CharField(max_length=30)
-    email = models.EmailField(max_length=254)
-    plec = models.CharField(
-        max_length=20,
-        choices=RodzajePlci,
-        default='1'
-    )
-    zdjProfilu = models.ImageField(upload_to='uploads/')
-
-
-
-class CustomUser(AbstractUser):
+class Uzytkownicy(AbstractUser):
     plec = models.CharField(
         max_length=20,
         choices=RodzajePlci,
