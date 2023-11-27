@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 RodzajePlci = (
@@ -21,6 +23,26 @@ class DaneUzytkownicy(models.Model):
         default='1'
     )
     zdjProfilu = models.ImageField(upload_to='uploads/')
+
+
+
+class CustomUser(AbstractUser):
+    objects = CustomUserManager()
+    plec = models.CharField(
+        max_length=20,
+        choices=RodzajePlci,
+        default='1'
+    )
+    zdjProfilu = models.ImageField(upload_to='uploads/')
+    groups = models.ManyToManyField(
+        "auth.Group", related_name="customuser_set", blank=True, related_query_name="user"
+    )
+    user_permissions = models.ManyToManyField(
+        "auth.Permission",
+        related_name="customuser_set",
+        blank=True,
+        related_query_name="user",
+    )
 
 class Znajomi(models.Model):
     idOsoba1 = models.ForeignKey(Uzytkownicy,on_delete=models.CASCADE)

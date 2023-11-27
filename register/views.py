@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterForm
+from .forms import CustomUserCreationForm
 
 # Create your views here.
 def register(response):
@@ -13,5 +14,5 @@ def register(response):
             return redirect("/home")
     else:
         form = UserCreationForm()
-    form = RegisterForm()
+    form = CustomUserCreationForm()
     return render(response, "register/register.html", {"form":form})
