@@ -2,9 +2,11 @@
 
 {% block content %}
 
-<h1>Tworzenie nowej listy</h1>
-
-
-
+  <h1>Create a New List</h1>
+  <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Create List</button>
+  </form>
 
 {% endblock %}
