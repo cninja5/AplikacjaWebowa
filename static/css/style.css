@@ -43,6 +43,10 @@
     margin-left: 5%;
 }
 
+.form-container {
+    margin: 0 auto;
+    width: 80%;
+}
 
 .form-container label {
     display: block; /* Ustawia etykiety jako blokowe, aby były nad polami */
@@ -58,4 +62,19 @@
 
 #loginScreen{
     float:right;
+}
+
+.createListForm{
+    margin-bottom: 15%;
+    margin-top: 3%;
+}
+.createListFormR{
+    margin-bottom: 15%;
+    margin-top: 3%;
+    margin-left: 2%;
+    float: right;
+}
+
+.deleteRightButton{
+    margin-bottom: 2%;
 }
