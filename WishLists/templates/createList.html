@@ -1,0 +1,46 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+    <div class="form-container">
+        <h1 class="witaj">Stwórz nową listę</h1>
+        <form method="post" enctype="multipart/form-data" id="listForm">
+            {% csrf_token %}
+            <label for="id_tytul">Tytuł listy:</label>
+            {{ form.tytul }}
+            <label for="id_opis">Opis listy:</label>
+            {{ form.opis }}
+            <div id="prezenty">
+                <!-- Pole na pierwszy prezent -->
+            </div>
+
+            <button type="button" class="btn btn-outline-dark btn-lg createListForm" onclick="addPresentField()">Dodaj prezent</button>
+            <button type="submit" class="btn btn-outline-dark btn-lg createListFormR">Stwórz listę</button>
+            <button type="reset" class="btn btn-outline-dark btn-lg createListFormR">Wyczyść formularz</button>
+
+
+
+
+        </form>
+    </div>
+
+    <script>
+
+        function removePresentField(button) {
+            button.parentNode.remove();
+        }
+
+        function addPresentField() {
+            const prezentyDiv = document.getElementById("prezenty");
+            const newField = document.createElement("div");
+            newField.innerHTML = `
+                <label>Nazwa prezentu:</label>
+                <input type="text" name="prezenty" class="form-control">
+                <button type="button" class="btn btn-outline-danger btn-sm deleteRightButton" onclick="removePresentField(this)">Usuń prezent</button>
+            `;
+
+            prezentyDiv.appendChild(newField);
+        }
+
+
+    </script>
+{% endblock %}

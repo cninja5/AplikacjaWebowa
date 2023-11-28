@@ -33,11 +33,12 @@ class Listy(models.Model):
     loginWlasciciel = models.ForeignKey(User,on_delete=models.CASCADE)
     tytul = models.CharField(max_length=50)
     opis = models.CharField(max_length=300)
-    dataStworzenia = models.DateField(auto_now_add=True)
+    dataUtworzenia = models.DateField(auto_now_add=True)
+    # zawartosc = models.ManyToManyField('ZawartoscListy', related_name='zawartoscListy', blank=True)
 
 class Prezent(models.Model):
-    idListy = models.ForeignKey(Listy,on_delete=models.CASCADE)
-    nazwa = models.CharField(max_length=254)
+    idListy = models.ForeignKey(Listy, on_delete=models.CASCADE)
+    nazwaPrezentu = models.CharField(max_length=254)
     loginRezerwacji = models.IntegerField()
 
 class ZawartoscListy(models.Model):
