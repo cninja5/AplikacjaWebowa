@@ -42,3 +42,39 @@
     margin-right: 5%;
     margin-left: 5%;
 }
+
+.form-container {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.form-container label {
+    display: block; /* Ustawia etykiety jako blokowe, aby były nad polami */
+    margin-bottom: 5px; /* Opcjonalne: odstęp między etykietami a polami formularza */
+}
+
+.form-container input[type="text"],
+.form-container textarea {
+    width: 100%; /* Rozciąga pola formularza na całą szerokość kontenera */
+    padding: 8px;
+    margin-bottom: 10px; /* Odstęp między polami formularza */
+}
+
+#loginScreen{
+    float:right;
+}
+
+.createListForm{
+    margin-bottom: 15%;
+    margin-top: 3%;
+}
+.createListFormR{
+    margin-bottom: 15%;
+    margin-top: 3%;
+    margin-left: 2%;
+    float: right;
+}
+
+.deleteRightButton{
+    margin-bottom: 2%;
+}

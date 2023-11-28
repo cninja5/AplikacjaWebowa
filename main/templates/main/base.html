@@ -18,20 +18,22 @@
             <a href="/register/">Rejestracja</a>
         {% elif  user.is_authenticated %}
             <a href="/home/">Home</a>
-            <a href="/create/">Stwórz listę</a>
+            <a href="/createList/">Stwórz listę</a>
             <a href="/logout/">Wyloguj</a>
         {% endif %}
     </div>
 
     <div id=content", name="content", class="main">
+        {% if user.is_authenticated %}
+            <div id="loginScreen">
+                <p>Witaj, jesteś zalogowany!  <a href="/logout">Wyloguj się</a></p>
+            </div>
+        {% endif %}
         <div class="row justify-content-center">
             {% block content %}
             {% endblock %}
 
-            {% if user.is_authenticated %}
-                <p>Witaj, jesteś zalogowany!</p>
-                <p><a href="/logout">Logout here</a></p>
-            {% endif %}
+
         </div>
     </div>
 
