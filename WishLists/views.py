@@ -3,32 +3,32 @@ from django.http import HttpResponse
 
 # views.py
 
-from django.shortcuts import render
-from .forms import ListyForm, ZawartoscListyForm
+from django.shortcuts import render,redirect
+from .forms import ListyForm, DodajPrezentDoListyForm
 
 
 def createList(request):
     if request.method == 'POST':
         form = ListyForm(request.POST)
-        zawartosc_form = ZawartoscListyForm(request.POST)
         if form.is_valid():
             new_list = form.save(commit=False)
             new_list.loginWlasciciel = request.user
             new_list.save()
+            idList = new_list.id
 
-            if zawartosc_form.is_valid():
-                nazwy_prezentow = request.POST.getlist('prezenty')
-                for nazwa_prezentu in nazwy_prezentow:
-                    zawartosc = ZawartoscListy.objects.create(
-                        idListy=new_list,
-                        nazwaPrezentu=nazwa_prezentu
-                    )
-                    zawartosc.save()
-
-            form.save_m2m()
-            # Dodaj przekierowanie do innej strony po utworzeniu listy
+        return redirect('/addPresents/',idList=idList)
     else:
         form = ListyForm()
-        zawartosc_form = ZawartoscListyForm()
+    return render(request, 'createList.html', {'form': form })
 
-    return render(request, 'createList.html', {'form': form, 'zawartosc_form': zawartosc_form})
+def addPresents(request,idList):
+    if request.method == 'POST':
+        form = DodajPrezentDoListyForm(request.POST)
+        if form.is_valid():
+            new_prezent = form.save(commit=False)
+            new_prezent.idListy =idList
+            new_prezent.save()
+#        return redirect('/addPresents')
+    else:
+        form = DodajPrezentDoListyForm()
+    return render(request, 'addPresentsToList.html', {'form': form })
