@@ -2,7 +2,19 @@
 
 {% block content %}
     <div class="form-container">
-        <h1 class="witaj">Dodaj elementy do listy:</h1>
+        <h1 class="witaj">Dodaj elementy do listy: {{ tytul }}</h1>
+        <h2 class="witaj">Opis listy to: {{ opis }} </h2>
+        <h1>Obecna zawartość listy</h1>
+
+        {% if zawartosc_listy %}
+            <ul>
+                {% for prezent in zawartosc_listy %}
+                    <li>{{ prezent.nazwaPrezentu }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Lista jest obecnie pusta, dodaj prezenty.</p>
+        {% endif %}
 
         <form method="post" enctype="multipart/form-data" id="DodajPrezentDoListyForm">
             {% csrf_token %}
@@ -12,28 +24,34 @@
             </div>
 
             <button type="button" class="btn btn-outline-dark btn-lg createListForm" onclick="addPresentField()">Kolejny prezent</button>
-            <button type="submit" class="btn btn-outline-dark btn-lg createListFormR" >Dodaj prezenty do listy</button>
+            <a href="/home/"><button type="button" class="btn btn-outline-dark btn-lg createListForm">Zakończ wpowadzenie prezentów</button></a>
+            <button type="submit" class="btn btn-outline-dark btn-lg createListFormR" >Dodaj prezent do listy</button>
             <button type="reset" class="btn btn-outline-dark btn-lg createListFormR">Wyczyść</button>
 
         </form>
     </div>
 
     <script>
+        var i = 1;
 
         function removePresentField(button) {
             button.parentNode.remove();
         }
 
         function addPresentField() {
-            const prezentyDiv = document.getElementById("prezenty");
-            const newField = document.createElement("div");
-            newField.innerHTML = `
-                <label>Nazwa prezentu:</label>
-                <input type="text" name="nazwaPrezentu" class="form-control">
-                <button type="button" class="btn btn-outline-danger btn-sm deleteRightButton" onclick="removePresentField(this)">Usuń prezent</button>
-            `;
 
-            prezentyDiv.appendChild(newField);
+            if( i == 1){
+                const prezentyDiv = document.getElementById("prezenty");
+                const newField = document.createElement("div");
+                newField.innerHTML = `
+                    <label>Nazwa prezentu:</label>
+                    <input type="text" name="nazwaPrezentu" class="form-control">
+                    <button type="button" class="btn btn-outline-danger btn-sm deleteRightButton" onclick="removePresentField(this)">Usuń prezent</button>
+                `;
+
+                prezentyDiv.appendChild(newField);
+            }
+            i = 2;
         }
 
 
