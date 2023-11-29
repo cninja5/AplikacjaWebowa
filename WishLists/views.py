@@ -24,7 +24,7 @@ def createList(request):
 def addPresents(request, idList):
     list_object = get_object_or_404(Listy, pk=idList)
     zawartosc_listy = ZawartoscListy.objects.filter(idListy=list_object)
-
+    numerListy = idList
     if request.method == 'POST':
         form = DodajPrezentDoListyForm(request.POST)
         if form.is_valid():
@@ -32,7 +32,7 @@ def addPresents(request, idList):
             new_prezent.idListy = list_object
             new_prezent.save()
             # Możesz przekazać dodatkowe dane z obiektu Listy do szablonu
-            return render(request, 'addPresentsToList.html', {'form': DodajPrezentDoListyForm(), 'zawartosc_listy': zawartosc_listy, 'tytul': list_object.tytul, 'opis': list_object.opis})
+            return render(request, 'addPresentsToList.html', {'form': DodajPrezentDoListyForm(), 'zawartosc_listy': zawartosc_listy, 'tytul': list_object.tytul, 'opis': list_object.opis,'numerListy':numerListy })
     else:
         form = DodajPrezentDoListyForm()
 
@@ -41,3 +41,9 @@ def addPresents(request, idList):
 def myLists(request):
     listy_uzytkownika = Listy.objects.filter(loginWlasciciel=request.user)
     return render(request, 'myLists.html', {'listy': listy_uzytkownika})
+
+def deletePresent(request, idPrezent, idList):
+    prezent = get_object_or_404(ZawartoscListy, pk=idPrezent)
+    prezent.delete()
+
+    return redirect('addPresents', idList=idList)
