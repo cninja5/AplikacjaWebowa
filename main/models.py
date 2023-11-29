@@ -26,8 +26,14 @@ RodzajePlci = (
 #     )
 
 class Znajomi(models.Model):
-    idOsoba1 = models.ForeignKey(User,on_delete=models.CASCADE)
-    idOsoba2 = models.CharField(max_length=30)
+    idZapraszajacego = models.ForeignKey(User, default='0', on_delete=models.CASCADE, related_name='senderId')
+    idZapraszanego = models.ForeignKey(User, default='0', on_delete=models.CASCADE, related_name='invitedId')
+    status = models.CharField(max_length=30, default='Wysłano')
+
+# class ZaproszeniaDoZnajomych(models.Model):
+#     idZapraszajacego = models.ForeignKey(User,on_delete=models.CASCADE, related_name='senderId')
+#     idZapraszanego = models.ForeignKey(User,on_delete=models.CASCADE, related_name='invitedId')
+#     status = models.CharField(max_length=30, default='Wysłano')
 
 class Listy(models.Model):
     loginWlasciciel = models.ForeignKey(User,on_delete=models.CASCADE)
