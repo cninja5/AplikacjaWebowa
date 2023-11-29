@@ -1,0 +1,21 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+    <h1 class="witaj">Twoje Listy</h1><br>
+    <div id="listy">
+        {% if listy %}
+            <ul>
+                {% for lista in listy %}
+                    <li>
+                        <strong>Tytuł:</strong> {{ lista.tytul }}<br>
+                        <strong>Opis:</strong> {{ lista.opis }}<br>
+                        <strong>Data Utworzenia:</strong> {{ lista.dataUtworzenia|date:"d.m.Y" }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Brak dostępnych list. Przejdź do Swtórz listę aby stworzyć swoją pierwszą listę!</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

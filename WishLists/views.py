@@ -37,3 +37,7 @@ def addPresents(request, idList):
         form = DodajPrezentDoListyForm()
 
     return render(request, 'addPresentsToList.html', {'form': form, 'zawartosc_listy': zawartosc_listy, 'tytul': list_object.tytul, 'opis': list_object.opis})
+
+def myLists(request):
+    listy_uzytkownika = Listy.objects.filter(loginWlasciciel=request.user)
+    return render(request, 'myLists.html', {'listy': listy_uzytkownika})
