@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ListyForm, DodajPrezentDoListyForm
 from main.models import Listy, ZawartoscListy
+from django.contrib import messages
 
 def createList(request):
     if request.method == 'POST':
@@ -41,6 +42,21 @@ def addPresents(request, idList):
 def myLists(request):
     listy_uzytkownika = Listy.objects.filter(loginWlasciciel=request.user)
     return render(request, 'myLists.html', {'listy': listy_uzytkownika})
+
+def deleteList(request, idList):
+    list_object = get_object_or_404(Listy, pk=idList)
+
+    if request.method == 'POST':
+        list_object.delete()
+        messages.success(request, 'Lista została pomyślnie usunięta.')
+        return redirect('myLists')
+
+    return redirect('myLists')  # Przekierowanie w przypadku innych metod HTTP niż POST
+
+def specificList(request, idList):
+    lista = get_object_or_404(Listy, id=idList)
+    return render(request, 'mySpecificList.html', {'lista': lista})
+
 
 def deletePresent(request, idPrezent, idList):
     prezent = get_object_or_404(ZawartoscListy, pk=idPrezent)
