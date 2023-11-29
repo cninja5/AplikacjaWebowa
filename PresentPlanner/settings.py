@@ -151,3 +151,4 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 LOGIN_REDIRECT_URL = "/home/"
 LOGOUT_REDIRECT_URL = "/"
+LOGIN_URL = "/login/"
