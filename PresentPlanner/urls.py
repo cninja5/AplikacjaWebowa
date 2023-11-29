@@ -25,4 +25,5 @@ urlpatterns = [
     path('register/', v.register, name="register"),
     path('', include("django.contrib.auth.urls")),
     path('', include("WishLists.urls")),
+    path('', include("UserProfiles.urls"))
 ]
