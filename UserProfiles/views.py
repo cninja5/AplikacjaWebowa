@@ -2,7 +2,8 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from main.models import Znajomi
-from django.db.models import Subquery, OuterRef
+from django.db.models import Subquery
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -10,9 +11,6 @@ from django.db.models import Subquery, OuterRef
 def profile(request, username):
     user = get_object_or_404(User, username=username)
     friends = Znajomi.objects.filter(idZapraszajacego=request.user.id, idZapraszanego=user.id).first()
-
-
-    # friendsList = Znajomi.objects.filter(idZapraszajacego=request.user.id, status="Przyjaciele")
 
     podzapytanie = Znajomi.objects.filter(idZapraszajacego=user.id, status="Przyjaciele").values(
         'idZapraszanego')
@@ -30,6 +28,7 @@ def profile(request, username):
     return render(request, 'profile/profile.html', userdata)
 
 
+@login_required
 def edit_profile(request, username):
     user = get_object_or_404(User, username=username)
 
@@ -41,6 +40,7 @@ def edit_profile(request, username):
     return render(request, 'profile/edit.html', userdata)
 
 
+@login_required
 def send_invite(request, username):
     invitedUser = get_object_or_404(User, username=username)
 
@@ -53,6 +53,7 @@ def send_invite(request, username):
     return redirect("profile", username=username)
 
 
+@login_required
 def accept_invite(request, username):
     invitedUser = get_object_or_404(User, username=username)
     invite = Znajomi.objects.filter(idZapraszajacego=request.user.id, idZapraszanego=invitedUser.id).first()
@@ -67,6 +68,7 @@ def accept_invite(request, username):
     return redirect("profile", username=username)
 
 
+@login_required
 def unfriend(request, username):
     invitedUser = get_object_or_404(User, username=username)
     invite = Znajomi.objects.filter(idZapraszajacego=request.user.id, idZapraszanego=invitedUser.id).first()
@@ -78,6 +80,7 @@ def unfriend(request, username):
     return redirect("profile", username=username)
 
 
+@login_required
 def password_change(request, username):
     user = get_object_or_404(User, username=username)
 
@@ -89,6 +92,7 @@ def password_change(request, username):
     return render(request, 'profile/edit.html', userdata)
 
 
+@login_required
 def avatar_change(request, username):
     user = get_object_or_404(User, username=username)
 
