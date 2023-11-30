@@ -108,7 +108,6 @@
 #przyciskiListy button{
     border: none;
     background-color: white;
-    margin-top: 20%;
 }
 
 #poNajechaniuBlue:hover{
@@ -134,7 +133,7 @@
 
 
 #guzikAddPresent{
-    margin-bottom: 15%;
+    margin-bottom: 2%;
 }
 
 #zawartosc ul{
@@ -158,7 +157,15 @@
 #poNajechaniuRed:hover{
     color: red;
 }
+
 #przyciskiListy button{
     border: none;
     background-color: white;
 }
+.trashRight{
+    float: right;
+}
+
+.hidden {
+        display: none;
+    }

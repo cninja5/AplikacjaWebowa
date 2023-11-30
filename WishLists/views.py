@@ -8,6 +8,7 @@ from .forms import ListyForm, DodajPrezentDoListyForm
 from main.models import Listy, ZawartoscListy
 from django.contrib import messages
 
+
 def createList(request):
     if request.method == 'POST':
         form = ListyForm(request.POST)
@@ -17,10 +18,11 @@ def createList(request):
             new_list.save()
             idList = new_list.id
 
-        return redirect('/addPresents/'+str(idList)+'/')
+        return redirect('/addPresents/' + str(idList) + '/')
     else:
         form = ListyForm()
-    return render(request, 'createList.html', {'form': form })
+    return render(request, 'createList.html', {'form': form})
+
 
 def addPresents(request, idList):
     list_object = get_object_or_404(Listy, pk=idList)
@@ -33,15 +35,21 @@ def addPresents(request, idList):
             new_prezent.idListy = list_object
             new_prezent.save()
             # Możesz przekazać dodatkowe dane z obiektu Listy do szablonu
-            return render(request, 'addPresentsToList.html', {'form': DodajPrezentDoListyForm(), 'zawartosc_listy': zawartosc_listy, 'tytul': list_object.tytul, 'opis': list_object.opis,'numerListy':numerListy })
+            return render(request, 'addPresentsToList.html',
+                          {'form': DodajPrezentDoListyForm(), 'zawartosc_listy': zawartosc_listy,
+                           'tytul': list_object.tytul, 'opis': list_object.opis, 'numerListy': numerListy})
     else:
         form = DodajPrezentDoListyForm()
 
-    return render(request, 'addPresentsToList.html', {'form': form, 'zawartosc_listy': zawartosc_listy, 'tytul': list_object.tytul, 'opis': list_object.opis})
+    return render(request, 'addPresentsToList.html',
+                  {'form': form, 'zawartosc_listy': zawartosc_listy, 'tytul': list_object.tytul,
+                   'opis': list_object.opis})
+
 
 def myLists(request):
     listy_uzytkownika = Listy.objects.filter(loginWlasciciel=request.user)
     return render(request, 'myLists.html', {'listy': listy_uzytkownika})
+
 
 def deleteList(request, idList):
     list_object = get_object_or_404(Listy, pk=idList)
@@ -53,9 +61,15 @@ def deleteList(request, idList):
 
     return redirect('myLists')  # Przekierowanie w przypadku innych metod HTTP niż POST
 
+
 def specificList(request, idList):
-    lista = get_object_or_404(Listy, id=idList)
-    return render(request, 'mySpecificList.html', {'lista': lista})
+    list_object = get_object_or_404(Listy, pk=idList)
+    zawartosc_listy = ZawartoscListy.objects.filter(idListy=list_object)
+    numerListy = idList
+
+    return render(request, 'mySpecificList.html',
+                  {'zawartosc_listy': zawartosc_listy, 'tytul': list_object.tytul, 'opis': list_object.opis,
+                   'numerListy': numerListy})
 
 
 def deletePresent(request, idPrezent, idList):
