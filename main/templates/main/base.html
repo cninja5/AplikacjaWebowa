@@ -18,6 +18,7 @@
             <a href="/register/">Rejestracja</a>
         {% elif  user.is_authenticated %}
             <a href="/home/">Home</a>
+            <a href="/profile/{{ user.username }}">Mój profil</a>
             <a href="/createList/">Stwórz listę</a>
             <a href="/myLists/">Moje listy</a>
             <a href="/logout/">Wyloguj</a>
