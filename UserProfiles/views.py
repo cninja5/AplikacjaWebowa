@@ -4,11 +4,12 @@ from django.shortcuts import render, redirect
 from main.models import Znajomi
 from django.db.models import Subquery
 from django.contrib.auth.decorators import login_required
+from .forms import searchForUserForm
 
 
 # Create your views here.
 
-def profile(request, username):
+def view_profile(request, username):
     user = get_object_or_404(User, username=username)
     friends = Znajomi.objects.filter(idZapraszajacego=request.user.id, idZapraszanego=user.id).first()
 
@@ -38,6 +39,17 @@ def edit_profile(request, username):
     userdata = {'user_username': username, 'user_firstname': user_firstname, 'user_lastname': user_lastname,
                 'user_date_joined': user_date_joined}
     return render(request, 'profile/edit.html', userdata)
+
+
+def search_for_user(request):
+    if request.method == 'POST':
+        form = searchForUserForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            return redirect('view_profile', username=username)
+    else:
+        form = searchForUserForm()
+    return render(request, 'profile/search_for_user.html', {'form': form})
 
 
 @login_required

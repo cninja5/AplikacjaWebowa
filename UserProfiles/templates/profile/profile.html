@@ -65,6 +65,9 @@
                 {% endfor %}
             </ul>
             {% endif %}
+            {% if user.username == user_username %}
+            <p><a href="/search-for-user/">Wyszukaj użytkownika</a></p>
+            {% endif %}
         </div>
     </div>
 </div>

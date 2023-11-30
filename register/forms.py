@@ -12,7 +12,7 @@ RODZAJE_PLCI = (
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField
-    password1 = forms.CharField(label='Nowe hasło', widget=forms.PasswordInput)
+    password1 = forms.CharField(label='Nowe hasło', widget=forms.PasswordInput, help_text="Podaj hasło 8+ znaków")
     password2 = forms.CharField(label='Potwierdź nowe hasło', widget=forms.PasswordInput)
 
 
