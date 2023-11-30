@@ -108,6 +108,7 @@
 #przyciskiListy button{
     border: none;
     background-color: white;
+    margin-top: 20%;
 }
 
 #poNajechaniuBlue:hover{

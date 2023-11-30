@@ -33,17 +33,13 @@
         {% if listy %}
         <div class="row">
             {% for lista in listy %}
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div id="pojedynczaLista">
-                        <ul>
-                            <li>
-                                <div class="d-flex flex-column align-items-end ml-auto">
-                                    <span class="dataUwtorzenia">{{lista.dataUtworzenia|date:"d.m.Y" }}</span>
-                                </div>
-                                <h2 class="tytulListy">{{ lista.tytul }}</h2>
-                                <span>{{ lista.opis }}</span><br>
-                            </li>
-                        </ul>
+                        <div class="d-flex flex-column align-items-end ml-auto">
+                            <span class="dataUwtorzenia">{{lista.dataUtworzenia|date:"d.m.Y" }}</span>
+                        </div>
+                        <h2 class="tytulListy">{{ lista.tytul }}</h2>
+                        <span>{{ lista.opis }}</span><br>
                         <div id="przyciskiListy">
                             <div class="row">
                                 <div class="col-sm-4">
