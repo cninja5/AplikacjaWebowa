@@ -23,7 +23,7 @@ def profile(request, username):
         friend_status = "Nieznajomi"
 
     user_date_joined = user.date_joined
-    userdata = {'user_username': username, 'user_firstname': user.first_name, 'user_lastname': user.last_name,
+    userdata = {'user_username': username, 'user_first_name': user.first_name, 'user_last_name': user.last_name,
                 'user_date_joined': user_date_joined, "friend_status": friend_status, "friendsList": friendsList}
     return render(request, 'profile/profile.html', userdata)
 
