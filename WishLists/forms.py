@@ -15,7 +15,7 @@ class ListyForm(forms.ModelForm):
             'opis': forms.Textarea(attrs={'rows': 4, 'cols': 50})
         }
 
-class ZawartoscListyForm(forms.ModelForm):
+class DodajPrezentDoListyForm(forms.ModelForm):
     class Meta:
         model = ZawartoscListy
         fields = ['nazwaPrezentu']
