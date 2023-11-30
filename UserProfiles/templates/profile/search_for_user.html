@@ -4,7 +4,7 @@
 <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
     <div class="card p-4">
         <div class=" image d-flex flex-column justify-content-center align-items-center">
-            <p>Wyszukaj użytkownika</p>
+            <p>Wyszukaj użytkowników</p>
             <form method="POST" action="{% url 'search_for_user' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
