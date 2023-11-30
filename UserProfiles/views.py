@@ -65,7 +65,7 @@ def send_invite(request, username):
     invite.save()
     invite2.save()
 
-    return redirect("profile", username=username)
+    return redirect("view_profile", username=username)
 
 
 @login_required
@@ -80,7 +80,7 @@ def accept_invite(request, username):
     invite.save()
     invite2.save()
 
-    return redirect("profile", username=username)
+    return redirect("view_profile", username=username)
 
 
 @login_required
@@ -92,7 +92,7 @@ def unfriend(request, username):
     invite.delete()
     invite2.delete()
 
-    return redirect("profile", username=username)
+    return redirect("view_profile", username=username)
 
 
 @login_required
