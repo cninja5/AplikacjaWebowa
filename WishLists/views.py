@@ -43,7 +43,7 @@ def addPresents(request, idList):
 
     return render(request, 'addPresentsToList.html',
                   {'form': form, 'zawartosc_listy': zawartosc_listy, 'tytul': list_object.tytul,
-                   'opis': list_object.opis})
+                   'opis': list_object.opis, 'numerListy': numerListy})
 
 
 def myLists(request):
