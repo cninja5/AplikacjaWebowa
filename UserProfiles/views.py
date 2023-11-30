@@ -46,7 +46,10 @@ def search_for_user(request):
         form = searchForUserForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
-            return redirect('view_profile', username=username)
+            if User.objects.filter(username=username).exists():
+                return redirect('view_profile', username=username)
+            else:
+                return render(request, 'profile/search_for_user.html', {'form': form, 'warning': 'Podany użytkownik nie istnieje!'})
     else:
         form = searchForUserForm()
     return render(request, 'profile/search_for_user.html', {'form': form})
