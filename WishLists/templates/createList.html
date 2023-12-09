@@ -11,9 +11,10 @@
         </h1>
         <form method="post" enctype="multipart/form-data" id="listForm" ">
             {% csrf_token %}
-            <label for="id_tytul">Tytuł listy:</label>
+        <label for="id_tytul"><h3>Tytuł listy:</h3></label>
             {{ form.tytul }}
-            <label for="id_opis">Opis listy:</label>
+        <br><br>
+        <label for="id_opis"><h3>Opis listy:</h3></label>
             {{ form.opis }}
 <!--            <div id="prezenty">-->
 <!--                &lt;!&ndash; Pole na pierwszy prezent &ndash;&gt;-->

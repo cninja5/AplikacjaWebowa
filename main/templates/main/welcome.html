@@ -1,20 +1,113 @@
-{% extends "main/base.html" %}
+{% load static %}
+<!doctype html>
+<html>
+<head>
 
-{% block content %}
-<h1 class="witaj">Witaj w serwisie PresentPlanner!</h1>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.png">
+    <meta charset="utf-8">
+    <meta name="description" content="Projekt inzynierski dotyczący aplikacji webowej"/>
+    <meta name="author" content="JS,JP,BZ"/>
+    <title>{% block title %} Present Planner {% endblock %}</title>
+</head>
+<body>
 
-<div id="opis">
-       <h3>Celem serwisu jest ułatwnienie kupna idealnego prezentu naszym bliskim. Po utworzeniu konta, każdy użytkownik ma możliwość
-              utworzenia swoich list wymarzonych prezentów na dane wydarzenie, aby ułatwić kupno prezentu bliskim!<br>
-              W celu korzystania z serwisu należy posiadać konto.
-       </h3>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container px-5">
+        <img class="logo2" src="{% static 'logo.png' %}" alt="Logo">
+        <a class="navbar-brand" href="#page-top">Present Planner</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link welcomeLinks" href="/register/">Rejestracja</a></li>
+                <li class="nav-item"><a class="nav-link welcomeLinks" href="/login/">Zaloguj</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-       <h1 class="witaj">Co chcesz zrobić?</h1>
-       <a href="/login/"><button type="button" class="btn btn-outline-dark btn-lg przyciskWelcome ">Zaloguj się</button></a>
-       <a href="/register/"><button type="button" class="btn btn-outline-dark btn-lg przyciskWelcome">Zarejestruj się</button></a>
-</div>
+<header class="masthead text-center text-white">
+    <div class="masthead-content">
+        <div class="container px-5">
+            <h1 class="masthead-heading mb-0">Present Planner</h1>
+            <h2 class="masthead-subheading mb-0">W jednym miejscu wszystkie listy prezentowe</h2>
+            <a class="btn btn-xl rounded-pill mt-5 welcomeButton" href="#scroll">Dowiedz się więcej</a>
+        </div>
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+</header>
+
+<section id="scroll">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'gift1.jpg' %}" alt="gift1"/></div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h2 class="display-4">Z myślą <br>o bliskich</h2>
+                    <p>Wiele razy zdarzyło Ci się zastanawiać jaki prezent kupić swoim blikim?
+                    Nam też!
+                    Dlatego, stworzyliśmy aplikację Present Planner, żeby nikt już się nie miał problemu co kupić swoim bliskim!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6">
+                <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'gift3.jpg' %}" alt="gift3"/></div>
+            </div>
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <h2 class="display-4">Wszystko w jednym miejscu!</h2>
+                    <p>W aplikacji Present Planner tworzysz konto i tworzysz swoją sieć znajomych. Każdy z użytkowników
+                    może stworzyć dowolną liczbę list prezentów jakie by chciał otrzymać na daną okazję.
+                    Czy to nie jest genialne?!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'gift2.jpg' %}" alt="gift2"/></div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h2 class="display-4">Rezerwacja prezentu</h2>
+                    <p>Nikt z Nas nie chciałby dostać takiego samego prezentu od kilku osób prawda?
+                    W Present Planner przewidzieliśmy taki problem i pozbyliśmy się go!
+                    Każdy z użytkowników, może sobie zarezerwować konkretny prezent jaki chce kupić drugiej osobie.
+                        Oczywiście właściciel listy nie wie co dostanie od kogo, żeby nie zniszczyć
+                    niespodzianki!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="py-5 bg-black stopka">
+    <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Present Planner <br>Projekt inżynierski 2023/24<br>Jacek Sidzina, Jakub Perczyński, Bartłomiej Zając</p></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 
-
-
-{% endblock %}
+</body>
+</html>
