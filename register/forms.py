@@ -11,6 +11,8 @@ class RegisterForm(UserCreationForm):
     username = forms.CharField(label='Nazwa użytkownika',
                                help_text='50 znaków lub mniej. Dozwolone znaki: litery, cyfry i @/./+/-/_.',
                                max_length=50)
+    first_name = forms.CharField(label='Imię', max_length=50)
+    last_name = forms.CharField(label='Nazwisko', max_length=50)
     email = forms.EmailField
     password1 = forms.CharField(label='Nowe hasło', widget=forms.PasswordInput,
                                 help_text="<ul><li>Twoje hasło nie może być podobne do loginu, bądź maila.</li>" +
@@ -21,7 +23,7 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ["username", "email", "password1", "password2"]
+        fields = ["username", "first_name", "last_name", "email", "password1", "password2"]
         labels = {
             'email': 'E-mail',
         }
