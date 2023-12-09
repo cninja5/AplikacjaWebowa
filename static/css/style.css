@@ -110,14 +110,17 @@
     padding: 15px;
     margin-bottom: 8%;
     box-shadow: 5px 5px 5px grey;
+    background-color: #CAF0F8;
 }
+
 #przyciskiListy{
     text-align: center;
 }
 
 #przyciskiListy button{
     border: none;
-    background-color: white;
+    background-color: #CAF0F8 !important;
+    margin-top: 8%;
 }
 
 #poNajechaniuBlue:hover{
