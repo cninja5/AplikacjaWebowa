@@ -1,35 +1,45 @@
-.sidenav{
-    height: 100%;
-    width: 160px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color:#111;
-    overflow-x: :hidden;
-    padding-top: 20px;
+*{
+	 font-family: Verdana, sans-serif;
 }
 
-.sidenav a{
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
+.nav-pills li a:hover{
+	background-color: #0077B6;
 }
 
-.sidenav a:hover{
-    color: #f1f1f1;
+.logo{
+	padding-top: 10%;
+	padding-bottom: 5%;
+	text-align: center;
+}
+
+.logo img{
+	width: 50%;
+	height: 50%;
+}
+
+.container-fluid {
+	overflow: hidden;
+}
+
+.nav-link {
+    margin-bottom: 20px;
+	display: flex;
+    align-items: center;
+}
+
+.dropdown-toggle svg{
+	margin-bottom: 8px;
 }
 
 .main{
-    margin-left: 160px;
+
     padding: 0px 10px;
 }
 
 .witaj{
     margin-top: 5%;
     margin-bottom: 5%;
+    text-align: center
 }
 
 #opis{
@@ -61,7 +71,7 @@
 }
 
 #loginScreen{
-    float:right;
+    text-align: right;
 }
 
 .createListForm{
