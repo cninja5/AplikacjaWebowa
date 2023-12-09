@@ -113,11 +113,11 @@
     background-color: #CAF0F8;
 }
 
-#przyciskiListy{
+#przyciskiMojeListy{
     text-align: center;
 }
 
-#przyciskiListy button{
+#przyciskiMojeListy button{
     border: none;
     background-color: #CAF0F8 !important;
     margin-top: 8%;
