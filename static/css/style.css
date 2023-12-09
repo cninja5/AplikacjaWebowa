@@ -25,7 +25,7 @@ body{
 	overflow: hidden;
 }
 
-.nav-link {
+.baseLinks {
     margin-bottom: 20px;
 	display: flex;
     align-items: center;
@@ -85,15 +85,15 @@ body{
 }
 
 .form-container label {
-    display: block; /* Ustawia etykiety jako blokowe, aby były nad polami */
-    margin-bottom: 5px; /* Opcjonalne: odstęp między etykietami a polami formularza */
+    display: block;
+    margin-bottom: 5px;
 }
 
 .form-container input[type="text"],
 .form-container textarea {
-    width: 100%; /* Rozciąga pola formularza na całą szerokość kontenera */
+    width: 100%; /
     padding: 8px;
-    margin-bottom: 10px; /* Odstęp między polami formularza */
+    margin-bottom: 10px;
 }
 
 #loginScreen{
@@ -167,7 +167,7 @@ body{
     border-radius: 8px;
     padding: 15px;
     margin-bottom: 8%;
-    box-shadow: 5px 5px 5px grey;
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.7);
     background-color: #CAF0F8;
 }
 
@@ -267,4 +267,100 @@ body{
 
 .przyciskAlert{
     border: none;
+}
+
+.stopka{
+    background-color: black !important;
+}
+
+header.masthead {
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(9rem + 72px);
+  padding-bottom: 9rem;
+  background: linear-gradient(0deg, #023E8A 0%, #48CAE4 100%);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: scroll;
+  background-size: cover;
+}
+header.masthead .masthead-content {
+  z-index: 1;
+  position: relative;
+}
+header.masthead .masthead-content .masthead-heading {
+  font-size: 4rem;
+}
+header.masthead .masthead-content .masthead-subheading {
+  font-size: 2rem;
+}
+header.masthead .bg-circle {
+  z-index: 0;
+  position: absolute;
+  border-radius: 100%;
+  background: linear-gradient(0deg, #023E8A 0%, #48CAE4 100%);
+}
+header.masthead .bg-circle-1 {
+  height: 90rem;
+  width: 90rem;
+  bottom: -55rem;
+  left: -55rem;
+}
+header.masthead .bg-circle-2 {
+  height: 50rem;
+  width: 50rem;
+  top: -25rem;
+  right: -25rem;
+}
+header.masthead .bg-circle-3 {
+  height: 20rem;
+  width: 20rem;
+  bottom: -10rem;
+  right: 5%;
+}
+header.masthead .bg-circle-4 {
+  height: 30rem;
+  width: 30rem;
+  top: -5rem;
+  right: 35%;
+}
+
+.btn-xl {
+  padding: 1.5rem 3rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+}
+
+.navbar-custom {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.navbar-custom .navbar-brand {
+  font-size: 20px;
+  font-weight: bold;
+}
+.navbar-custom .navbar-nav .nav-item .welcomeLinks {
+    color: white !important;
+    font-weight: bold;
+}
+
+.welcomeButton{
+    background-color: #ADE8F4;
+}
+.logo2{
+    width: 4%;
+    height: 4%;
+    margin-right: 2%;
+}
+
+.flex-nowrap .bg-dark{
+    background-color: #33373b !important;
+    opacity: 0.9;
+}
+
+.col-md-3{
+    box-shadow: 0 0px 65px rgba(0,0,0,0.7);
+}
+
+.uzytkownik{
+    text-decoration: none;
 }
