@@ -2,6 +2,10 @@
 	 font-family: Verdana, sans-serif;
 }
 
+body{
+    background-color: #EFFDFF;
+}
+
 .nav-pills li a:hover{
 	background-color: #0077B6;
 }
@@ -31,8 +35,21 @@
 	margin-bottom: 8px;
 }
 
-.main{
+.dropdown-item a{
+    text-decoration: none;
+    color: black;
+}
 
+.dropdown-menu button:hover{
+    background-color: #0077B6;
+    color: white;
+}
+
+.dropdown-item:hover a{
+    color: white;
+}
+
+.main{
     padding: 0px 10px;
 }
 
@@ -51,6 +68,9 @@
 .przyciskWelcome{
     margin-right: 5%;
     margin-left: 5%;
+    background-color: #0077B6;
+    color: white;
+    border: 1px solid #0077B6;
 }
 
 .form-container {
@@ -78,12 +98,18 @@
     margin-bottom: 15%;
     margin-top: 3%;
     margin-right: 2%;
+    background-color: #0077B6;
+    color: white;
+    border: 1px solid #0077B6;
 }
 .createListFormR{
     margin-bottom: 15%;
     margin-top: 3%;
     margin-left: 2%;
     float: right;
+    background-color: #0077B6;
+    color: white;
+    border: 1px solid #0077B6;
 }
 
 .deleteRightButton{
@@ -143,8 +169,6 @@
     text-decoration: none;
 }
 
-
-
 #guzikAddPresent{
     margin-bottom: 2%;
 }
@@ -173,12 +197,27 @@
 
 #przyciskiListy button{
     border: none;
-    background-color: white;
+    background-color: #EFFDFF !important;
 }
 .trashRight{
     float: right;
 }
 
-.hidden {
+.hidden{
         display: none;
-    }
+}
+
+.przyciskRejestracja{
+    background-color: #0077B6;
+    color: white;
+    border: 1px solid #0077B6;
+}
+
+.formularzeP{
+    margin-top: 5%;
+}
+
+.przyciskRejestracja a{
+    color: white;
+    text-decoration: none;
+}
