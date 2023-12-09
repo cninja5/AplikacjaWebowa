@@ -1,35 +1,62 @@
-.sidenav{
-    height: 100%;
-    width: 160px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color:#111;
-    overflow-x: :hidden;
-    padding-top: 20px;
+*{
+	 font-family: Verdana, sans-serif;
 }
 
-.sidenav a{
-    padding: 6px 8px 6px 16px;
+body{
+    background-color: #EFFDFF;
+}
+
+.nav-pills li a:hover{
+	background-color: #0077B6;
+}
+
+.logo{
+	padding-top: 10%;
+	padding-bottom: 5%;
+	text-align: center;
+}
+
+.logo img{
+	width: 50%;
+	height: 50%;
+}
+
+.container-fluid {
+	overflow: hidden;
+}
+
+.nav-link {
+    margin-bottom: 20px;
+	display: flex;
+    align-items: center;
+}
+
+.dropdown-toggle svg{
+	margin-bottom: 8px;
+}
+
+.dropdown-menu a{
     text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
+    color: black;
 }
 
-.sidenav a:hover{
-    color: #f1f1f1;
+.dropdown-menu button:hover{
+    background-color: #0077B6;
+    color: white;
+}
+
+.dropdown-item:hover a{
+    color: white;
 }
 
 .main{
-    margin-left: 160px;
     padding: 0px 10px;
 }
 
 .witaj{
     margin-top: 5%;
     margin-bottom: 5%;
+    text-align: center
 }
 
 #opis{
@@ -41,6 +68,15 @@
 .przyciskWelcome{
     margin-right: 5%;
     margin-left: 5%;
+    background-color: #0096C7;
+    color: white;
+    border: 1px solid #0096C7;
+}
+
+.przyciskWelcome:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
 }
 
 .form-container {
@@ -61,23 +97,55 @@
 }
 
 #loginScreen{
-    float:right;
+    text-align: right;
 }
 
 .createListForm{
     margin-bottom: 15%;
     margin-top: 3%;
     margin-right: 2%;
+    background-color: #0096C7;
+    color: white;
+    border: 1px solid #0096C7;
 }
+
+.createListForm:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
 .createListFormR{
     margin-bottom: 15%;
     margin-top: 3%;
     margin-left: 2%;
     float: right;
+    background-color: #0096C7;
+    color: white;
+    border: 1px solid #0096C7;
+}
+
+.createListFormR:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
 }
 
 .deleteRightButton{
     margin-bottom: 2%;
+    background-color: #FF3333;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    border: 2px solid #FF3333;
+}
+
+.deleteRightButton:hover{
+    background-color: white;;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #FF3333;
+    border: 2px solid #FF3333;
 }
 
 #listy{
@@ -100,18 +168,21 @@
     padding: 15px;
     margin-bottom: 8%;
     box-shadow: 5px 5px 5px grey;
+    background-color: #CAF0F8;
 }
-#przyciskiListy{
+
+#przyciskiMojeListy{
     text-align: center;
 }
 
-#przyciskiListy button{
+#przyciskiMojeListy button{
     border: none;
-    background-color: white;
+    background-color: #CAF0F8 !important;
+    margin-top: 8%;
 }
 
-#poNajechaniuBlue:hover{
-    color: blue;
+#poNajechaniuYellow:hover{
+    color: #FFC436;
 }
 
 #poNajechaniuGreen:hover{
@@ -129,8 +200,6 @@
 .przyciskBrakList{
     text-decoration: none;
 }
-
-
 
 #guzikAddPresent{
     margin-bottom: 2%;
@@ -160,12 +229,42 @@
 
 #przyciskiListy button{
     border: none;
-    background-color: white;
+    background-color: #EFFDFF !important;
 }
 .trashRight{
     float: right;
 }
 
-.hidden {
+.hidden{
         display: none;
-    }
+}
+
+.przyciskRejestracja{
+    background-color: #0096C7;
+    color: white;
+    border: 1px solid #0096C7;
+}
+
+.przyciskRejestracja:hover{
+    background-color: #023E8A;
+    color: white;
+}
+
+.formularzeP{
+    margin-top: 5%;
+}
+
+.przyciskRejestracja a{
+    color: white;
+    text-decoration: none;
+}
+
+.wyrownanieDoLewej{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 100%;
+}
+
+.przyciskAlert{
+    border: none;
+}

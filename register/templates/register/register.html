@@ -4,10 +4,19 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <p><a href="/login">Strona logowania</a></p>
-        <button type="submit">Zarejestruj się</button>
-    </form>
+<div class="row justify-content-center formularzeP">
+    <div class="col-md-6">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-outline-dark btn-lg przyciskRejestracja">Zarejestruj się</button>
+                <button type="submit" class="btn btn-outline-dark btn-lg przyciskRejestracja ml-auto">
+                    <a href="/login">Strona logowania</a>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
