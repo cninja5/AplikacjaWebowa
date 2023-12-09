@@ -47,7 +47,7 @@ def addPresents(request, idList):
 
 
 def myLists(request):
-    listy_uzytkownika = Listy.objects.filter(loginWlasciciel=request.user)
+    listy_uzytkownika = Listy.objects.filter(loginWlasciciel=request.user).order_by('-id')
     return render(request, 'myLists.html', {'listy': listy_uzytkownika})
 
 
