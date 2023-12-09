@@ -35,7 +35,7 @@ body{
 	margin-bottom: 8px;
 }
 
-.dropdown-item a{
+.dropdown-menu a{
     text-decoration: none;
     color: black;
 }
@@ -98,18 +98,31 @@ body{
     margin-bottom: 15%;
     margin-top: 3%;
     margin-right: 2%;
-    background-color: #0077B6;
+    background-color: #0096C7;
     color: white;
-    border: 1px solid #0077B6;
+    border: 1px solid #0096C7;
 }
+
+.createListForm:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
 .createListFormR{
     margin-bottom: 15%;
     margin-top: 3%;
     margin-left: 2%;
     float: right;
-    background-color: #0077B6;
+    background-color: #0096C7;
     color: white;
-    border: 1px solid #0077B6;
+    border: 1px solid #0096C7;
+}
+
+.createListFormR:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
 }
 
 .deleteRightButton{
@@ -149,8 +162,8 @@ body{
     margin-top: 8%;
 }
 
-#poNajechaniuBlue:hover{
-    color: blue;
+#poNajechaniuYellow:hover{
+    color: #FFC436;
 }
 
 #poNajechaniuGreen:hover{
@@ -208,9 +221,14 @@ body{
 }
 
 .przyciskRejestracja{
-    background-color: #0077B6;
+    background-color: #0096C7;
     color: white;
-    border: 1px solid #0077B6;
+    border: 1px solid #0096C7;
+}
+
+.przyciskRejestracja:hover{
+    background-color: #023E8A;
+    color: white;
 }
 
 .formularzeP{
@@ -220,4 +238,10 @@ body{
 .przyciskRejestracja a{
     color: white;
     text-decoration: none;
+}
+
+.wyrownanieDoLewej{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 100%;
 }
