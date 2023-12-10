@@ -1,10 +1,10 @@
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from main.models import Znajomi
+from main.models import Znajomi, ProfilUzytkownika
 from django.db.models import Subquery
 from django.contrib.auth.decorators import login_required
-from .forms import searchForUserForm
+from .forms import searchForUserForm, editAvatarForm
 
 
 # Create your views here.
@@ -36,8 +36,43 @@ def edit_profile(request, username):
     user_firstname = user.first_name
     user_lastname = user.last_name
     user_date_joined = user.date_joined
+    userdata = {'edit': None, 'user_username': username, 'user_firstname': user_firstname,
+                'user_lastname': user_lastname,
+                'user_date_joined': user_date_joined}
+    return render(request, 'profile/edit.html', userdata)
+
+
+@login_required
+def password_change(request, username):
+    user = get_object_or_404(User, username=username)
+
+    user_firstname = user.first_name
+    user_lastname = user.last_name
+    user_date_joined = user.date_joined
     userdata = {'user_username': username, 'user_firstname': user_firstname, 'user_lastname': user_lastname,
                 'user_date_joined': user_date_joined}
+    return render(request, 'profile/edit.html', userdata)
+
+
+@login_required
+def avatar_change(request, username):
+    user = get_object_or_404(User, username=username)
+    user_date_joined = user.date_joined
+
+    edit = "avatar-change"
+    profil, created = ProfilUzytkownika.objects.get_or_create(user_id=user)
+
+    if request.method == 'POST':
+        form = editAvatarForm(request.POST, request.FILES, instance=profil)
+        if form.is_valid():
+            form.instance.user = request.user
+            form.save()
+            return redirect('/profile/' + request.user.username + '/edit/')
+    else:
+        form = editAvatarForm()
+
+
+    userdata = {'edit': edit, 'user_username': username, 'user_date_joined': user_date_joined, 'form': form}
     return render(request, 'profile/edit.html', userdata)
 
 
@@ -49,7 +84,8 @@ def search_for_user(request):
             if User.objects.filter(username=username).exists():
                 return redirect('view_profile', username=username)
             else:
-                return render(request, 'profile/search_for_user.html', {'form': form, 'warning': 'Podany użytkownik nie istnieje!'})
+                return render(request, 'profile/search_for_user.html',
+                              {'form': form, 'warning': 'Podany użytkownik nie istnieje!'})
     else:
         form = searchForUserForm()
     return render(request, 'profile/search_for_user.html', {'form': form})
@@ -93,27 +129,3 @@ def unfriend(request, username):
     invite2.delete()
 
     return redirect("view_profile", username=username)
-
-
-@login_required
-def password_change(request, username):
-    user = get_object_or_404(User, username=username)
-
-    user_firstname = user.first_name
-    user_lastname = user.last_name
-    user_date_joined = user.date_joined
-    userdata = {'user_username': username, 'user_firstname': user_firstname, 'user_lastname': user_lastname,
-                'user_date_joined': user_date_joined}
-    return render(request, 'profile/edit.html', userdata)
-
-
-@login_required
-def avatar_change(request, username):
-    user = get_object_or_404(User, username=username)
-
-    user_firstname = user.first_name
-    user_lastname = user.last_name
-    user_date_joined = user.date_joined
-    userdata = {'user_username': username, 'user_firstname': user_firstname, 'user_lastname': user_lastname,
-                'user_date_joined': user_date_joined}
-    return render(request, 'profile/edit.html', userdata)
