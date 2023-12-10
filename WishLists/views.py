@@ -64,12 +64,12 @@ def deleteList(request, idList):
 
 def specificList(request, idList):
     list_object = get_object_or_404(Listy, pk=idList)
-    zawartosc_listy = ZawartoscListy.objects.filter(idListy=list_object)
-    numerListy = idList
+    zawartosc_listy = ZawartoscListy.objects.filter(idListy=list_object).order_by('id')
+    listOwnerId = list_object.loginWlasciciel.id
 
     return render(request, 'mySpecificList.html',
                   {'zawartosc_listy': zawartosc_listy, 'tytul': list_object.tytul, 'opis': list_object.opis,
-                   'numerListy': numerListy})
+                   'numerListy': idList, 'ownerId': listOwnerId})
 
 
 def deletePresent(request, idPrezent, idList):
@@ -77,3 +77,19 @@ def deletePresent(request, idPrezent, idList):
     prezent.delete()
 
     return redirect('addPresents', idList=idList)
+
+
+def makeGiftReservation(request, idList, idGift):
+    prezent = get_object_or_404(ZawartoscListy, id=idGift)
+    prezent.loginRezerwacji = request.user
+    prezent.save()
+
+    return redirect('specificList', idList=idList)
+
+
+def cancelGiftReservation(request, idList, idGift):
+    prezent = get_object_or_404(ZawartoscListy, id=idGift)
+    prezent.loginRezerwacji = None
+    prezent.save()
+
+    return redirect('specificList', idList=idList)

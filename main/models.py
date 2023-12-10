@@ -8,23 +8,6 @@ RodzajePlci = (
     ('K', 'Kobieta',),
 )
 
-# class Uzytkownicy(AbstractUser):
-#     plec = models.CharField(
-#         max_length=20,
-#         choices=RodzajePlci,
-#         default='1'
-#     )
-#     zdjProfilu = models.ImageField(upload_to='uploads/')
-#     groups = models.ManyToManyField(
-#         "auth.Group", related_name="customuser_set", blank=True, related_query_name="user"
-#     )
-#     user_permissions = models.ManyToManyField(
-#         "auth.Permission",
-#         related_name="customuser_set",
-#         blank=True,
-#         related_query_name="user",
-#     )
-
 class Znajomi(models.Model):
     idZapraszajacego = models.ForeignKey(User, default='0', on_delete=models.CASCADE, related_name='senderId')
     idZapraszanego = models.ForeignKey(User, default='0', on_delete=models.CASCADE, related_name='invitedId')
@@ -37,14 +20,19 @@ class Listy(models.Model):
     dataUtworzenia = models.DateField(auto_now_add=True)
     # zawartosc = models.ManyToManyField('ZawartoscListy', related_name='zawartoscListy', blank=True)
 
-class Prezent(models.Model):
-    idListy = models.ForeignKey(Listy, on_delete=models.CASCADE)
-    nazwaPrezentu = models.CharField(max_length=254)
-    loginRezerwacji = models.IntegerField()
+# class Prezent(models.Model):
+#     idListy = models.ForeignKey(Listy, on_delete=models.CASCADE)
+#     nazwaPrezentu = models.CharField(max_length=254)
+#     linkDoPrezentu = models.CharField(max_length=1024, blank=True)
+#     cenaPrezentu = models.FloatField(blank=True)
+#     loginRezerwacji = models.IntegerField()
 
 class ZawartoscListy(models.Model):
     idListy = models.ForeignKey(Listy, on_delete=models.CASCADE)
     nazwaPrezentu = models.CharField(max_length=254)
+    loginRezerwacji = models.ForeignKey(User, db_column="username", on_delete=models.CASCADE, null=True)
+    linkDoPrezentu = models.CharField(max_length=1024, blank=True, null=True)
+    cenaPrezentu = models.FloatField(blank=True, default=0)
 
     def __str__(self):
         return self.nazwaPrezentu
