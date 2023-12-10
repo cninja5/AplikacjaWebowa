@@ -364,3 +364,8 @@ header.masthead .bg-circle-4 {
 .uzytkownik{
     text-decoration: none;
 }
+
+div .card-body .p-4{
+    color:red !important;
+
+}
