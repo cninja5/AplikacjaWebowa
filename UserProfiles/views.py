@@ -1,10 +1,15 @@
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from main.models import Znajomi, ProfilUzytkownika
 from django.db.models import Subquery
 from django.contrib.auth.decorators import login_required
+
+from register.forms import CustomPasswordChangeForm
 from .forms import searchForUserForm, editAvatarForm
+from django.contrib import messages
 
 
 # Create your views here.
@@ -45,12 +50,19 @@ def edit_profile(request, username):
 @login_required
 def password_change(request, username):
     user = get_object_or_404(User, username=username)
+    edit = True
+    if request.method == 'POST':
+        form = CustomPasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Twoje hasło zostało pomyślnie zmienione!')
+            return redirect('/profile/' + request.user.username + '/edit/')
+    else:
+        form = CustomPasswordChangeForm(request.user)
 
-    user_firstname = user.first_name
-    user_lastname = user.last_name
     user_date_joined = user.date_joined
-    userdata = {'user_username': username, 'user_firstname': user_firstname, 'user_lastname': user_lastname,
-                'user_date_joined': user_date_joined}
+    userdata = {'user_date_joined': user_date_joined, 'form': form, 'edit': edit}
     return render(request, 'profile/edit.html', userdata)
 
 
@@ -59,7 +71,7 @@ def avatar_change(request, username):
     user = get_object_or_404(User, username=username)
     user_date_joined = user.date_joined
 
-    edit = "avatar-change"
+    edit = True
     profil, created = ProfilUzytkownika.objects.get_or_create(user_id=user)
 
     if request.method == 'POST':
