@@ -82,7 +82,7 @@ def avatar_change(request, username):
     user_date_joined = user.date_joined
 
     edit = True
-    profil, created = ProfilUzytkownika.objects.get_or_create(user_id=user)
+    profil, created = ProfilUzytkownika.objects.get_or_create(user_id=user.id)
 
     if request.method == 'POST':
         form = editAvatarForm(request.POST, request.FILES, instance=profil)
