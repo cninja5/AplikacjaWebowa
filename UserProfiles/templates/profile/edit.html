@@ -1,7 +1,28 @@
 {% extends "main/base.html" %}
 {% block title %} Profil - {{ user_username}} {% endblock %}
 {% block content %}
+
 <div class="container emp-profile">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% if messages %}
+<div id="alert-container">
+    {% for message in messages %}
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close przyciskAlert" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+        setTimeout(function() {
+          $('.alert').alert('close');
+        }, 3000);
+
+</script>
+{% endif %}
     <div class="row">
         <div class="col-md-4">
             <div class="profile-img">
