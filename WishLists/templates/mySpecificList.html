@@ -27,16 +27,15 @@
                 <span class="elementLista">
                     {{ prezent.nazwaPrezentu }}
                     {% if request.user.id != ownerId %}
-                        {% if loginRezerwacji == null %}
-                            <a href="reserve/{{ prezent.id }}"><button class="btn btn-lg rounded-pill przyciskWelcome">Zarezerwuj {{ loginRezerwacji }} == null</button></a>
-                        {% elif loginRezerwacji == request.user.username %}
+                        {% if prezent.loginRezerwacji.id == null %}
+                            <a href="make-reservation/{{ prezent.id }}"><button class="btn btn-lg rounded-pill przyciskWelcome">Zarezerwuj {{ prezent.loginRezerwacji.id }} == null</button></a>
+                        {% elif prezent.loginRezerwacji.id == request.user.id %}
                             <a href="cancel-reservation/{{ prezent.id }}"><button
-                                    class="btn btn-lg rounded-pill przyciskWelcome">Anuluj rezerwację {{ loginRezerwacji }} == {{ request.user.username }}</button></a>
+                                    class="btn btn-lg rounded-pill przyciskWelcome">Anuluj rezerwację {{ prezent.loginRezerwacji.id }} == {{ request.user.id }}</button></a>
                         {% else %}
-                            <button class="btn btn-lg rounded-pill przyciskWelcome" disabled>Zarezerwowany {{ loginRezerwacji }} != {{ request.user.username }}</button>
+                            <button class="btn btn-lg rounded-pill przyciskWelcome" disabled>Zarezerwowany {{ prezent.loginRezerwacji.id }} != {{ request.user.id }}</button>
                         {% endif %}
                     {% endif %}
-
                 </span>
             </li>
             {% endfor %}
@@ -48,12 +47,14 @@
         <p class="elementLista">
         <div id="brakList">
             <h1>Brak dostępnych prezentów.</h1>
+        {% if request.user.id != ownerId %}
             <h1>Zedytuj listę, aby dodać prezenty!</h1>
             <br>
             <form method="POST" action="{% url 'addPresents' numerListy %}">
                 {% csrf_token %}
                 <button class="btn rounded-pill btn-lg przyciskWelcome ">Dodaj prezenty</button>
             </form>
+        {% endif %}
         </div>
         </p>
         {% endif %}
