@@ -37,6 +37,7 @@
                     {{ form.as_p }}
                     <button class="btn btn-sm rounded-pill profilButtonsEdit" type="submit">Zmień</button>
                 </form>
+
                 {% endif %}
                 {% if edit != null %}
                 <a href="/profile/{{ request.user.username }}/edit">
