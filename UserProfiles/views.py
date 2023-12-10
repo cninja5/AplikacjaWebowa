@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from main.models import Znajomi
+from main.models import Znajomi,Listy
 from django.db.models import Subquery
 from django.contrib.auth.decorators import login_required
 from .forms import searchForUserForm
@@ -18,6 +18,12 @@ def view_profile(request, username):
 
     friendsList = User.objects.filter(id__in=Subquery(podzapytanie)).values_list('username', flat=True)
 
+    # Liczba znajomych
+    friends_count = Znajomi.objects.filter(idZapraszajacego=user.id, status="Przyjaciele").count()
+
+    # Liczba list
+    lists_count = Listy.objects.filter(loginWlasciciel=user).count()
+
     if friends:
         friend_status = friends.status
     else:
@@ -25,7 +31,8 @@ def view_profile(request, username):
 
     user_date_joined = user.date_joined
     userdata = {'user_username': username, 'user_first_name': user.first_name, 'user_last_name': user.last_name,
-                'user_date_joined': user_date_joined, "friend_status": friend_status, "friendsList": friendsList}
+                'user_date_joined': user_date_joined, "friend_status": friend_status, "friendsList": friendsList,
+                "friends_count":friends_count,"lists_count":lists_count}
     return render(request, 'profile/profile.html', userdata)
 
 
