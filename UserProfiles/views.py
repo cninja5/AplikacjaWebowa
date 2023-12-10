@@ -1,10 +1,15 @@
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from main.models import Znajomi
+from main.models import Znajomi, ProfilUzytkownika
 from django.db.models import Subquery
 from django.contrib.auth.decorators import login_required
-from .forms import searchForUserForm
+
+from register.forms import CustomPasswordChangeForm
+from .forms import searchForUserForm, editAvatarForm
+from django.contrib import messages
 
 
 # Create your views here.
@@ -36,8 +41,50 @@ def edit_profile(request, username):
     user_firstname = user.first_name
     user_lastname = user.last_name
     user_date_joined = user.date_joined
-    userdata = {'user_username': username, 'user_firstname': user_firstname, 'user_lastname': user_lastname,
+    userdata = {'edit': None, 'user_username': username, 'user_firstname': user_firstname,
+                'user_lastname': user_lastname,
                 'user_date_joined': user_date_joined}
+    return render(request, 'profile/edit.html', userdata)
+
+
+@login_required
+def password_change(request, username):
+    user = get_object_or_404(User, username=username)
+    edit = True
+    if request.method == 'POST':
+        form = CustomPasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Twoje hasło zostało pomyślnie zmienione!')
+            return redirect('/profile/' + request.user.username + '/edit/')
+    else:
+        form = CustomPasswordChangeForm(request.user)
+
+    user_date_joined = user.date_joined
+    userdata = {'user_date_joined': user_date_joined, 'form': form, 'edit': edit}
+    return render(request, 'profile/edit.html', userdata)
+
+
+@login_required
+def avatar_change(request, username):
+    user = get_object_or_404(User, username=username)
+    user_date_joined = user.date_joined
+
+    edit = True
+    profil, created = ProfilUzytkownika.objects.get_or_create(user_id=user)
+
+    if request.method == 'POST':
+        form = editAvatarForm(request.POST, request.FILES, instance=profil)
+        if form.is_valid():
+            form.instance.user = request.user
+            form.save()
+            return redirect('/profile/' + request.user.username + '/edit/')
+    else:
+        form = editAvatarForm()
+
+
+    userdata = {'edit': edit, 'user_username': username, 'user_date_joined': user_date_joined, 'form': form}
     return render(request, 'profile/edit.html', userdata)
 
 
@@ -49,7 +96,8 @@ def search_for_user(request):
             if User.objects.filter(username=username).exists():
                 return redirect('view_profile', username=username)
             else:
-                return render(request, 'profile/search_for_user.html', {'form': form, 'warning': 'Podany użytkownik nie istnieje!'})
+                return render(request, 'profile/search_for_user.html',
+                              {'form': form, 'warning': 'Podany użytkownik nie istnieje!'})
     else:
         form = searchForUserForm()
     return render(request, 'profile/search_for_user.html', {'form': form})
@@ -93,27 +141,3 @@ def unfriend(request, username):
     invite2.delete()
 
     return redirect("view_profile", username=username)
-
-
-@login_required
-def password_change(request, username):
-    user = get_object_or_404(User, username=username)
-
-    user_firstname = user.first_name
-    user_lastname = user.last_name
-    user_date_joined = user.date_joined
-    userdata = {'user_username': username, 'user_firstname': user_firstname, 'user_lastname': user_lastname,
-                'user_date_joined': user_date_joined}
-    return render(request, 'profile/edit.html', userdata)
-
-
-@login_required
-def avatar_change(request, username):
-    user = get_object_or_404(User, username=username)
-
-    user_firstname = user.first_name
-    user_lastname = user.last_name
-    user_date_joined = user.date_joined
-    userdata = {'user_username': username, 'user_firstname': user_firstname, 'user_lastname': user_lastname,
-                'user_date_joined': user_date_joined}
-    return render(request, 'profile/edit.html', userdata)
