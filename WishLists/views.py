@@ -107,5 +107,6 @@ def cancelGiftReservation(request, idList, idGift):
 
 
 def myGiftReservations(request):
-
-    return render(request, "myGiftReservations.html")
+    lista_rezerwacji = ZawartoscListy.objects.filter(loginRezerwacji=request.user).order_by('-id')
+    return render(request, "myGiftReservations.html",
+                  {'zawartosc_listy': lista_rezerwacji})

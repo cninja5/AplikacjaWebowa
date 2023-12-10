@@ -26,18 +26,10 @@
                 </svg>
                 <span class="elementLista">
                     {{ prezent.nazwaPrezentu }}
+                     <a href="/specificList/{{ prezent.idListy.id }}"><button class="btn btn-lg rounded-pill przyciskWelcome">Przejdź do listy</button></a>
                 </span>
             </li>
             {% endfor %}
-            {% if request.user.id == ownerId %}
-            <a href="/myLists/">
-                <button type="submit" class="btn btn-lg rounded-pill createListFormR">Powrót</button>
-            </a>
-            {% else %}
-            <a href="/friendsLists/">
-                <button type="submit" class="btn btn-lg rounded-pill createListFormR">Powrót</button>
-            </a>
-            {% endif %}
         </ul>
         {% else %}
         <p class="elementLista">

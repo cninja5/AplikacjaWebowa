@@ -28,12 +28,12 @@
                     {{ prezent.nazwaPrezentu }}
                     {% if request.user.id != ownerId %}
                         {% if prezent.loginRezerwacji.id == null %}
-                            <a href="make-reservation/{{ prezent.id }}"><button class="btn btn-lg rounded-pill przyciskWelcome">Zarezerwuj {{ prezent.loginRezerwacji.id }} == null</button></a>
+                            <a href="make-reservation/{{ prezent.id }}"><button class="btn btn-lg rounded-pill przyciskWelcome">Zarezerwuj</button></a>
                         {% elif prezent.loginRezerwacji.id == request.user.id %}
                             <a href="cancel-reservation/{{ prezent.id }}"><button
-                                    class="btn btn-lg rounded-pill przyciskWelcome">Anuluj rezerwację {{ prezent.loginRezerwacji.id }} == {{ request.user.id }}</button></a>
+                                    class="btn btn-lg rounded-pill przyciskWelcome">Anuluj rezerwację</button></a>
                         {% else %}
-                            <button class="btn btn-lg rounded-pill przyciskWelcome" disabled>Zarezerwowany {{ prezent.loginRezerwacji.id }} != {{ request.user.id }}</button>
+                            <button class="btn btn-lg rounded-pill przyciskWelcome" disabled>Zarezerwowany</button>
                         {% endif %}
                     {% endif %}
                 </span>
