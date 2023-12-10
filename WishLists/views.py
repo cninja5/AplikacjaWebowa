@@ -54,7 +54,8 @@ def myLists(request):
 
 
 def friendsLists(request):
-    result = Znajomi.objects.filter(status="Przyjaciele", idZapraszajacego=request.user.id).values_list('idZapraszanego', flat=True)
+    result = Znajomi.objects.filter(status="Przyjaciele", idZapraszajacego=request.user.id).values_list(
+        'idZapraszanego', flat=True)
     listy_uzytkownika = Listy.objects.filter(loginWlasciciel__in=result).order_by('-id')
     return render(request, 'friendsLists.html', {'listy': listy_uzytkownika})
 
@@ -103,3 +104,8 @@ def cancelGiftReservation(request, idList, idGift):
     prezent.save()
 
     return redirect('specificList', idList=idList)
+
+
+def myGiftReservations(request):
+
+    return render(request, "myGiftReservations.html")
