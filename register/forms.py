@@ -33,7 +33,7 @@ class RegisterForm(UserCreationForm):
 class CustomPasswordChangeForm(PasswordChangeForm):
     error_messages = dict(SetPasswordForm.error_messages, **{
         'password_incorrect': ("Twoje stare hasło zostało wprowadzone niepoprawnie. "
-                               "Proszę wprowadź je ponownie."),
+                               "Wprowadź je ponownie."),
     })
     old_password = forms.CharField(label=("Stare hasło"),
                                    widget=forms.PasswordInput)
@@ -47,9 +47,6 @@ class CustomPasswordChangeForm(PasswordChangeForm):
                                     widget=forms.PasswordInput)
 
     def clean_old_password(self):
-        """
-        Validates that the old_password field is correct.
-        """
         old_password = self.cleaned_data["old_password"]
         if not self.user.check_password(old_password):
             raise forms.ValidationError(
