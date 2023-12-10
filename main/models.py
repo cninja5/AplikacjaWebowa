@@ -18,14 +18,6 @@ class Listy(models.Model):
     tytul = models.CharField(max_length=50)
     opis = models.CharField(max_length=300)
     dataUtworzenia = models.DateField(auto_now_add=True)
-    # zawartosc = models.ManyToManyField('ZawartoscListy', related_name='zawartoscListy', blank=True)
-
-# class Prezent(models.Model):
-#     idListy = models.ForeignKey(Listy, on_delete=models.CASCADE)
-#     nazwaPrezentu = models.CharField(max_length=254)
-#     linkDoPrezentu = models.CharField(max_length=1024, blank=True)
-#     cenaPrezentu = models.FloatField(blank=True)
-#     loginRezerwacji = models.IntegerField()
 
 class ZawartoscListy(models.Model):
     idListy = models.ForeignKey(Listy, on_delete=models.CASCADE)
