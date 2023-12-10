@@ -65,11 +65,12 @@ def deleteList(request, idList):
 def specificList(request, idList):
     list_object = get_object_or_404(Listy, pk=idList)
     zawartosc_listy = ZawartoscListy.objects.filter(idListy=list_object)
-    numerListy = idList
+    listOwnerId = list_object.loginWlasciciel.id
+    loginRezerwacji = zawartosc_listy.first().loginRezerwacji
 
     return render(request, 'mySpecificList.html',
                   {'zawartosc_listy': zawartosc_listy, 'tytul': list_object.tytul, 'opis': list_object.opis,
-                   'numerListy': numerListy})
+                   'numerListy': idList, 'ownerId':  listOwnerId, 'loginRezerwacji':  loginRezerwacji})
 
 
 def deletePresent(request, idPrezent, idList):
