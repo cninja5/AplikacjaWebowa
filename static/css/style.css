@@ -2,10 +2,6 @@
 	 font-family: Verdana, sans-serif;
 }
 
-body{
-    background-color: #EFFDFF;
-}
-
 .nav-pills li a:hover{
 	background-color: #0077B6;
 }
