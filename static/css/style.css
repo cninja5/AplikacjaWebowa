@@ -2,51 +2,34 @@
 	 font-family: Verdana, sans-serif;
 }
 
-body{
-    background-color: #EFFDFF;
+.navbar-collapse img{
+	width: 3.5%;
+	height: 3.5%;
+	margin: 10px;
 }
 
-.nav-pills li a:hover{
-	background-color: #0077B6;
+.navbar-nav .baseLinks{
+    color: white !important;
+    font-weight: bold;
+    margin-right: 20px;
 }
 
-.logo{
-	padding-top: 10%;
-	padding-bottom: 5%;
-	text-align: center;
+.navbar-nav .baseLinks{
+    margin-top: 3px;
+    color: white;
+    border: 2px solid #023E8A;
+    border-radius: 5px;
 }
 
-.logo img{
-	width: 50%;
-	height: 50%;
-}
-
-.container-fluid {
-	overflow: hidden;
-}
-
-.baseLinks {
-    margin-bottom: 20px;
-	display: flex;
-    align-items: center;
-}
-
-.dropdown-toggle svg{
-	margin-bottom: 8px;
-}
-
-.dropdown-menu a{
-    text-decoration: none;
-    color: black;
-}
-
-.dropdown-menu button:hover{
-    background-color: #0077B6;
+.navbar-nav .baseLinks:hover{
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: #03045E;
     color: white;
 }
 
-.dropdown-item:hover a{
-    color: white;
+.navbar-nav{
+    margin-left: 50px;
 }
 
 .main{
@@ -96,8 +79,8 @@ body{
     margin-bottom: 10px;
 }
 
-#loginScreen{
-    text-align: right;
+nav{
+    background-color: #023E8A;
 }
 
 .createListForm{
@@ -358,9 +341,25 @@ header.masthead .bg-circle-4 {
 }
 
 
-.uzytkownik{
-    text-decoration: none;
+.dropdown-toggle svg{
+	margin-bottom: 8px;
 }
+
+.dropdown-menu a{
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-menu button:hover{
+    background-color: #023E8A;
+    color: white;
+}
+
+.dropdown-item:hover a{
+    color: white;
+}
+
+
 
 .emp-profile{
     width:80%;
