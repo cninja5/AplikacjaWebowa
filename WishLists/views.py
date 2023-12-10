@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ListyForm, DodajPrezentDoListyForm
-from main.models import Listy, ZawartoscListy
+from main.models import Listy, ZawartoscListy, Znajomi
 from django.contrib import messages
 
 
@@ -28,6 +28,8 @@ def addPresents(request, idList):
     list_object = get_object_or_404(Listy, pk=idList)
     zawartosc_listy = ZawartoscListy.objects.filter(idListy=list_object)
     numerListy = idList
+    if list_object.loginWlasciciel != request.user:
+        return redirect('myLists')
     if request.method == 'POST':
         form = DodajPrezentDoListyForm(request.POST)
         if form.is_valid():
@@ -51,10 +53,18 @@ def myLists(request):
     return render(request, 'myLists.html', {'listy': listy_uzytkownika})
 
 
+def friendsLists(request):
+    result = Znajomi.objects.filter(status="Przyjaciele", idZapraszajacego=request.user.id).values_list('idZapraszanego', flat=True)
+    listy_uzytkownika = Listy.objects.filter(loginWlasciciel__in=result).order_by('-id')
+    return render(request, 'friendsLists.html', {'listy': listy_uzytkownika})
+
+
 def deleteList(request, idList):
     list_object = get_object_or_404(Listy, pk=idList)
 
     if request.method == 'POST':
+        if list_object.loginWlasciciel != request.user:
+            return redirect('myLists')
         list_object.delete()
         messages.success(request, 'Lista została pomyślnie usunięta.')
         return redirect('myLists')
