@@ -478,3 +478,26 @@ header.masthead .bg-circle-4 {
     color: white;
     border: 1px solid #023E8A;
 }
+
+.odstepNazwa{
+    color: black;
+    margin-bottom:5%;
+}
+
+.profile-headEdit{
+    color: #333;
+    text-align: center;
+}
+
+.profilButtonsEdit{
+    background-color: #0096C7;
+    color: white;
+    border: 1px solid #0096C7;
+    margin-bottom: 5%;
+}
+
+.profilButtonsEdit:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
