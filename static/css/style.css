@@ -164,8 +164,8 @@ nav{
     margin-top: 8%;
 }
 
-#poNajechaniuYellow:hover{
-    color: #FFC436;
+#poNajechaniuPurple:hover{
+    color: purple;
 }
 
 #poNajechaniuGreen:hover{
@@ -206,13 +206,10 @@ nav{
     margin-top: 5%;
     margin-bottom: 2%;
 }
-#poNajechaniuRed:hover{
-    color: red;
-}
 
 #przyciskiListy button{
     border: none;
-    background-color: #EFFDFF !important;
+    background-color: white !important;
 }
 .trashRight{
     float: right;
@@ -498,4 +495,106 @@ header.masthead .bg-circle-4 {
     color: white;
 }
 
+.listyZnajomych table{
+    width: 100% !important;
+}
 
+.event-schedule-area-two .section-title .title-text h4 {
+    margin: 0px 0 15px;
+}
+
+.event-schedule-area-two .primary-btn {
+    margin-top: 40px;
+}
+
+.event-schedule-area-two .tab-content .table {
+    margin-bottom: 0;
+}
+.event-schedule-area-two .tab-content .table thead {
+    background-color: #023E8A;
+    color: #fff;
+    font-size: 20px;
+}
+.event-schedule-area-two .tab-content .table thead tr th {
+    padding: 20px;
+    border: 0;
+}
+.event-schedule-area-two .tab-content .table tbody {
+    background: #fff;
+}
+.event-schedule-area-two .tab-content .table tbody tr.inner-box {
+    border-bottom: 1px solid #dee2e6;
+}
+.event-schedule-area-two .tab-content .table tbody tr th {
+    border: 0;
+    padding: 30px 20px;
+    vertical-align: middle;
+}
+.event-schedule-area-two .tab-content .table tbody tr td .event-date {
+    text-align: center;
+}
+.event-schedule-area-two .tab-content .table tbody tr td .event-date span {
+    font-size: 20px;
+    line-height: 50px;
+    font-weight: normal;
+}
+.event-schedule-area-two .tab-content .table tbody tr td {
+    padding: 30px 20px;
+    vertical-align: middle;
+}
+
+.event-schedule-area-two .tab-content .table tbody tr td .event-wrap h4 a {
+    font-size: 20px;
+    line-height: 20px;
+    color: #cf057c;
+    text-decoration: none;
+}
+.event-schedule-area-two .tab-content .table tbody tr td .event-wrap h4 a:hover {
+    color: #4125dd;
+}
+
+.event-schedule-area-two .tab-content .table tbody tr td .primary-btn {
+    margin-top: 0;
+    text-align: center;
+}
+.event-schedule-area-two .tab-content .table tbody tr td .event-img img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+.listyZnajomych{
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    margin-bottom: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.avatar-img{
+    text-align: center;
+}
+
+.avatar-img img{
+    width: 80%;
+    height: 80%;
+}
+
+.przyciskiListyZnajomych{
+    text-align: center;
+}
+
+.przyciskiListyZnajomych button{
+    border: none;
+    background-color: white !important;
+    margin-top: 8%;
+}
+
+.infoListyZnajomych{
+    text-align: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+td .text-center h5{
+    margin-bottom: 0px;
+}
