@@ -598,3 +598,40 @@ header.masthead .bg-circle-4 {
 td .text-center h5{
     margin-bottom: 0px;
 }
+
+.searchButton{
+    margin-bottom: 7px;
+    margin-left: 5%;
+}
+
+.searchButtonView{
+    border: none;
+    background-color: #023E8A;
+    color: white;
+}
+
+.avatarFriends{
+    width: 70%;
+    height: 70%;
+}
+
+.listyZnajomych2{
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    margin-bottom: 3%;
+    margin-left: 18%;
+    margin-right: 18%;
+}
+
+.friendsButtons{
+    background-color: #0096C7;
+    color: white;
+    border: 1px solid #0096C7;
+    margin-bottom: 5%;
+}
+
+.friendsButtons:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
