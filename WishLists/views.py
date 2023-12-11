@@ -58,7 +58,13 @@ def myLists(request):
 def friendsLists(request):
     result = Znajomi.objects.filter(status="Przyjaciele", idZapraszajacego=request.user.id).values_list(
         'idZapraszanego', flat=True)
-    listy_uzytkownika = Listy.objects.filter(loginWlasciciel__in=result).annotate(ilosc_pozycji=Count('zawartosclisty')).order_by('-id')
+    listy_uzytkownika = Listy.objects.filter(loginWlasciciel__in=result).select_related('loginWlasciciel__profiluzytkownika', 'loginWlasciciel').annotate(ilosc_pozycji=Count('zawartosclisty')).order_by('-id')
+
+    # listy_uzytkownika = Listy.objects.filter(loginWlasciciel__in=friend_ids) \
+    #     .select_related('loginWlasciciel__profiluzytkownika', 'loginWlasciciel') \
+    #     .annotate(ilosc_pozycji=Count('zawartosclisty')) \
+    #     .order_by('-id')
+
     return render(request, 'friendsLists.html', {'listy': listy_uzytkownika})
 
 
