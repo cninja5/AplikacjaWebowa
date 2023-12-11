@@ -1,6 +1,6 @@
 {% extends "main/base.html" %}
 {% load static %}
-{% block title %} Profil - {{ user_username}} {% endblock %}
+{% block title %} Profil - {{ request.user.username }} {% endblock %}
 {% block content %}
 <div class="container emp-profile">
     <form method="post">
@@ -18,10 +18,10 @@
             <div class="col-md-5">
                 <div class="profile-head">
                     <h3 class="nazwaUzytkownika">
-                        {{ user_username }}
+                        {{ user_first_name }} {{ user_last_name }}
                     </h3><br>
                     <h5 class="daneUzytkownika fst-italic">
-                        {{ user_first_name }} {{ user_last_name }}
+                        @{{ user_username }}
                     </h5><br><br>
 
                     <h5 class="daneUzytkownika">
@@ -95,12 +95,19 @@
                         Lista znajomych:
                         {% if friendsList %}
                         <ul>
-                            {% for friend_username in friendsList %}
+                            {% for friend in friendsList %}
                             <li>
-                                <a href="/profile/{{ friend_username }}">{{ friend_username }}</a>
+                                {% if friend.profiluzytkownika.avatar %}
+                                <img src="{% static 'avatars/' %}{{ friend.profiluzytkownika.avatar }}" class="rounded-circle mb-3" style="height:70px; padding-top:10px;">
+                                {% else %}
+                                <img src="{% static 'avatars/default_profile_pic.jpg' %}" class="rounded-circle mb-3" style="height:70px; padding-top:10px;">
+                                {% endif %}
+                                <a href="/profile/{{ friend.username }}">{{ friend.username }}</a>
                             </li>
                             {% endfor %}
                         </ul>
+                        {% else %}
+                        <p style="font-size:12px; color:#023E8A; padding: 3px 0px 0px 5px;">brak znajomych</p>
                         {% endif %}
                         {% if user.username == user_username %}
                         <p><a href="/search-for-user/">Wyszukaj użytkownika</a></p>

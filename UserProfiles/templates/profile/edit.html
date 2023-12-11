@@ -1,6 +1,6 @@
 {% extends "main/base.html" %}
 {% load static %}
-{% block title %} Profil - {{ user_username}} {% endblock %}
+{% block title %} Profil - {{ request.user.username }} {% endblock %}
 {% block content %}
 
 <div class="container emp-profile">
@@ -38,7 +38,7 @@
         <div class="col-md-8 ">
             <div class="profile-headEdit">
                 <h3 class="odstepNazwa">
-                    {{ user_username }}
+                    @{{ request.user.username }}
                 </h3>
                 {% if edit == null %}
                 <a href="avatar-change/">
@@ -50,10 +50,11 @@
                 </a>
                 <br>
                 <a href="/profile/{{ request.user.username }}/">
-                    <button class="btn btn-sm rounded-pill profilButtonsEdit">Wróc do Mój profil</button>
+                    <button class="btn btn-sm rounded-pill profilButtonsEdit">Powrót</button>
                 </a>
 
                 {% elif edit %}
+                <h2>{{ edit }}</h2><br>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}

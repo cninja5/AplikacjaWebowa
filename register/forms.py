@@ -8,6 +8,15 @@ RODZAJE_PLCI = (
 )
 
 
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(label='Nazwa użytkownika', max_length=50)
+    password = forms.CharField(label='Hasło', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ["username", "password"]
+
+
 class RegisterForm(UserCreationForm):
     username = forms.CharField(label='Nazwa użytkownika',
                                help_text='Nazwa może zawierać maksymalnie 50 znaków.',
@@ -35,10 +44,7 @@ class CustomPasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(label=("Stare hasło"),
                                    widget=forms.PasswordInput)
     new_password1 = forms.CharField(label=("Nowe hasło"),
-                                    help_text="<ul><li>Twoje hasło nie może być podobne do loginu, bądź maila.</li>" +
-                                              "<li>Twoje hasło musi składać się z co najmiej 8 znaków.</li>" +
-                                              "<li>Twoje hasło nie może być powszechnie używanym hasłem.</li>" +
-                                              "<li>Twoje hasło nie może składać się tylko z cyfr.</li></ul>",
+                                    help_text="<br>Utwórz silne i unikatowe hasło składające się z kombinacji 8 znaków: liter, cyfr i symboli.",
                                     widget=forms.PasswordInput)
     new_password2 = forms.CharField(label=("Potwierdź nowe hasło"),
                                     widget=forms.PasswordInput)
@@ -51,17 +57,3 @@ class CustomPasswordChangeForm(PasswordChangeForm):
                 code='password_incorrect',
             )
         return old_password
-
-    # class Meta:
-    #     labels = {
-    #         'new_password1': ('Nowe hasło'),
-    #         'new_password2': ('Potwierdź nowe hasło'),
-    #     }
-
-    # class CustomUserCreationForm(UserCreationForm):
-    #     plec= forms.CharField(label='Płeć', widget=forms.Select(choices=RODZAJE_PLCI))
-    #     zdjProfilu = forms.FileField()
-    #
-    #     class Meta:
-    #         model = Uzytkownicy
-    #         fields = UserCreationForm.Meta.fields + ('plec', 'zdjProfilu', )

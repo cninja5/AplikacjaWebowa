@@ -29,7 +29,8 @@ def view_profile(request, username):
     else:
         profile_picture = profile_picture.avatar
 
-    friendsList = User.objects.filter(id__in=Subquery(podzapytanie)).values_list('username', flat=True)
+    friendsList = User.objects.filter(id__in=Subquery(podzapytanie)).select_related('profiluzytkownika')
+    # friendsList = User.objects.filter(id__in=Subquery(podzapytanie)).values_list('username', flat=True)
 
     friends_count = Znajomi.objects.filter(idZapraszajacego=user.id, status="Przyjaciele").count()
 
@@ -77,7 +78,7 @@ def password_change(request, username):
     else:
         profile_picture = profile_picture.avatar
 
-    edit = True
+    edit = "Zmiana hasła"
     if request.method == 'POST':
         form = CustomPasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -104,7 +105,7 @@ def avatar_change(request, username):
     else:
         profile_picture = profile_picture.avatar
 
-    edit = True
+    edit = "Zmiana awatara"
     profil, created = ProfilUzytkownika.objects.get_or_create(user_id=user.id)
 
     if request.method == 'POST':
