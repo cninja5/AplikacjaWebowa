@@ -10,27 +10,25 @@
     Twoje listy
 </h1>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-{% if messages %}
-<div id="alert-container">
-    {% for message in messages %}
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="close przyciskAlert" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<div class="modal fade" id="confirmDeleteListModal" tabindex="-1" aria-labelledby="confirmDeleteListModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmDeleteListModalLabel">Potwierdź usunięcie listy</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Czy na pewno chcesz usunąć tę listę?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+        <a id="confirmDeleteListLink" href="#" class="btn btn-danger">Usuń</a>
+      </div>
     </div>
-    {% endfor %}
+  </div>
 </div>
-<script>
-    setTimeout(function() {
-      $('.alert').alert('close');
-    }, 3000);
-</script>
-{% endif %}
 
 
-{% if listy %}
 <div class="event-schedule-area-two listyZnajomych">
     <div class="row">
         <div class="col-lg-12">
@@ -100,16 +98,13 @@
                                                 </form>
                                             </div>
                                             <div class="col-sm-4">
-                                                <form method="POST" action="{% url 'deleteList' lista.id %}">
-                                                    {% csrf_token %}
-                                                    <button id="poNajechaniuRed">
-                                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                                                              class="bi bi-trash" viewBox="0 0 16 16">
-                                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                                                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                                                        </svg>
-                                                    </button>
-                                                </form>
+                                                <button type="button" id="poNajechaniuRed" data-bs-toggle="modal" data-bs-target="#confirmDeleteListModal" data-listid="{{ lista.id }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                                                          class="bi bi-trash" viewBox="0 0 16 16">
+                                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                                    </svg>
+                                                </button>
                                             </div>
                                          </div>
                                     </div>
@@ -119,40 +114,37 @@
                             </tbody>
                         </table>
                         {% else %}
-                        <div id="brakList">
-                            <h1>Brak dostępnych list.</h1>
-                            <h1>Przejdź do Stwórz listę aby stworzyć swoją pierwszą listę!</h1>
-                            <br>
-                            <a href="/createList/">
-                                <button type="button" class="btn btn-lg rounded-pill przyciskWelcome ">Stwórz
-                                    listę
+                        <div class="text-center noFriends">
+                            <h1>Nie masz żadnych list prezentowych!</h1>
+                            <h2>Najpierw stwórz listę.</h2>
+                            <a href="/createList">
+                                <button class="btn btn-lg rounded-pill NoFriendsButtons">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bookmark-plus-fill" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5m6.5-11a.5.5 0 0 0-1 0V6H6a.5.5 0 0 0 0 1h1.5v1.5a.5.5 0 0 0 1 0V7H10a.5.5 0 0 0 0-1H8.5z"/>
+                                    </svg>
+                                    Stwórz listę
                                 </button>
                             </a>
                         </div>
-                        {% endif %}
+                    {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
 
-
-{% endif %}
 
 <script>
-    function confirmDelete(id) {
-        console.log('Confirm delete function called with ID:', id);
-        if (confirm('Czy na pewno chcesz usunąć tę listę?')) {
-            console.log('User confirmed deletion');
-            document.getElementById('delete-form-' + id).submit();
-        } else {
-            console.log('User canceled deletion');
-            // Zatrzymaj domyślną akcję przycisku (wysłanie formularza)
-            event.preventDefault();
-        }
-    }
+    const confirmDeleteListModal = document.getElementById('confirmDeleteListModal');
+    confirmDeleteListModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const listId = button.getAttribute('data-listid');
+        const confirmDeleteListLink = document.getElementById('confirmDeleteListLink');
+        confirmDeleteListLink.href = `/deleteList/${listId}/`;
+    });
 </script>
+
+
 
 {% endblock %}
