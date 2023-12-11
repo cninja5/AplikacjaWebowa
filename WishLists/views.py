@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ListyForm, DodajPrezentDoListyForm
 from main.models import Listy, ZawartoscListy, Znajomi
 from django.contrib import messages
+from django.db.models import Count
 
 
 def createList(request):
@@ -49,14 +50,15 @@ def addPresents(request, idList):
 
 
 def myLists(request):
-    listy_uzytkownika = Listy.objects.filter(loginWlasciciel=request.user).order_by('-id')
+    listy_uzytkownika = Listy.objects.filter(loginWlasciciel=request.user).annotate(
+        ilosc_pozycji=Count('zawartosclisty')).order_by('-id')
     return render(request, 'myLists.html', {'listy': listy_uzytkownika})
 
 
 def friendsLists(request):
     result = Znajomi.objects.filter(status="Przyjaciele", idZapraszajacego=request.user.id).values_list(
         'idZapraszanego', flat=True)
-    listy_uzytkownika = Listy.objects.filter(loginWlasciciel__in=result).order_by('-id')
+    listy_uzytkownika = Listy.objects.filter(loginWlasciciel__in=result).annotate(ilosc_pozycji=Count('zawartosclisty')).order_by('-id')
     return render(request, 'friendsLists.html', {'listy': listy_uzytkownika})
 
 
