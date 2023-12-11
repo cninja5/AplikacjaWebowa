@@ -11,5 +11,6 @@ urlpatterns = [
     path("profile/<str:username>/invite/", views.send_invite, name="send_invite"),
     path("profile/<str:username>/accept-invite/", views.accept_invite, name="accept_invite"),
     path("profile/<str:username>/unfriend/", views.unfriend, name="unfriend"),
+    path("friends-list/", views.friends_list, name="friends_list"),
 
 ]

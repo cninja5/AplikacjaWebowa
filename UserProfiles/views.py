@@ -116,7 +116,8 @@ def avatar_change(request, username):
     else:
         form = editAvatarForm()
 
-    userdata = {'edit': edit, 'user_username': username, 'user_date_joined': user_date_joined, 'form': form, 'avatar_url': profile_picture}
+    userdata = {'edit': edit, 'user_username': username, 'user_date_joined': user_date_joined, 'form': form,
+                'avatar_url': profile_picture}
     return render(request, 'profile/edit.html', userdata)
 
 
@@ -172,4 +173,12 @@ def unfriend(request, username):
     invite.delete()
     invite2.delete()
 
-    return redirect("view_profile", username=username)
+    return redirect("friends_list", username=username)
+
+
+def friends_list(request):
+    podzapytanie = Znajomi.objects.filter(idZapraszajacego=request.user.id, status="Przyjaciele").values(
+        'idZapraszanego')
+
+    friendsList = User.objects.filter(id__in=Subquery(podzapytanie)).select_related('profiluzytkownika')
+    return render(request, 'friends/friends_list.html', {'znajomi': friendsList})

@@ -1,0 +1,32 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block title %} Znajomi {% endblock %}
+{% block content %}
+<div class="container emp-profile">
+    <div class="row">
+        <h1>Znajomi</h1>
+        {% if znajomi %}
+        <ul>
+            {% for znajomy in znajomi %}
+            <li>
+                {% if znajomy.profiluzytkownika.avatar %}
+                <img src="{% static 'avatars/'%}{{ znajomy.profiluzytkownika.avatar }}" class="rounded-circle mb-3">
+                {% else %}
+                <img src="{% static 'avatars/default_profile_pic.jpg'%}" class="rounded-circle mb-3">
+                {% endif %}
+                {{ znajomy.username }}, {{ znajomy.first_name }} {{ znajomy.last_name }}
+                <a href="/profile/{{znajomy.username}}/">
+                    <button>Profil</button>
+                </a>
+                <a href="/profile/{{znajomy.username}}/unfriend/">
+                    <button>Usuń znajomego</button>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        Brak znajomych
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
