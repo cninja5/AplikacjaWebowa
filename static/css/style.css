@@ -635,3 +635,21 @@ td .text-center h5{
     border: 1px solid #023E8A;
 }
 
+.noFriends{
+    margin-top: 3%;
+}
+
+.NoFriendsButtons{
+    background-color: #0096C7;
+    color: white;
+    border: 1px solid #0096C7;
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+
+.NoFriendsButtons:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
