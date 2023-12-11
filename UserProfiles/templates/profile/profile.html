@@ -1,4 +1,5 @@
 {% extends "main/base.html" %}
+{% load static %}
 {% block title %} Profil - {{ user_username}} {% endblock %}
 {% block content %}
 <div class="container emp-profile">
@@ -6,7 +7,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="rounded-circle mb-3"
+                    <img src="{% static 'avatars/' %}{{ avatar_url }}" class="rounded-circle mb-3"
                          alt="Avatar"/>
                     <!--                            <div class="file btn btn-lg btn-primary">-->
                     <!--                                Change Photo-->

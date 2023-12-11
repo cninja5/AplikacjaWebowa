@@ -4,8 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
-from main.models import Znajomi,Listy, ProfilUzytkownika
-
+from main.models import Znajomi, Listy, ProfilUzytkownika
 
 from django.db.models import Subquery
 from django.contrib.auth.decorators import login_required
@@ -24,12 +23,16 @@ def view_profile(request, username):
     podzapytanie = Znajomi.objects.filter(idZapraszajacego=user.id, status="Przyjaciele").values(
         'idZapraszanego')
 
+    profile_picture = ProfilUzytkownika.objects.filter(user_id=user.id).first()
+    if profile_picture is None:
+        profile_picture = 'default_profile_pic.jpg'
+    else:
+        profile_picture = profile_picture.avatar
+
     friendsList = User.objects.filter(id__in=Subquery(podzapytanie)).values_list('username', flat=True)
 
-    # Liczba znajomych
     friends_count = Znajomi.objects.filter(idZapraszajacego=user.id, status="Przyjaciele").count()
 
-    # Liczba list
     lists_count = Listy.objects.filter(loginWlasciciel=user).count()
 
     if friends:
@@ -40,7 +43,7 @@ def view_profile(request, username):
     user_date_joined = user.date_joined
     userdata = {'user_username': username, 'user_first_name': user.first_name, 'user_last_name': user.last_name,
                 'user_date_joined': user_date_joined, "friend_status": friend_status, "friendsList": friendsList,
-                "friends_count":friends_count,"lists_count":lists_count}
+                "friends_count": friends_count, "lists_count": lists_count, "avatar_url": profile_picture}
     return render(request, 'profile/profile.html', userdata)
 
 
@@ -48,18 +51,32 @@ def view_profile(request, username):
 def edit_profile(request, username):
     user = get_object_or_404(User, username=username)
 
+    profile_picture = ProfilUzytkownika.objects.filter(user_id=user.id).first()
+
+    if profile_picture is None:
+        profile_picture = 'default_profile_pic.jpg'
+    else:
+        profile_picture = profile_picture.avatar
+
     user_firstname = user.first_name
     user_lastname = user.last_name
     user_date_joined = user.date_joined
     userdata = {'edit': None, 'user_username': username, 'user_firstname': user_firstname,
                 'user_lastname': user_lastname,
-                'user_date_joined': user_date_joined}
+                'user_date_joined': user_date_joined, "avatar_url": profile_picture}
     return render(request, 'profile/edit.html', userdata)
 
 
 @login_required
 def password_change(request, username):
     user = get_object_or_404(User, username=username)
+
+    profile_picture = ProfilUzytkownika.objects.filter(user_id=user.id).first()
+    if profile_picture is None:
+        profile_picture = 'default_profile_pic.jpg'
+    else:
+        profile_picture = profile_picture.avatar
+
     edit = True
     if request.method == 'POST':
         form = CustomPasswordChangeForm(request.user, request.POST)
@@ -72,7 +89,7 @@ def password_change(request, username):
         form = CustomPasswordChangeForm(request.user)
 
     user_date_joined = user.date_joined
-    userdata = {'user_date_joined': user_date_joined, 'form': form, 'edit': edit}
+    userdata = {'user_date_joined': user_date_joined, 'form': form, 'edit': edit, 'avatar_url': profile_picture}
     return render(request, 'profile/edit.html', userdata)
 
 
@@ -80,6 +97,12 @@ def password_change(request, username):
 def avatar_change(request, username):
     user = get_object_or_404(User, username=username)
     user_date_joined = user.date_joined
+
+    profile_picture = ProfilUzytkownika.objects.filter(user_id=user.id).first()
+    if profile_picture is None:
+        profile_picture = 'default_profile_pic.jpg'
+    else:
+        profile_picture = profile_picture.avatar
 
     edit = True
     profil, created = ProfilUzytkownika.objects.get_or_create(user_id=user.id)
@@ -93,8 +116,7 @@ def avatar_change(request, username):
     else:
         form = editAvatarForm()
 
-
-    userdata = {'edit': edit, 'user_username': username, 'user_date_joined': user_date_joined, 'form': form}
+    userdata = {'edit': edit, 'user_username': username, 'user_date_joined': user_date_joined, 'form': form, 'avatar_url': profile_picture}
     return render(request, 'profile/edit.html', userdata)
 
 
