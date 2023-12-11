@@ -1,88 +1,103 @@
 {% extends "main/base.html" %}
 
 {% block content %}
-<div id="listy" class="form-container">
-    <h1 class="witaj">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-card-checklist"
-             viewBox="0 0 16 16">
-            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
-            <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
-        </svg>
-        Listy znajomych
-    </h1>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {% if messages %}
-    <div id="alert-container">
-        {% for message in messages %}
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="close przyciskAlert" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        {% endfor %}
-    </div>
-
-    <script>
-        setTimeout(function() {
-          $('.alert').alert('close');
-        }, 3000);
-    </script>
-    {% endif %}
+<div class="event-schedule-area-two bg-color pad100">
+    <div class="container">
+        <!-- row end-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active show" id="home" role="tabpanel">
+                        <div class="table-responsive">
+                            {% if listy %}
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">Data utworzenia</th>
+                                    <th class="text-center">Avatar</th>
+                                    <th class="text-center">Właściciel</th>
+                                    <th class="text-center">Tytuł listy</th>
+                                    <th class="text-center">Opis</th>
+                                    <th class="text-center">Ilość pozycji</th>
+                                    <th class="text-center">Zobacz listę</th>
+                                </tr>
+                                </thead>
 
 
-    {% if listy %}
-    <div class="row">
-        {% for lista in listy %}
-        <div class="col-sm-6">
-            <div id="pojedynczaLista">
-                <div class="d-flex flex-column align-items-end ml-auto">
-                    <span class="dataUwtorzenia">{{lista.dataUtworzenia|date:"d.m.Y" }}, właściciel: {{ lista.loginWlasciciel }}</span>
-                </div>
-                <h2 class="tytulListy">{{ lista.tytul }}</h2>
-                <span>{{ lista.opis }}</span><br>
-                <span>Ilość pozycji: {{ lista.ilosc_pozycji }}</span>
-                <div id="przyciskiMojeListy">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <form method="POST" action="{% url 'specificList' lista.id %}">
-                                {% csrf_token %}
-                                <button id="poNajechaniuYellow">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                                         class="bi bi-card-text" viewBox="0 0 16 16">
-                                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
-                                        <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
-                                    </svg>
-                                </button>
-                            </form>
+                                <tbody>
+                                {% for lista in listy %}
+                                <tr class="inner-box">
+                                    <td>
+                                        <div class="event-date">
+                                            <span>{{lista.dataUtworzenia|date:"d.m.Y" }}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="event-img">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="event-wrap">
+                                            <h4><a href="/profile/{{ lista.loginWlasciciel }} ">{{ lista.loginWlasciciel }}</a></h4>
+                                        </div>
+                                        <div class="organizers">
+                                            <span>Imie nazwisko</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="categories">
+                                            <span>{{ lista.tytul }}</span>
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <div class="time">
+                                            <span>{{ lista.opis }}</span>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="time">
+                                            <span>Ilość pozycji: {{ lista.ilosc_pozycji }}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="primary-btn">
+                                            <form method="POST" action="{% url 'specificList' lista.id %}">
+                                                {% csrf_token %}
+                                                <button id="poNajechaniuYellow">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                         fill="currentColor"
+                                                         class="bi bi-card-text" viewBox="0 0 16 16">
+                                                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                                                        <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+
+
+                            {% else %}
+                            <div id="brakList">
+                                <h1>Brak dostępnych list.</h1>
+                                <h1>Dodaj znajomych by zobaczyć ich listy!</h1>
+                                <br>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- /col end-->
         </div>
-        {% endfor %}
+        <!-- /row end-->
     </div>
-    {% else %}
-    <div id="brakList">
-        <h1>Brak dostępnych list.</h1>
-        <h1>Dodaj znajomych by zobaczyć ich listy!</h1>
-        <br>
-    </div>
-    {% endif %}
 </div>
-
-<script>
-    function confirmDelete(id) {
-        console.log('Confirm delete function called with ID:', id);
-        if (confirm('Czy na pewno chcesz usunąć tę listę?')) {
-            console.log('User confirmed deletion');
-            document.getElementById('delete-form-' + id).submit();
-        } else {
-            console.log('User canceled deletion');
-            // Zatrzymaj domyślną akcję przycisku (wysłanie formularza)
-            event.preventDefault();
-        }
-    }
-</script>
-
 {% endblock %}
