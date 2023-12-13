@@ -30,6 +30,8 @@
                         </thead>
                         <tbody>
                         {% for lista_id, lista_info in prezenty_na_listach.items %}
+
+                            {% for prezent_info in lista_info.prezenty %}
                         <tr class="inner-box">
                             <td>
                                 <div class="reservationsText">
@@ -55,7 +57,6 @@
                                     </a>
                                 </div>
                             </td>
-                            {% for prezent_info in lista_info.prezenty %}
                             <td>
                                 <div class="text-center">
                                     <span>{{ prezent_info.1 }}</span>
