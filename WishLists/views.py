@@ -60,11 +60,6 @@ def friendsLists(request):
         'idZapraszanego', flat=True)
     listy_uzytkownika = Listy.objects.filter(loginWlasciciel__in=result).select_related('loginWlasciciel__profiluzytkownika', 'loginWlasciciel').annotate(ilosc_pozycji=Count('zawartosclisty')).order_by('-id')
 
-    # listy_uzytkownika = Listy.objects.filter(loginWlasciciel__in=friend_ids) \
-    #     .select_related('loginWlasciciel__profiluzytkownika', 'loginWlasciciel') \
-    #     .annotate(ilosc_pozycji=Count('zawartosclisty')) \
-    #     .order_by('-id')
-
     return render(request, 'friendsLists.html', {'listy': listy_uzytkownika})
 
 
