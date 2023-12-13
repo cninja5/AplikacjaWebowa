@@ -4,7 +4,8 @@ from . import views
 
 urlpatterns = [
     path("createList/", views.createList, name="createList"),
-    path("addPresents/<int:idList>/", views.addPresents, name="addPresents"),
+    path("edit-list/<int:idList>/", views.edit_list, name="edit_list"),
+    path("edit-list/<int:idList>/add-present/", views.add_present, name="add_present"),
     path("myLists/", views.myLists, name="myLists"),
     path("my-reservations/", views.myGiftReservations, name="myGiftReservations"),
     path("friendsLists/", views.friendsLists, name="friendsLists"),
