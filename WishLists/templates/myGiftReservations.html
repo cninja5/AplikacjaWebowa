@@ -1,62 +1,107 @@
 {% extends "main/base.html" %}
 
 {% block content %}
-<div class="form-container">
-    <h1 class="witaj2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-card-checklist"
-             viewBox="0 0 16 16">
-            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
-            <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
-        </svg>
-        {{ tytul }}
-    </h1>
-    <h5>
-        {{ opis }}
-    </h5>
-    <h1 class="wyrownanieDoLewej">Moje rezerwacje:</h1>
+<h1 class="reservationsTitle">
+    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
+         class="bi bi-card-checklist"
+         viewBox="0 0 16 16">
+        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+        <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+    </svg>
+    Moje rezerwacje
+</h1>
+<div class="reservationsBox reservationBoxStyle">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="tab-content" id="myTabContent">
+                <div class="table-responsive">
+                    {% if prezenty_na_listach %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center col-2 align-middle">Tytuł listy</th>
+                            <th class="text-center col-1 align-middle">Właściciel</th>
+                            <th class="text-center col-2 align-middle">Dane właściciela</th>
+                            <th class="text-center col-2 align-middle">Link do listy</th>
+                            <th class="text-center col-2 align-middle">Nazwa prezentu</th>
+                            <th class="text-center col-1 align-middle">Cena</th>
+                            <th class="text-center col-2 align-middle">Link do prezentu</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for lista_id, lista_info in prezenty_na_listach.items %}
+                        <tr class="inner-box">
+                            <td>
+                                <div class="reservationsText">
+                                    <span>{{ lista_info.nazwa }}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center">
+                                    <span>{{ lista_info.nick }}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center">
+                                    <span>{{ lista_info.imie_nazwisko }}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center">
+                                    <a href="/specificList/{{lista_id}}/">
+                                        <button class="btn btn-lg rounded-pill reservationsButton">
+                                            Przejdź do listy
+                                        </button>
+                                    </a>
+                                </div>
+                            </td>
+                            {% for prezent_info in lista_info.prezenty %}
+                            <td>
+                                <div class="text-center">
+                                    <span>{{ prezent_info.1 }}</span>
+                                </div>
+                            </td>
 
-    <div id="zawartosc">
-        {% if prezenty_na_listach %}
-        <ul>
-            {% for lista_id, lista_info in prezenty_na_listach.items %}
-            <h2>{{ lista_info.nazwa }} - {{ lista_info.nick }} - {{ lista_info.imie_nazwisko }}<a href="/specificList/{{lista_id}}/"><button>Przejdź do listy</button></a></h2>
-            <ul>
-                {% for prezent_info in lista_info.prezenty %}
-                <li>
-                    - {{ prezent_info.1 }}, Cena: {{ prezent_info.3 }} zł
-                    <a href="{{ prezent_info.2 }}">
-                        <button>Link</button>
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-            {% endfor %}
-        </ul>
+                            <td>
+                                <div class="text-center">
+                                    <span>{{ prezent_info.3 }} zł</span>
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                <div class="text-center">
+                                    <a href="{{ prezent_info.2 }}">
+                                        <button class="btn btn-lg rounded-pill reservationsButton">
+                                            Prezent
+                                        </button>
+                                    </a>
+                                </div>
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
 
 
-        <!--            {% for prezent in zawartosc_listy %}-->
-        <!--            <li>-->
-        <!--                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bag"-->
-        <!--                     viewBox="0 0 16 16">-->
-        <!--                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>-->
-        <!--                </svg>-->
-        <!--                <span class="elementLista">-->
-        <!--                    {{ prezent.nazwaPrezentu }}-->
-        <!--                     <a href="/specificList/{{ prezent.idListy.id }}"><button class="btn btn-lg rounded-pill przyciskWelcome">Przejdź do listy</button></a>-->
-        <!--                </span>-->
-        <!--            </li>-->
-        <!--            {% endfor %}-->
-        </ul>
-        {% else %}
-        <p class="elementLista">
-        <div id="brakList">
-            <h1>Brak dostępnych rezerwacji.</h1>
-            <h1>Zacznij przeglądać listy znajomych, by zarezerwować prezenty!</h1>
+                    {% else %}
+                    <div class="text-center noFriends">
+                            <h1>Brak dostępnych list!</h1>
+                            <h2>Najpierw dodaj znajomego albo znajomy musi stworzyć listę.</h2>
+                            <a href="/search-for-user">
+                                <button class="btn btn-lg rounded-pill NoFriendsButtons">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                                    </svg>
+                                    Wyszukaj znajomego
+                                </button>
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-        </p>
-        {% endif %}
-
     </div>
+
 </div>
 
 {% endblock %}

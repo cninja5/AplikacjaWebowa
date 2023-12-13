@@ -639,4 +639,99 @@ td .text-center h5{
     margin-left: 1%;
 }
 
+/* myGiftReservations.html */
 
+.reservationsTitle{
+    margin-top: 1.5%;
+    margin-bottom: 1%;
+    width: 100%;
+    text-align: center;
+}
+
+.reservationsBox .tab-content .table {
+    margin-bottom: 0;
+}
+
+.reservationsBox .tab-content .table thead {
+    background-color: #023E8A;
+    color: #fff;
+    font-size: 20px;
+}
+
+.reservationsBox .tab-content .table thead tr th {
+    padding: 20px;
+    border: 0;
+}
+
+.reservationsBox .tab-content .table tbody {
+    background: #fff;
+}
+
+.reservationsBox .tab-content .table tbody tr.inner-box {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.reservationsBox .tab-content .table tbody tr th {
+    border: 0;
+    padding: 30px 20px;
+    vertical-align: middle;
+}
+
+.reservationsText{
+    text-align: center;
+    font-size: 20px;
+    line-height: 50px;
+    font-weight: normal;
+}
+
+.reservationsButton{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 80%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.reservationsButton:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.reservationsBox .tab-content .table tbody tr td {
+    padding: 30px 20px;
+    vertical-align: middle;
+}
+
+.reservationsBox .tab-content .table tbody tr td .event-wrap h4 a {
+    font-size: 20px;
+    line-height: 20px;
+    color: #cf057c;
+    text-decoration: none;
+}
+.reservationsBox .tab-content .table tbody tr td .event-wrap h4 a:hover {
+    color: #4125dd;
+}
+
+.reservationsBox .tab-content .table tbody tr td .primary-btn {
+    margin-top: 0;
+    text-align: center;
+}
+
+.reservationsBox .tab-content .table tbody tr td .event-img img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+.reservationBoxStyle table{
+    width: 100% !important;
+}
+
+.reservationBoxStyle{
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    margin-bottom: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
