@@ -1,53 +1,33 @@
 {% extends "main/base.html" %}
 
 {% block content %}
-    <div class="form-container">
-        <h1 class="wyrownanieDoLewej">
-            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
-                  <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
-                  <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
-            </svg>
-            Stwórz nową listę
-        </h1>
-        <form method="post" enctype="multipart/form-data" id="listForm" ">
-            {% csrf_token %}
-        <label for="id_tytul"><h3>Tytuł listy:</h3></label>
-            {{ form.tytul }}
-        <br><br>
-        <label for="id_opis"><h3>Opis listy:</h3></label>
-            {{ form.opis }}
-<!--            <div id="prezenty">-->
-<!--                &lt;!&ndash; Pole na pierwszy prezent &ndash;&gt;-->
-<!--            </div>-->
+<h1 class="createListTitle">
+    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
+         class="bi bi-card-checklist"
+         viewBox="0 0 16 16">
+        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+        <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+    </svg>
+    Stwórz nową listę
+</h1>
+<div class="createListBox">
+    <form method="post">
+        <div class="row">
+            <form method="post" enctype="multipart/form-data" id="listForm">
+                {% csrf_token %}
+                <label for="id_tytul"><span>Tytuł listy:</span></label>
+                {{ form.tytul }}
+                <label for="id_opis"><span>Opis listy:</span></label>
+                {{ form.opis }}
+                <div class="col-md-6">
+                    <button type="reset" class="btn btn-lg rounded-pill createListFormButton">Wyczyść formularz</button>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-lg rounded-pill createListFormButtonSave">Stwórz listę</button>
+                </div>
+            </form>
+        </div>
+    </form>
+</div>
 
-           <!-- <button type="button" class="btn btn-outline-dark btn-lg createListForm" onclick="addPresentField()">Dodaj prezent</button> -->
-            <button type="submit" class="btn btn-lg rounded-pill createListFormR" >Stwórz listę</button>
-            <button type="reset" class="btn btn-lg rounded-pill createListFormR">Wyczyść formularz</button>
-
-
-
-
-        </form>
-    </div>
-
-    <script>
-
-<!--        function removePresentField(button) {-->
-<!--            button.parentNode.remove();-->
-<!--        }-->
-
-<!--        function addPresentField() {-->
-<!--            const prezentyDiv = document.getElementById("prezenty");-->
-<!--            const newField = document.createElement("div");-->
-<!--            newField.innerHTML = `-->
-<!--                <label>Nazwa prezentu:</label>-->
-<!--                <input type="text" name="prezenty" class="form-control">-->
-<!--                <button type="button" class="btn btn-outline-danger btn-sm deleteRightButton" onclick="removePresentField(this)">Usuń prezent</button>-->
-<!--            `;-->
-
-<!--            prezentyDiv.appendChild(newField);-->
-<!--        }-->
-
-
-    </script>
 {% endblock %}
