@@ -10,7 +10,7 @@ from django.db.models import Subquery
 from django.contrib.auth.decorators import login_required
 
 from register.forms import CustomPasswordChangeForm
-from .forms import searchForUserForm, editAvatarForm
+from .forms import SearchForUserForm, EditAvatarForm
 from django.contrib import messages
 
 
@@ -109,13 +109,13 @@ def avatar_change(request, username):
     profil, created = ProfilUzytkownika.objects.get_or_create(user_id=user.id)
 
     if request.method == 'POST':
-        form = editAvatarForm(request.POST, request.FILES, instance=profil)
+        form = EditAvatarForm(request.POST, request.FILES, instance=profil)
         if form.is_valid():
             form.instance.user = request.user
             form.save()
             return redirect('/profile/' + request.user.username + '/edit/')
     else:
-        form = editAvatarForm()
+        form = EditAvatarForm()
 
     userdata = {'edit': edit, 'user_username': username, 'user_date_joined': user_date_joined, 'form': form,
                 'avatar_url': profile_picture}
@@ -124,7 +124,7 @@ def avatar_change(request, username):
 
 def search_for_user(request):
     if request.method == 'POST':
-        form = searchForUserForm(request.POST)
+        form = SearchForUserForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             if User.objects.filter(username=username).exists():
@@ -133,7 +133,7 @@ def search_for_user(request):
                 return render(request, 'profile/search_for_user.html',
                               {'form': form, 'warning': 'Podany użytkownik nie istnieje!'})
     else:
-        form = searchForUserForm()
+        form = SearchForUserForm()
     return render(request, 'profile/search_for_user.html', {'form': form})
 
 
