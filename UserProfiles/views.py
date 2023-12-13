@@ -1,5 +1,9 @@
+from io import BytesIO
+
+from PIL import Image
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from django.core.files.base import ContentFile
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
@@ -123,6 +127,27 @@ def password_change(request, username):
     return render(request, 'profile/edit.html', userdata)
 
 
+def crop_avatar(image):
+    img = Image.open(image)
+
+    width, height = img.size
+
+    min_dimension = min(width, height)
+
+    left = (width - min_dimension) / 2
+    top = (height - min_dimension) / 2
+    right = (width + min_dimension) / 2
+    bottom = (height + min_dimension) / 2
+
+    img = img.crop((left, top, right, bottom))
+
+    img_io = BytesIO()
+    img.save(img_io, format='JPEG')
+    img_file = ContentFile(img_io.getvalue(), name=image.name)
+
+    return img_file
+
+
 @login_required
 def avatar_change(request, username):
     user = get_object_or_404(User, username=username)
@@ -141,6 +166,11 @@ def avatar_change(request, username):
         form = EditAvatarForm(request.POST, request.FILES, instance=profil)
         if form.is_valid():
             form.instance.user = request.user
+
+            avatar = form.cleaned_data.get('avatar')
+            if avatar:
+                form.instance.avatar = crop_avatar(avatar)
+
             form.save()
             return redirect('/profile/' + request.user.username + '/edit/')
     else:
