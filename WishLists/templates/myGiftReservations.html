@@ -16,20 +16,36 @@
     <h1 class="wyrownanieDoLewej">Moje rezerwacje:</h1>
 
     <div id="zawartosc">
-        {% if zawartosc_listy %}
+        {% if prezenty_na_listach %}
         <ul>
-            {% for prezent in zawartosc_listy %}
-            <li>
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bag"
-                     viewBox="0 0 16 16">
-                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-                </svg>
-                <span class="elementLista">
-                    {{ prezent.nazwaPrezentu }}
-                     <a href="/specificList/{{ prezent.idListy.id }}"><button class="btn btn-lg rounded-pill przyciskWelcome">Przejdź do listy</button></a>
-                </span>
-            </li>
+            {% for lista_id, lista_info in prezenty_na_listach.items %}
+            <h2>{{ lista_info.nazwa }} - {{ lista_info.nick }} - {{ lista_info.imie_nazwisko }}<a href="/specificList/{{lista_id}}/"><button>Przejdź do listy</button></a></h2>
+            <ul>
+                {% for prezent_info in lista_info.prezenty %}
+                <li>
+                    - {{ prezent_info.1 }}, Cena: {{ prezent_info.3 }} zł
+                    <a href="{{ prezent_info.2 }}">
+                        <button>Link</button>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
             {% endfor %}
+        </ul>
+
+
+        <!--            {% for prezent in zawartosc_listy %}-->
+        <!--            <li>-->
+        <!--                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bag"-->
+        <!--                     viewBox="0 0 16 16">-->
+        <!--                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>-->
+        <!--                </svg>-->
+        <!--                <span class="elementLista">-->
+        <!--                    {{ prezent.nazwaPrezentu }}-->
+        <!--                     <a href="/specificList/{{ prezent.idListy.id }}"><button class="btn btn-lg rounded-pill przyciskWelcome">Przejdź do listy</button></a>-->
+        <!--                </span>-->
+        <!--            </li>-->
+        <!--            {% endfor %}-->
         </ul>
         {% else %}
         <p class="elementLista">

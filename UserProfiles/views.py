@@ -2,7 +2,6 @@ from io import BytesIO
 
 from PIL import Image
 from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
 from django.core.files.base import ContentFile
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User

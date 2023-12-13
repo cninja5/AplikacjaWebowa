@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block title %} Profil - {{ request.user.username }} {% endblock %}
 {% block content %}
 
@@ -75,7 +76,7 @@
                 <h2>{{ edit }}</h2><br>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {{ form|crispy }}
                     <button class="btn btn-lg rounded-pill profilButtonsEdit" type="submit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                              class="bi bi-check-square-fill" viewBox="0 0 16 16">

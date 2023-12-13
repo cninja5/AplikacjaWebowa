@@ -58,7 +58,9 @@ def myLists(request):
 def friendsLists(request):
     result = Znajomi.objects.filter(status="Przyjaciele", idZapraszajacego=request.user.id).values_list(
         'idZapraszanego', flat=True)
-    listy_uzytkownika = Listy.objects.filter(loginWlasciciel__in=result).select_related('loginWlasciciel__profiluzytkownika', 'loginWlasciciel').annotate(ilosc_pozycji=Count('zawartosclisty')).order_by('-id')
+    listy_uzytkownika = Listy.objects.filter(loginWlasciciel__in=result).select_related(
+        'loginWlasciciel__profiluzytkownika', 'loginWlasciciel').annotate(
+        ilosc_pozycji=Count('zawartosclisty')).order_by('-id')
 
     return render(request, 'friendsLists.html', {'listy': listy_uzytkownika})
 
@@ -105,6 +107,27 @@ def cancelGiftReservation(request, idList, idGift):
 
 
 def myGiftReservations(request):
-    lista_rezerwacji = ZawartoscListy.objects.filter(loginRezerwacji=request.user).order_by('-id')
-    return render(request, "myGiftReservations.html",
-                  {'zawartosc_listy': lista_rezerwacji})
+    zarezerwowane_prezenty = ZawartoscListy.objects.filter(loginRezerwacji=request.user)
+
+    prezenty_na_listach = {}
+    for prezenty in zarezerwowane_prezenty:
+        lista_id = prezenty.idListy_id
+        if lista_id not in prezenty_na_listach:
+            lista = Listy.objects.get(id=lista_id)
+            owner = lista.loginWlasciciel  # Zakładam, że owner to klucz obcy do User
+            prezenty_na_listach[lista_id] = {
+                'nazwa': lista.tytul,
+                'nick': owner.username,
+                'imie_nazwisko': f"{owner.first_name} {owner.last_name}",
+                'prezenty': []
+            }
+
+        prezenty_na_listach[lista_id]['prezenty'].append(
+            [prezenty.id, prezenty.nazwaPrezentu, prezenty.linkDoPrezentu, prezenty.cenaPrezentu,
+             prezenty.linkDoPrezentu, prezenty.cenaPrezentu])
+
+    context = {
+        'prezenty_na_listach': prezenty_na_listach,
+    }
+
+    return render(request, 'myGiftReservations.html', context)
