@@ -684,6 +684,22 @@ td .text-center h5{
     font-weight: normal;
 }
 
+.reservationsButtonSearch{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+
+.reservationsButtonSearch:hover{
+    background-color: #0096C7;
+    color: white;
+    border: 1px solid #0096C7;
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+
 .reservationsButton{
     background-color: #cf057c;
     color: white;
@@ -702,27 +718,6 @@ td .text-center h5{
 .reservationsBox .tab-content .table tbody tr td {
     padding: 30px 20px;
     vertical-align: middle;
-}
-
-.reservationsBox .tab-content .table tbody tr td .event-wrap h4 a {
-    font-size: 20px;
-    line-height: 20px;
-    color: #cf057c;
-    text-decoration: none;
-}
-.reservationsBox .tab-content .table tbody tr td .event-wrap h4 a:hover {
-    color: #4125dd;
-}
-
-.reservationsBox .tab-content .table tbody tr td .primary-btn {
-    margin-top: 0;
-    text-align: center;
-}
-
-.reservationsBox .tab-content .table tbody tr td .event-img img {
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
 }
 
 .reservationBoxStyle table{
