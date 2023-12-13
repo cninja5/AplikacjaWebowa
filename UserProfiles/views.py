@@ -10,7 +10,7 @@ from django.db.models import Subquery
 from django.contrib.auth.decorators import login_required
 
 from register.forms import CustomPasswordChangeForm
-from .forms import searchForUserForm, editAvatarForm
+from .forms import SearchForUserForm, EditAvatarForm
 from django.contrib import messages
 
 
@@ -44,7 +44,37 @@ def view_profile(request, username):
     user_date_joined = user.date_joined
     userdata = {'user_username': username, 'user_first_name': user.first_name, 'user_last_name': user.last_name,
                 'user_date_joined': user_date_joined, "friend_status": friend_status, "friendsList": friendsList,
-                "friends_count": friends_count, "lists_count": lists_count, "avatar_url": profile_picture}
+                "friends_count": friends_count, "lists_count": lists_count, "avatar_url": profile_picture, 'viewFriendList': False}
+    return render(request, 'profile/profile.html', userdata)
+
+def view_friend_list(request, username):
+    user = get_object_or_404(User, username=username)
+    friends = Znajomi.objects.filter(idZapraszajacego=request.user.id, idZapraszanego=user.id).first()
+
+    podzapytanie = Znajomi.objects.filter(idZapraszajacego=user.id, status="Przyjaciele").values(
+        'idZapraszanego')
+
+    profile_picture = ProfilUzytkownika.objects.filter(user_id=user.id).first()
+    if profile_picture is None:
+        profile_picture = 'default_profile_pic.jpg'
+    else:
+        profile_picture = profile_picture.avatar
+
+    friendsList = User.objects.filter(id__in=Subquery(podzapytanie)).select_related('profiluzytkownika')
+
+    friends_count = Znajomi.objects.filter(idZapraszajacego=user.id, status="Przyjaciele").count()
+
+    lists_count = Listy.objects.filter(loginWlasciciel=user).count()
+
+    if friends:
+        friend_status = friends.status
+    else:
+        friend_status = "Nieznajomi"
+
+    user_date_joined = user.date_joined
+    userdata = {'user_username': username, 'user_first_name': user.first_name, 'user_last_name': user.last_name,
+                'user_date_joined': user_date_joined, "friend_status": friend_status, "friendsList": friendsList,
+                "friends_count": friends_count, "lists_count": lists_count, "avatar_url": profile_picture, 'viewFriendList': True}
     return render(request, 'profile/profile.html', userdata)
 
 
@@ -109,13 +139,13 @@ def avatar_change(request, username):
     profil, created = ProfilUzytkownika.objects.get_or_create(user_id=user.id)
 
     if request.method == 'POST':
-        form = editAvatarForm(request.POST, request.FILES, instance=profil)
+        form = EditAvatarForm(request.POST, request.FILES, instance=profil)
         if form.is_valid():
             form.instance.user = request.user
             form.save()
             return redirect('/profile/' + request.user.username + '/edit/')
     else:
-        form = editAvatarForm()
+        form = EditAvatarForm()
 
     userdata = {'edit': edit, 'user_username': username, 'user_date_joined': user_date_joined, 'form': form,
                 'avatar_url': profile_picture}
@@ -124,7 +154,7 @@ def avatar_change(request, username):
 
 def search_for_user(request):
     if request.method == 'POST':
-        form = searchForUserForm(request.POST)
+        form = SearchForUserForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             if User.objects.filter(username=username).exists():
@@ -133,7 +163,7 @@ def search_for_user(request):
                 return render(request, 'profile/search_for_user.html',
                               {'form': form, 'warning': 'Podany użytkownik nie istnieje!'})
     else:
-        form = searchForUserForm()
+        form = SearchForUserForm()
     return render(request, 'profile/search_for_user.html', {'form': form})
 
 
