@@ -2,31 +2,125 @@
 {% load static %}
 {% block title %} Znajomi {% endblock %}
 {% block content %}
-<div class="container emp-profile">
+<h1 class="infoListyZnajomych">
+    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-card-checklist"
+         viewBox="0 0 16 16">
+        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+        <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+    </svg>
+    Twoi znajomi
+</h1>
+
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmDeleteModalLabel">Potwierdź usunięcie</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Czy na pewno chcesz usunąć tego użytkownika ze znajomych?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+        <a id="confirmDeleteLink" href="#" class="btn btn-danger">Usuń</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="event-schedule-area-two listyZnajomych2">
     <div class="row">
-        <h1>Znajomi</h1>
-        {% if znajomi %}
-        <ul>
-            {% for znajomy in znajomi %}
-            <li>
-                {% if znajomy.profiluzytkownika.avatar %}
-                <img src="{% static 'avatars/'%}{{ znajomy.profiluzytkownika.avatar }}" class="rounded-circle mb-3">
-                {% else %}
-                <img src="{% static 'avatars/default_profile_pic.jpg'%}" class="rounded-circle mb-3">
-                {% endif %}
-                {{ znajomy.username }}, {{ znajomy.first_name }} {{ znajomy.last_name }}
-                <a href="/profile/{{znajomy.username}}/">
-                    <button>Profil</button>
-                </a>
-                <a href="/profile/{{znajomy.username}}/unfriend/">
-                    <button>Usuń znajomego</button>
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        Brak znajomych
-        {% endif %}
+        <div class="col-lg-12">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade active show" id="home" role="tabpanel">
+                    <div class="table-responsive">
+                        {% if znajomi %}
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="text-center col-3 align-middle">Znajomy</th>
+                                <th class="text-center col-3 align-middle">Dane użytkownika</th>
+                                <th class="text-center col-3 align-middle">Profil</th>
+                                <th class="text-center col-3 align-middle">Usuń znajomego</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for znajomy in znajomi %}
+                            <tr class="inner-box">
+                                <td class="align-middle">
+                                    <div class="d-flex flex-column align-items-center">
+                                        {% if znajomy.profiluzytkownika.avatar %}
+                                        <img src="{% static 'avatars/'%}{{ znajomy.profiluzytkownika.avatar }}"
+                                             class="avatarFriends rounded-circle mb-3">
+                                        {% else %}
+                                        <img src="{% static 'avatars/default_profile_pic.jpg'%}" class="avatarFriends rounded-circle mb-3">
+                                        {% endif %}
+                                        <div class="event-wrap text-center">
+                                            <h4 style="color: #cf057c;">{{ znajomy.username }}
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-center">
+                                        <h5>{{ znajomy.first_name }} {{ znajomy.last_name }}</h5>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-center">
+                                        <a href="/profile/{{znajomy.username}}/">
+                                            <button type="button" class="btn btn-lg rounded-pill friendsButtons">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                                                     class="bi bi-person-circle" viewBox="0 0 16 16">
+                                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                                    <path fill-rule="evenodd"
+                                                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                                </svg>
+                                                Zobacz profil
+                                            </button>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-lg rounded-pill friendsButtons" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-fill-dash" viewBox="0 0 16 16">
+                                                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                                <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4"/>
+                                            </svg>
+                                            Usuń znajomego
+                                        </button>
+                                        <script>
+                                            const confirmDeleteLink = document.getElementById('confirmDeleteLink');
+                                            confirmDeleteLink.addEventListener('click', function() {
+                                                confirmDeleteLink.href = "/profile/{{znajomy.username}}/unfriend/";
+                                            });
+                                        </script>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <div class="text-center noFriends">
+                            <h1>Nie masz znajomych!</h1>
+                            <h2>Wyszukaj ich i wyślij im zaproszenie.</h2>
+                            <a href="/search-for-user">
+                                <button class="btn btn-lg rounded-pill NoFriendsButtons">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                                    </svg>
+                                    Wyszukaj znajomego
+                                </button>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
 {% endblock %}

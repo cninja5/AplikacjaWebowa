@@ -174,7 +174,7 @@ def unfriend(request, username):
     invite.delete()
     invite2.delete()
 
-    return redirect("friends_list", username=username)
+    return redirect("friends_list")
 
 
 def friends_list(request):

@@ -71,14 +71,9 @@ def friendsLists(request):
 def deleteList(request, idList):
     list_object = get_object_or_404(Listy, pk=idList)
 
-    if request.method == 'POST':
-        if list_object.loginWlasciciel != request.user:
-            return redirect('myLists')
-        list_object.delete()
-        messages.success(request, 'Lista została pomyślnie usunięta.')
-        return redirect('myLists')
+    list_object.delete()
 
-    return redirect('myLists')  # Przekierowanie w przypadku innych metod HTTP niż POST
+    return redirect('myLists')
 
 
 def specificList(request, idList):
