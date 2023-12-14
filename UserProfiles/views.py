@@ -185,14 +185,15 @@ def search_for_user(request):
         form = SearchForUserForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
-            if User.objects.filter(username=username).exists():
-                return redirect('view_profile', username=username)
+            if User.objects.filter(username__startswith=username).exists():
+                users = User.objects.filter(username__startswith=username)
             else:
                 return render(request, 'profile/search_for_user.html',
                               {'form': form, 'warning': 'Podany użytkownik nie istnieje!'})
     else:
+        users = None
         form = SearchForUserForm()
-    return render(request, 'profile/search_for_user.html', {'form': form})
+    return render(request, 'profile/search_for_user.html', {'form': form, 'users': users})
 
 
 @login_required
@@ -245,7 +246,8 @@ def friends_list(request):
 
 
 def view_friend_invites(request):
-    friend_invites = Znajomi.objects.filter(idZapraszanego=request.user.id, status='Wysłano').select_related('idZapraszajacego')
+    friend_invites = Znajomi.objects.filter(idZapraszanego=request.user.id, status='Wysłano').select_related(
+        'idZapraszajacego')
     dataset = {'friend_invites': friend_invites}
 
     return render(request, 'friends/friend_invites.html', dataset)

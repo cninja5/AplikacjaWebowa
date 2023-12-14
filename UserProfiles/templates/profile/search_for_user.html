@@ -1,5 +1,5 @@
 {% extends "main/base.html" %}
-{% block title %} Profil - {{ user_username}} {% endblock %}
+{% block title %} Wyszukaj użytkownika {% endblock %}
 {% block content %}
 <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
     <div class="card p-4">
@@ -11,6 +11,13 @@
                 <p style="color:red; font-size:10px; text-align:center;"> {{ warning }} </p>
                 <p style="text-align: center;"><button type="submit">Szukaj</button></p>
             </form>
+            {% if users %}
+            <ul>
+                {% for user in users %}
+                <li><a href="/profile/{{ user.username }}" style="text-decoration: none;">{{ user.username }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endif%}
         </div>
     </div>
 </div>
