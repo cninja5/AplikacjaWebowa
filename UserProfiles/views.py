@@ -32,7 +32,7 @@ def get_common_user_data(request, username, view_friend_list=False, view_wishlis
     else:
         profile_picture = profile_picture.avatar
 
-    wishlists = Listy.objects.filter(loginWlasciciel=request.user).annotate(
+    wishlists = Listy.objects.filter(loginWlasciciel=user).annotate(
         ilosc_pozycji=Count('zawartosclisty')).order_by('-id')
 
     friendsList = User.objects.filter(id__in=Subquery(podzapytanie)).select_related('profiluzytkownika')
