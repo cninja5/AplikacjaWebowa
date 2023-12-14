@@ -18,9 +18,9 @@ class ListyForm(forms.ModelForm):
 
 
 class DodajPrezentDoListyForm(forms.ModelForm):
-    nazwaPrezentu = forms.CharField(max_length=100, required=True, label="nazwa")
-    cenaPrezentu = forms.FloatField(required=True, label="cena")
-    linkDoPrezentu = forms.CharField(max_length=512, required=False, label="link do prezentu")
+    nazwaPrezentu = forms.CharField(max_length=100, required=True, label="nazwa", widget=forms.TextInput(attrs={'class': 'addPresentsInput'}))
+    cenaPrezentu = forms.FloatField(required=True, label="cena", widget=forms.TextInput(attrs={'class': 'addPresentsInput'}))
+    linkDoPrezentu = forms.CharField(max_length=512, required=False, label="link do prezentu", widget=forms.TextInput(attrs={'class': 'addPresentsInput'}))
 
     class Meta:
         model = ZawartoscListy
@@ -29,11 +29,6 @@ class DodajPrezentDoListyForm(forms.ModelForm):
             'nazwaPrezentu': 'Nazwa prezentu',
             'cenaPrezentu': 'Cena prezentu',
             'linkDoPrezentu': 'Link do prezentu',
-        }
-        widgets = {
-            'nazwaPrezentu': forms.TextInput(attrs={'class': 'nazwa-input-class'}),
-            'cenaPrezentu': forms.NumberInput(attrs={'class': 'cena-input-class'}),
-            'linkDoPrezentu': forms.TextInput(attrs={'class': 'link-input-class'}),
         }
 
 

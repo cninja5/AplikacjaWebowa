@@ -932,3 +932,9 @@ td .text-center h5{
     margin-top:2%;
     margin-bottom:2%;
 }
+
+.addPresentsInput{
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
