@@ -652,8 +652,8 @@ td .text-center h5{
 }
 
 .btn-close {
-    background-color: white !important; /* Ustawienie koloru tekstu na biały (jeśli chcesz zmienić kolor tekstu) */
-    font-size: 40px; /* Ustawienie większego rozmiaru czcionki */
+    background-color: white !important;
+    font-size: 40px;
     float:right;
 }
 
