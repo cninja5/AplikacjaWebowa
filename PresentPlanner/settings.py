@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'django-insecure-ajns*owh=9-hsq(%t!s)cb$)eyls*j%kl2u$my#6fw^e+avaen
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -55,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'UserProfiles.middleware.NotificationsMiddleware',
 ]
 
 ROOT_URLCONF = 'PresentPlanner.urls'
@@ -77,7 +76,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'PresentPlanner.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -91,8 +89,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -112,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -124,11 +119,11 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 import os
+
 # Ścieżka URL dla plików statycznych
 STATIC_URL = '/static/'
 
@@ -139,7 +134,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     # Dodaj inne ścieżki, jeśli potrzebujesz
 ]
-
 
 MEDIA_URL = '/avatars/'
 
