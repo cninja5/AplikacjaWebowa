@@ -8,10 +8,10 @@
             <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
             <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
         </svg>
-        {{ tytul }}
+        {{ lista.tytul }}
     </h1>
     <h5>
-        {{ opis }}
+        {{ lista.opis }}
     </h5>
     <h1 class="wyrownanieDoLewej">Zawartość:</h1>
 
@@ -24,7 +24,23 @@
                      viewBox="0 0 16 16">
                     <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
                 </svg>
-                <span class="elementLista">   {{ prezent.nazwaPrezentu }} </span>
+                {% if presentId == prezent.id %}
+                <span class="elementLista">
+                    <form method="post" action="{% url 'edit_present' idList=lista.id idPresent=presentId %}">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit">Edytuj Prezent</button>
+                    </form>
+                </span>
+                {% else %}
+                <span class="elementLista">   {{ prezent.nazwaPrezentu }} - {{ prezent.cenaPrezentu|floatformat:2 }}zł -
+                    {% if prezent.linkDoPrezentu %}
+                        <a href="{{ prezent.linkDoPrezentu }}"><button>Link</button></a>
+                    {% else %}
+                        <a href="{{ prezent.linkDoPrezentu }}"><button disabled>Link</button></a>
+                    {% endif %}
+                </span>
+                {% endif %}
                 <span id="przyciskiListy">
                                 <a href="/deletePresent/{{ numerListy }}/{{ prezent.id }}/">
                                     <button id="poNajechaniuRed" class="trashRight">
@@ -35,7 +51,7 @@
                                         </svg>
                                     </button>
                                 </a>
-                                <a href="/deletePresent/{{ numerListy }}/{{ prezent.id }}/">
+                                <a href="/edit-list/{{ numerListy }}/edit-present/{{ prezent.id }}/">
                                     <button id="poNajechaniuGreen" class="trashRight">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                              fill="currentColor"
@@ -64,74 +80,25 @@
             Lista jest obecnie pusta, dodaj prezenty.
         </p>
         {% endif %}
-
-    </div>
-
-    <form method="post" enctype="multipart/form-data" id="DodajPrezentDoListyForm">
+        {% if addPresent is True %}
+        {{ form.errors }}
+        <form method="post" action="{% url 'add_present' idList=lista.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Dodaj Prezent</button>
+        </form>
         {% csrf_token %}
-
-        <div id="prezenty">
-            <!-- Pole na pierwszy prezent -->
-        </div>
-        <div id="guzikAddPresent">
-            <button type="button" class="btn rounded-pill btn-lg createListForm" onclick="addPresentField()">Dodaj
-                następny prezent
-            </button>
-            <button type="submit" class="btn rounded-pill btn-lg createListForm hidden">Dodaj prezent do listy
-            </button>
-            <a href="/myLists/">
-                <button type="button" class="btn rounded-pill btn-lg createListFormR">Zakończ wprowadzanie
-                    prezentów
-                </button>
-            </a>
-        </div>
-
-    </form>
+        <a href="/edit-list/{{ lista.id }}/">
+            <button>Zakończ dodawanie</button>
+        </a>
+        {% else %}
+        <a href="add-present/">
+            <button>Dodaj prezenty</button>
+        </a>
+        {% endif %}
+        <a href="/myLists/">
+            <button>Powrót</button>
+        </a>
+    </div>
 </div>
-
-<script>
-    var i = 1;
-
-    function removePresentField(button) {
-        button.parentNode.remove();
-        i = 1; // Reset the flag to enable adding new presents
-        toggleButtons();
-    }
-
-    function addPresentField() {
-        const kolejnyPrezentButton = document.querySelector('#guzikAddPresent button:nth-child(1)');
-        const dodajDoListyButton = document.querySelector('#guzikAddPresent button:nth-child(2)');
-
-        if (i === 1) {
-            const prezentyDiv = document.getElementById("prezenty");
-            const newField = document.createElement("div");
-            newField.innerHTML = `
-                <label>Nazwa prezentu:</label>
-                <input type="text" name="nazwaPrezentu" class="form-control">
-                <button type="button" class="btn btn-sm deleteRightButton" onclick="removePresentField(this)">Usuń prezent</button>
-            `;
-
-            prezentyDiv.appendChild(newField);
-
-            toggleButtons();
-            i = 2;
-        }
-    }
-
-    function toggleButtons() {
-        const kolejnyPrezentButton = document.querySelector('#guzikAddPresent button:nth-child(1)');
-        const dodajDoListyButton = document.querySelector('#guzikAddPresent button:nth-child(2)');
-
-        kolejnyPrezentButton.classList.toggle('hidden');
-        dodajDoListyButton.classList.toggle('hidden');
-    }
-
-    // Reverting to the initial state after clicking "Dodaj prezent do listy"
-    document.querySelector('#guzikAddPresent button:nth-child(2)').addEventListener('click', function () {
-        i = 1;
-        toggleButtons();
-    });
-</script>
-
-
 {% endblock %}

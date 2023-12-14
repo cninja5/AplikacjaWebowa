@@ -3,6 +3,7 @@
 from django import forms
 from main.models import Listy, ZawartoscListy
 
+
 class ListyForm(forms.ModelForm):
     class Meta:
         model = Listy
@@ -15,10 +16,31 @@ class ListyForm(forms.ModelForm):
             'opis': forms.Textarea(attrs={'rows': 4, 'cols': 50})
         }
 
+
 class DodajPrezentDoListyForm(forms.ModelForm):
+    nazwaPrezentu = forms.CharField(max_length=100, required=True, label="nazwa")
+    cenaPrezentu = forms.FloatField(required=True, label="cena")
+    linkDoPrezentu = forms.CharField(max_length=512, required=False, label="link do prezentu")
+
     class Meta:
         model = ZawartoscListy
-        fields = ['nazwaPrezentu']
+        fields = ['nazwaPrezentu', 'cenaPrezentu', 'linkDoPrezentu']
         labels = {
-            'nazwaPrezentu': 'Nazwa prezentu'
+            'nazwaPrezentu': 'Nazwa prezentu',
+            'cenaPrezentu': 'Cena prezentu',
+            'linkDoPrezentu': 'Link do prezentu',
         }
+
+        class DodajPrezentDoListyForm(forms.ModelForm):
+            nazwaPrezentu = forms.CharField(max_length=100, required=True, label="nazwa")
+            cenaPrezentu = forms.FloatField(required=True, label="cena")
+            linkDoPrezentu = forms.CharField(max_length=512, required=False, label="link do prezentu")
+
+            class Meta:
+                model = ZawartoscListy
+                fields = ['nazwaPrezentu', 'cenaPrezentu', 'linkDoPrezentu']
+                labels = {
+                    'nazwaPrezentu': 'Nazwa prezentu',
+                    'cenaPrezentu': 'Cena prezentu',
+                    'linkDoPrezentu': 'Link do prezentu',
+                }
