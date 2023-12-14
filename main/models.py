@@ -31,7 +31,7 @@ class ZawartoscListy(models.Model):
     nazwaPrezentu = models.CharField(max_length=254)
     loginRezerwacji = models.ForeignKey(User, db_column="username", on_delete=models.CASCADE, null=True)
     linkDoPrezentu = models.CharField(max_length=1024, blank=True, null=True)
-    cenaPrezentu = models.FloatField(blank=True, default=0)
+    cenaPrezentu = models.FloatField(blank=True, null=True, default=0)
 
     def __str__(self):
         return self.nazwaPrezentu

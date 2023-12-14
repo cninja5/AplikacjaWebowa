@@ -24,9 +24,25 @@
                      viewBox="0 0 16 16">
                     <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
                 </svg>
-                <span class="elementLista">   {{ prezent.nazwaPrezentu }} </span>
+                {% if presentId == prezent.id %}
+                <span class="elementLista">
+                    <form method="post" action="{% url 'edit_present' idList=lista.id idPresent=presentId %}">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit">Edytuj Prezent</button>
+                    </form>
+                </span>
+                {% else %}
+                <span class="elementLista">   {{ prezent.nazwaPrezentu }} - {{ prezent.cenaPrezentu|floatformat:2 }}zł -
+                    {% if prezent.linkDoPrezentu %}
+                        <a href="{{ prezent.linkDoPrezentu }}"><button>Link</button></a>
+                    {% else %}
+                        <a href="{{ prezent.linkDoPrezentu }}"><button disabled>Link</button></a>
+                    {% endif %}
+                </span>
+                {% endif %}
                 <span id="przyciskiListy">
-                                <a href="/edit-list/{{ numerListy }}/edit-present/{{ prezent.id }}/">
+                                <a href="/deletePresent/{{ numerListy }}/{{ prezent.id }}/">
                                     <button id="poNajechaniuRed" class="trashRight">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                              fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -35,7 +51,7 @@
                                         </svg>
                                     </button>
                                 </a>
-                                <a href="/deletePresent/{{ numerListy }}/{{ prezent.id }}/">
+                                <a href="/edit-list/{{ numerListy }}/edit-present/{{ prezent.id }}/">
                                     <button id="poNajechaniuGreen" class="trashRight">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                              fill="currentColor"
@@ -80,7 +96,9 @@
             <button>Dodaj prezenty</button>
         </a>
         {% endif %}
-        <a href="/myLists/"><button>Powrót</button></a>
+        <a href="/myLists/">
+            <button>Powrót</button>
+        </a>
     </div>
 </div>
 {% endblock %}
