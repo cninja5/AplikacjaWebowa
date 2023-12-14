@@ -653,6 +653,10 @@ td .text-center h5{
     margin-top:2%;
 }
 
+.EditPasswordMargin{
+    margin-top:2%;
+}
+
 .btn-close {
     background-color: white !important;
     font-size: 40px;
