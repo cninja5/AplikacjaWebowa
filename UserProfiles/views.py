@@ -211,6 +211,7 @@ def send_invite(request, username):
 @login_required
 def accept_invite(request, username):
     invitedUser = get_object_or_404(User, username=username)
+
     invite = Znajomi.objects.filter(idZapraszajacego=request.user.id, idZapraszanego=invitedUser.id).first()
     invite2 = Znajomi.objects.filter(idZapraszajacego=invitedUser.id, idZapraszanego=request.user.id).first()
 
@@ -241,3 +242,6 @@ def friends_list(request):
 
     friendsList = User.objects.filter(id__in=Subquery(podzapytanie)).select_related('profiluzytkownika')
     return render(request, 'friends/friends_list.html', {'znajomi': friendsList})
+
+def view_friend_invites(request):
+    return render(request, 'friends/friend_invites.html')
