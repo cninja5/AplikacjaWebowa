@@ -30,6 +30,11 @@ class DodajPrezentDoListyForm(forms.ModelForm):
             'cenaPrezentu': 'Cena prezentu',
             'linkDoPrezentu': 'Link do prezentu',
         }
+        widgets = {
+            'nazwaPrezentu': forms.TextInput(attrs={'class': 'red'}),
+            'cenaPrezentu': forms.NumberInput(attrs={'class': 'cena-input-class'}),
+            'linkDoPrezentu': forms.TextInput(attrs={'class': 'link-input-class'}),
+        }
 
         class DodajPrezentDoListyForm(forms.ModelForm):
             nazwaPrezentu = forms.CharField(max_length=100, required=True, label="nazwa")
@@ -44,3 +49,10 @@ class DodajPrezentDoListyForm(forms.ModelForm):
                     'cenaPrezentu': 'Cena prezentu',
                     'linkDoPrezentu': 'Link do prezentu',
                 }
+                widgets = {
+                    'nazwaPrezentu': forms.TextInput(attrs={'class': 'red'}),
+                    'cenaPrezentu': forms.NumberInput(attrs={'class': 'cena-input-class'}),
+                    'linkDoPrezentu': forms.TextInput(attrs={'class': 'link-input-class'}),
+                }
+
+

@@ -1,104 +1,108 @@
 {% extends "main/base.html" %}
 
 {% block content %}
-<div class="form-container">
-    <h1 class="witaj2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-card-checklist"
-             viewBox="0 0 16 16">
-            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
-            <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
-        </svg>
-        {{ lista.tytul }}
-    </h1>
-    <h5>
-        {{ lista.opis }}
-    </h5>
-    <h1 class="wyrownanieDoLewej">Zawartość:</h1>
+<div class="addPresentsBox">
+    <div class="row">
+        <h1 class="pageTitle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
+                 class="bi bi-card-checklist"
+                 viewBox="0 0 16 16">
+                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+            </svg>
+            {{ lista.tytul }}
+        </h1>
+        <span class="addPresentsDescription">
+            {{ lista.opis }}
+        </span>
+        <span class="addPresentsContentInfo">Zawartość:</span>
 
-    <div id="zawartosc">
-        {% if zawartosc_listy %}
-        <ul>
-            {% for prezent in zawartosc_listy %}
-            <li>
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bag"
-                     viewBox="0 0 16 16">
-                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-                </svg>
-                {% if presentId == prezent.id %}
-                <span class="elementLista">
+        <div class="addPresentsContent">
+            {% if zawartosc_listy %}
+            <ul>
+                {% for prezent in zawartosc_listy %}
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bag"
+                         viewBox="0 0 16 16">
+                        <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+                    </svg>
+                    {% if presentId == prezent.id %}
                     <form method="post" action="{% url 'edit_present' idList=lista.id idPresent=presentId %}">
-                    {% csrf_token %}
-                    {{ form }}
-                    <button type="submit">Edytuj Prezent</button>
+                        {% csrf_token %}
+                        {{ form }}
+                        <button type="submit" class="btn btn-sm rounded-pill addPresentsButtonLink">Zapisz</button>
                     </form>
-                </span>
-                {% else %}
-                <span class="elementLista">   {{ prezent.nazwaPrezentu }} - {{ prezent.cenaPrezentu|floatformat:2 }}zł -
-                    {% if prezent.linkDoPrezentu %}
-                        <a href="{{ prezent.linkDoPrezentu }}"><button>Link</button></a>
                     {% else %}
-                        <a href="{{ prezent.linkDoPrezentu }}"><button disabled>Link</button></a>
+                    <span>   {{ prezent.nazwaPrezentu }} - {{ prezent.cenaPrezentu|floatformat:2 }} zł
+                    {% if prezent.linkDoPrezentu %}
+                        <a href="{{ prezent.linkDoPrezentu }}"><button
+                                class="btn btn-sm rounded-pill addPresentsButtonLink">Link</button></a>
+                    {% else %}
+                        <a href="{{ prezent.linkDoPrezentu }}"><button disabled
+                                                                       class="btn btn-sm rounded-pill addPresentsButtonLink">Link</button></a>
                     {% endif %}
                 </span>
-                {% endif %}
-                <span id="przyciskiListy">
-                                <a href="/deletePresent/{{ numerListy }}/{{ prezent.id }}/">
-                                    <button id="poNajechaniuRed" class="trashRight">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                                              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                                        </svg>
-                                    </button>
-                                </a>
-                                <a href="/edit-list/{{ numerListy }}/edit-present/{{ prezent.id }}/">
-                                    <button id="poNajechaniuGreen" class="trashRight">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             fill="currentColor"
-                                             class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                        <path fill-rule="evenodd"
-                                              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                                    </svg>
-                                    </button>
-                                </a>
-
-                            </span>
-
-
-            </li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <p class="elementLista">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bag-x"
-                 viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                      d="M6.146 8.146a.5.5 0 0 1 .708 0L8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 0 1 0-.708z"/>
-                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-            </svg>
-            Lista jest obecnie pusta, dodaj prezenty.
-        </p>
-        {% endif %}
-        {% if addPresent is True %}
-        {{ form.errors }}
-        <form method="post" action="{% url 'add_present' idList=lista.id %}">
+                    {% endif %}
+                    <span class="addPresentsButtons">
+                        <a href="/deletePresent/{{ numerListy }}/{{ prezent.id }}/">
+                            <button class="buttonRed">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                </svg>
+                            </button>
+                        </a>
+                        <a href="/edit-list/{{ numerListy }}/edit-present/{{ prezent.id }}/">
+                            <button class="buttonGreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     fill="currentColor"
+                                     class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                <path fill-rule="evenodd"
+                                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                            </svg>
+                            </button>
+                        </a>
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="addPresentsNone">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bag-x"
+                     viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M6.146 8.146a.5.5 0 0 1 .708 0L8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 0 1 0-.708z"/>
+                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+                </svg>
+                <span>Lista jest obecnie pusta, dodaj prezenty.</span>
+            </p>
+            {% endif %}
+            {% if addPresent is True %}
+            <span class="addPresentsContentInfo">
+                Podaj informacje o prezencie:
+            </span>
+            {{ form.errors }}
+            <form method="post" action="{% url 'add_present' idList=lista.id %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-lg rounded-pill addPresentsButtonAdd">Dodaj Prezent</button>
+            </form>
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Dodaj Prezent</button>
-        </form>
-        {% csrf_token %}
-        <a href="/edit-list/{{ lista.id }}/">
-            <button>Zakończ dodawanie</button>
-        </a>
-        {% else %}
-        <a href="add-present/">
-            <button>Dodaj prezenty</button>
-        </a>
-        {% endif %}
-        <a href="/myLists/">
-            <button>Powrót</button>
-        </a>
+            <a href="/edit-list/{{ lista.id }}/">
+                <button class="btn btn-lg rounded-pill addPresentsButtonEnd">Zakończ dodawanie</button>
+            </a>
+            {% else %}
+            <a href="add-present/">
+                <button class="btn btn-lg rounded-pill addPresentsButtonAdd">Dodaj prezenty</button>
+            </a>
+            <br>
+            {% endif %}
+            <a href="/myLists/">
+                <button class="btn-lg rounded-pill addPresentsButtonReturn">Powrót do Moje listy</button>
+            </a>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -83,9 +83,6 @@ nav{
     border: 2px solid #FF3333;
 }
 
-#listy{
-
-}
 
 #brakList{
     font-style: italic;
@@ -140,31 +137,14 @@ nav{
     margin-bottom: 2%;
 }
 
-#zawartosc ul{
-    list-style-type: none;
-}
-
-#zawartosc ul li{
-    margin-bottom: 2%;
-    margin-top: 2%;
-}
-
-.elementLista{
-    margin-top: 2%;
-    padding-left: 1%;
-    margin-right: 3%;
-}
 .witaj2{
     margin-top: 5%;
     margin-bottom: 2%;
 }
 
-#przyciskiListy button{
+#przyciskiListy button{ /* delete */
     border: none;
     background-color: white !important;
-}
-.trashRight{
-    float: right;
 }
 
 .hidden{
@@ -568,16 +548,7 @@ td .text-center h5{
    font-weight:bold;
 }
 
-.card-body{
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
-    border-radius: 0.5rem;
-}
-
-.profileHr{
-    height: 1px;
-    background-color: rgba(0,0,0,0.5);
-    border: none;
-}
+/* Common */
 
 .pageTitle{
     margin-top: 2%;
@@ -586,18 +557,18 @@ td .text-center h5{
     text-align: center;
 }
 
-/* createList.html */
+/* Buttons */
 
-.createListBox{
-    width:70%
-    padding: 3%;
-    margin-top: 2%;
-    margin-left: 3%;
-    margin-right: 3%;
-    margin-bottom: 3%;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
-    border-radius: 0.5rem;
-    background: #fff;
+.buttonRed{
+    color: red;
+}
+
+.buttonGreen{
+    color: green;
+}
+
+.buttonMagenta{
+    color: #cf057c;
 }
 
 .createListFormButton{
@@ -631,37 +602,107 @@ td .text-center h5{
     border: 1px solid #023E8A;
 }
 
+.addPresentsButtonAdd{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 20%;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+.addPresentsButtonAdd:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.addPresentsButtonReturn{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 20%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    float: right;
+}
+
+.addPresentsButtonReturn:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.addPresentsButtonLink{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 5%;
+    margin-left: 1%;
+}
+
+.addPresentsButtonLink:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.addPresentsButtonSave{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 20%;
+    margin-left: 1%;
+}
+
+.addPresentsButtonSave:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.addPresentsButtons button{
+    border: none;
+    background-color: white !important;
+    margin-right: 2%;
+    float: right;
+}
+
+.addPresentsButtonEnd{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 20%;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+.addPresentsButtonEnd:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+/* createList.html */
+
+.createListBox{
+    width:70%
+    padding: 3%;
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    border-radius: 0.5rem;
+    background: #fff;
+}
+
 .createListBox form{
     margin: 0 auto;
     width: 80%;
 }
 
-.EditAvatarSize{
-    width:50%;
-    margin-left:25%;
-    margin-top:2%;
-}
-.EditPasswordSize{
-    width:50%;
-    margin-left:25%;
-    margin-top:2%;
-}
-
-.EditPasswordMargin{
-    margin-top:2%;
-}
-
-.btn-close {
-    background-color: white !important;
-    font-size: 40px;
-    float:right;
-}
-
-.profileListScroll{
-   height: 80vh;
-   overflow-y: auto;
-   overflow-x: hidden;
-}
 .createListBox form label{
     display: block;
     margin-top: 2%;
@@ -675,6 +716,48 @@ td .text-center h5{
     padding: 10px;
     margin-bottom: 2%;
     margin-left: 1%;
+}
+
+/* addPresentsToList.html */
+
+.addPresentsBox{
+    width:70%
+    padding: 3%;
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    border-radius: 0.5rem;
+    background: #fff;
+}
+
+.addPresentsDescription{
+    text-align: center;
+}
+
+.addPresentsContentInfo{
+    font-size: 24px;
+    margin-left: 2%;
+}
+
+.addPresentsContent ul{
+    list-style-type: none;
+}
+
+.addPresentsContent ul li{
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.addPresentsNone{
+    margin-top: 2%;
+    padding-left: 2%;
+    margin-right: 3%;
+}
+
+.addPresentsNone span{
+    margin-top: 1%;
 }
 
 /* myGiftReservations.html */
@@ -762,3 +845,48 @@ td .text-center h5{
     margin-left: 3%;
     margin-right: 3%;
 }
+
+/* profile */
+
+.EditAvatarSize{
+    width:50%;
+    margin-left:25%;
+    margin-top:2%;
+}
+.EditPasswordSize{
+    width:50%;
+    margin-left:25%;
+    margin-top:2%;
+}
+
+.EditPasswordMargin{
+    margin-top:2%;
+}
+
+.btn-close {
+    background-color: white !important;
+    font-size: 40px;
+    float:right;
+}
+
+.profileListScroll{
+   height: 80vh;
+   overflow-y: auto;
+   overflow-x: hidden;
+}
+
+.card-body{
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    border-radius: 0.5rem;
+}
+
+.profileHr{
+    height: 1px;
+    background-color: rgba(0,0,0,0.5);
+    border: none;
+}
+
+.red{
+    color: red;
+}
+
