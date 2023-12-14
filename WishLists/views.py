@@ -19,7 +19,7 @@ def createList(request):
             new_list.save()
             idList = new_list.id
 
-        return redirect('/addPresents/' + str(idList) + '/')
+        return redirect('/edit-list/' + str(idList) + '/')
     else:
         form = ListyForm()
     return render(request, 'createList.html', {'form': form})

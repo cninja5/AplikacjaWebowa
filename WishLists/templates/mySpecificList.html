@@ -1,22 +1,33 @@
 {% extends "main/base.html" %}
 
 {% block content %}
-<div class="form-container">
-    <h1 class="witaj2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-card-checklist"
-             viewBox="0 0 16 16">
-            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
-            <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
-        </svg>
-        {{ tytul }}
-    </h1>
-    <h5>
-        {{ opis }}
-    </h5>
-    <h1 class="wyrownanieDoLewej">Zawartość:</h1>
 
-    <div id="zawartosc">
-        {% if zawartosc_listy %}
+
+<h1 class="pageTitle">
+    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
+         class="bi bi-card-checklist"
+         viewBox="0 0 16 16">
+        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+        <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+    </svg>
+    Zawartość listy
+</h1>
+
+<div class="mySpecificListBox">
+    <div class="mySpecificListTitleBox">
+        <h1 class="mySpecificListTitle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bookmark-fill"
+                 viewBox="0 0 16 16">
+                <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2"/>
+            </svg>
+
+            {{ tytul }}
+        </h1>
+        <h4>{{ opis }}</h4>
+        <h5>Zawartość:</h5>
+    </div>
+    {% if zawartosc_listy %}
+    <div class="mySpecificListElementsInListBox">
         <ul>
             {% for prezent in zawartosc_listy %}
             <li>
@@ -24,20 +35,37 @@
                      viewBox="0 0 16 16">
                     <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
                 </svg>
-                <span class="elementLista">   {{ prezent.nazwaPrezentu }} - {{ prezent.cenaPrezentu|floatformat:2 }}zł -
+                <span class="mySpecificListSpan">   {{ prezent.nazwaPrezentu }} - {{ prezent.cenaPrezentu|floatformat:2 }} zł
                     {% if prezent.linkDoPrezentu %}
-                        <a href="{{ prezent.linkDoPrezentu }}"><button>Link</button></a>
+                        <a href="{{ prezent.linkDoPrezentu }}">
+                            <button class="btn btn-lg rounded-pill mySpecificListButtonLinkOnPresent">
+                                Link
+                            </button>
+                        </a>
                     {% else %}
-                        <a href="{{ prezent.linkDoPrezentu }}"><button disabled>Link</button></a>
+                        <a href="{{ prezent.linkDoPrezentu }}">
+                            <button disabled class=" btn btn-lg rounded-pill mySpecificListButtonLinkOnPresent">
+                                Link
+                            </button>
+                        </a>
                     {% endif %}
                     {% if request.user.id != ownerId %}
                         {% if prezent.loginRezerwacji.id == null %}
-                            <a href="make-reservation/{{ prezent.id }}"><button class="btn btn-lg rounded-pill przyciskWelcome">Zarezerwuj</button></a>
+                            <a href="make-reservation/{{ prezent.id }}">
+                                <button class="btn btn-lg rounded-pill mySpecificListButtonsReserved">
+                                    Zarezerwuj
+                                </button>
+                            </a>
                         {% elif prezent.loginRezerwacji.id == request.user.id %}
-                            <a href="cancel-reservation/{{ prezent.id }}"><button
-                                    class="btn btn-lg rounded-pill przyciskWelcome">Anuluj rezerwację</button></a>
+                            <a href="cancel-reservation/{{ prezent.id }}">
+                                <button class="btn btn-lg rounded-pill mySpecificListButtonsReservedCancel">
+                                    Anuluj rezerwację
+                                </button>
+                            </a>
                         {% else %}
-                            <button class="btn btn-lg rounded-pill przyciskWelcome" disabled>Zarezerwowany</button>
+                            <button class="btn btn-lg rounded-pill mySpecificListButtonsReserved" disabled>
+                                Zarezerwowany
+                            </button>
                         {% endif %}
                     {% endif %}
                 </span>
@@ -45,31 +73,33 @@
             {% endfor %}
             {% if request.user.id == ownerId %}
             <a href="/myLists/">
-                <button type="submit" class="btn btn-lg rounded-pill createListFormR">Powrót</button>
+                <button type="submit" class="btn btn-lg rounded-pill mySpecificListButtonsBack">Powrót</button>
             </a>
             {% else %}
             <a href="/friendsLists/">
-                <button type="submit" class="btn btn-lg rounded-pill createListFormR">Powrót</button>
+                <button type="submit" class="btn btn-lg rounded-pill mySpecificListButtonsBack">Powrót</button>
             </a>
             {% endif %}
         </ul>
-        {% else %}
-        <p class="elementLista">
-        <div id="brakList">
-            <h1>Brak dostępnych prezentów.</h1>
+    </div>
+    {% else %}
+    <div class="mySpecificListNoneElementsOnList text-center">
+        <h1>Brak dostępnych prezentów.</h1>
         {% if request.user.id == ownerId %}
-            <h1>Zedytuj listę, aby dodać prezenty!</h1>
-            <br>
-            <form method="POST" action="{% url 'addPresents' numerListy %}">
-                {% csrf_token %}
-                <button class="btn rounded-pill btn-lg przyciskWelcome ">Dodaj prezenty</button>
-            </form>
-        {% endif %}
-        </div>
-        </p>
-        {% endif %}
+        <h1>Zedytuj listę, aby dodać prezenty!</h1>
+        <br>
+        <form method="POST" action="{% url 'add_present' numerListy %}">
+            {% csrf_token %}
+            <button class="btn rounded-pill btn-lg mySpecificListButtonNoneOnList ">Dodaj prezenty</button>
+        </form>
 
     </div>
+
+    {% endif %}
+
+    {% endif %}
+
 </div>
+
 
 {% endblock %}
