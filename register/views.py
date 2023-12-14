@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+
+from main.models import ProfilUzytkownika
 from .forms import RegisterForm, LoginForm
 
 
@@ -9,8 +11,8 @@ def register(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)
         if form.is_valid():
-            form.save()
-
+            user = form.save()
+            ProfilUzytkownika.objects.create(user=user, avatar='default_profile_pic.jpg')
             return redirect("/login")
     else:
         form = RegisterForm()
