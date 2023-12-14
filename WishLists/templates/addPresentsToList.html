@@ -26,7 +26,7 @@
                 </svg>
                 <span class="elementLista">   {{ prezent.nazwaPrezentu }} </span>
                 <span id="przyciskiListy">
-                                <a href="/deletePresent/{{ numerListy }}/{{ prezent.id }}/">
+                                <a href="/edit-list/{{ numerListy }}/edit-present/{{ prezent.id }}/">
                                     <button id="poNajechaniuRed" class="trashRight">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                              fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -66,15 +66,21 @@
         {% endif %}
         {% if addPresent is True %}
         {{ form.errors }}
-        {{ form }}
-
+        <form method="post" action="{% url 'add_present' idList=lista.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Dodaj Prezent</button>
+        </form>
         {% csrf_token %}
-        {{ request.POST }}
-        <a href="/edit-list/{{ lista.id }}/add-present/"><button>Dodaj prezent</button></a>
-        <a href="/edit-list/{{ lista.id }}/"><button>Zakończ dodawanie</button></a>
+        <a href="/edit-list/{{ lista.id }}/">
+            <button>Zakończ dodawanie</button>
+        </a>
         {% else %}
-        <a href="add-present/"><button>Dodaj prezenty</button></a>
+        <a href="add-present/">
+            <button>Dodaj prezenty</button>
+        </a>
         {% endif %}
+        <a href="/myLists/"><button>Powrót</button></a>
     </div>
 </div>
 {% endblock %}

@@ -21,7 +21,9 @@ class DodajPrezentDoListyForm(forms.ModelForm):
     linkDoPrezentu = forms.CharField(max_length=512, label="link do prezentu")
     class Meta:
         model = ZawartoscListy
-        fields = ['nazwaPrezentu']
+        fields = ['nazwaPrezentu', 'cenaPrezentu', 'linkDoPrezentu']
         labels = {
-            'nazwaPrezentu': 'Nazwa prezentu'
+            'nazwaPrezentu': 'Nazwa prezentu',
+            'cenaPrezentu': 'Cena prezentu',
+            'linkDoPrezentu': 'Link do prezentu',
         }

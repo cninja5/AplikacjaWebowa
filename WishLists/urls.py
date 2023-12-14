@@ -6,6 +6,7 @@ urlpatterns = [
     path("createList/", views.createList, name="createList"),
     path("edit-list/<int:idList>/", views.edit_list, name="edit_list"),
     path("edit-list/<int:idList>/add-present/", views.add_present, name="add_present"),
+    # path("edit-list/<int:idList>/edit-present/<int:idList>", views.edit_present, name="edit_present"),
     path("myLists/", views.myLists, name="myLists"),
     path("my-reservations/", views.myGiftReservations, name="myGiftReservations"),
     path("friendsLists/", views.friendsLists, name="friendsLists"),

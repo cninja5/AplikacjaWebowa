@@ -25,30 +25,6 @@ def createList(request):
     return render(request, 'createList.html', {'form': form})
 
 
-# def addPresents(request, idList):
-#     list_object = get_object_or_404(Listy, pk=idList)
-#     zawartosc_listy = ZawartoscListy.objects.filter(idListy=list_object)
-#     numerListy = idList
-#     if list_object.loginWlasciciel != request.user:
-#         return redirect('myLists')
-#     if request.method == 'POST':
-#         form = DodajPrezentDoListyForm(request.POST)
-#         if form.is_valid():
-#             new_prezent = form.save(commit=False)
-#             new_prezent.idListy = list_object
-#             new_prezent.save()
-#             # Możesz przekazać dodatkowe dane z obiektu Listy do szablonu
-#             return render(request, 'addPresentsToList.html',
-#                           {'form': DodajPrezentDoListyForm(), 'zawartosc_listy': zawartosc_listy,
-#                            'tytul': list_object.tytul, 'opis': list_object.opis, 'numerListy': numerListy})
-#     else:
-#         form = DodajPrezentDoListyForm()
-#
-#     return render(request, 'addPresentsToList.html',
-#                   {'form': form, 'zawartosc_listy': zawartosc_listy, 'tytul': list_object.tytul,
-#                    'opis': list_object.opis, 'numerListy': numerListy})
-
-
 def edit_list(request, idList):
     list_object = get_object_or_404(Listy, pk=idList)
     zawartosc_listy = ZawartoscListy.objects.filter(idListy=list_object)
@@ -57,7 +33,9 @@ def edit_list(request, idList):
                'zawartosc_listy': zawartosc_listy,
                'lista': list_object,
                'numerListy': idList,
-               'addPresent': False}
+               'addPresent': False,
+               'editPresent': False,
+               }
 
     if list_object.loginWlasciciel != request.user:
         return redirect('myLists')
@@ -75,7 +53,8 @@ def add_present(request, idList):
         'zawartosc_listy': zawartosc_listy,
         'lista': list_object,
         'numerListy': idList,
-        'addPresent': True
+        'addPresent': True,
+        'editPresent': False,
     }
 
     if list_object.loginWlasciciel != request.user:
@@ -84,9 +63,9 @@ def add_present(request, idList):
     if request.method == 'POST':
         form = DodajPrezentDoListyForm(request.POST)
         if form.is_valid():
-            new_present = form.save(commit=False)
-            new_present.idListy = list_object
-            new_present.save()
+            form = form.save(commit=False)
+            form.idListy = list_object
+            form.save()
             return redirect('add_present', idList=idList)
     else:
         form = DodajPrezentDoListyForm()
@@ -94,6 +73,36 @@ def add_present(request, idList):
     dataset['form'] = form
     return render(request, 'addPresentsToList.html', dataset)
 
+
+# def edit_present(request, idList, idPresent):
+#     list_object = get_object_or_404(Listy, pk=idList)
+#     zawartosc_listy = ZawartoscListy.objects.filter(idListy=list_object)
+#
+#     dataset = {
+#         'form': DodajPrezentDoListyForm(),
+#         'zawartosc_listy': zawartosc_listy,
+#         'lista': list_object,
+#         'numerListy': idList,
+#         'addPresent': False,
+#         'editPresent': True,
+#     }
+#
+#     if list_object.loginWlasciciel != request.user:
+#         return redirect('myLists')
+#
+#     if request.method == 'POST':
+#         form = DodajPrezentDoListyForm(request.POST)
+#         if form.is_valid():
+#             form = form.save(commit=False)
+#             form.idListy = list_object
+#             form.save()
+#             return redirect('add_present', idList=idList)
+#     else:
+#         form = DodajPrezentDoListyForm()
+#
+#     dataset['form'] = form
+#     return render(request, 'addPresentsToList.html', dataset)
+#
 
 def myLists(request):
     listy_uzytkownika = Listy.objects.filter(loginWlasciciel=request.user).annotate(
@@ -130,10 +139,10 @@ def specificList(request, idList):
 
 
 def deletePresent(request, idPrezent, idList):
-    prezent = get_object_or_404(ZawartoscListy, pk=idPrezent)
-    prezent.delete()
+    present = get_object_or_404(ZawartoscListy, pk=idPrezent)
+    present.delete()
 
-    return redirect('addPresents', idList=idList)
+    return redirect('edit_list', idList=idList)
 
 
 def makeGiftReservation(request, idList, idGift):
