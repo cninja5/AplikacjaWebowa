@@ -507,35 +507,10 @@ td .text-center h5{
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
 }
 
-.friendsButtons{
-    background-color: #cf057c;
-    color: white;
-    border: 1px solid #cf057c;
-    margin-bottom: 5%;
-}
 
-.friendsButtons:hover{
-    background-color: #023E8A;
-    color: white;
-    border: 1px solid #023E8A;
-}
 
 .noFriends{
     margin-top: 3%;
-}
-
-.NoFriendsButtons{
-    background-color: #0096C7;
-    color: white;
-    border: 1px solid #0096C7;
-    margin-bottom: 5%;
-    margin-top: 3%;
-}
-
-.NoFriendsButtons:hover{
-    background-color: #023E8A;
-    color: white;
-    border: 1px solid #023E8A;
 }
 
 .myProfileFriends .row .col-md-4{
@@ -684,6 +659,64 @@ td .text-center h5{
     border: 1px solid #023E8A;
 }
 
+.reservationsButtonSearch{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+
+.reservationsButtonSearch:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+
+.reservationsButton{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 80%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.reservationsButton:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.NoFriendsButtons{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+
+.NoFriendsButtons:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.friendsButtons{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    margin-bottom: 5%;
+}
+
+.friendsButtons:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
 /* createList.html */
 
 .createListBox{
@@ -799,37 +832,6 @@ td .text-center h5{
     font-weight: normal;
 }
 
-.reservationsButtonSearch{
-    background-color: #cf057c;
-    color: white;
-    border: 1px solid #cf057c;
-    margin-bottom: 5%;
-    margin-top: 3%;
-}
-
-.reservationsButtonSearch:hover{
-    background-color: #0096C7;
-    color: white;
-    border: 1px solid #0096C7;
-    margin-bottom: 5%;
-    margin-top: 3%;
-}
-
-.reservationsButton{
-    background-color: #cf057c;
-    color: white;
-    border: 1px solid #cf057c;
-    width: 80%;
-    margin-bottom: 5%;
-    margin-top: 5%;
-}
-
-.reservationsButton:hover{
-    background-color: #023E8A;
-    color: white;
-    border: 1px solid #023E8A;
-}
-
 .reservationsBox .tab-content .table tbody tr td {
     padding: 30px 20px;
     vertical-align: middle;
@@ -884,9 +886,5 @@ td .text-center h5{
     height: 1px;
     background-color: rgba(0,0,0,0.5);
     border: none;
-}
-
-.red{
-    color: red;
 }
 
