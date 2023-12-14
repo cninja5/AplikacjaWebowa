@@ -243,5 +243,9 @@ def friends_list(request):
     friendsList = User.objects.filter(id__in=Subquery(podzapytanie)).select_related('profiluzytkownika')
     return render(request, 'friends/friends_list.html', {'znajomi': friendsList})
 
+
 def view_friend_invites(request):
-    return render(request, 'friends/friend_invites.html')
+    friend_invites = Znajomi.objects.filter(idZapraszanego=request.user.id, status='Wysłano').select_related('idZapraszajacego')
+    dataset = {'friend_invites': friend_invites}
+
+    return render(request, 'friends/friend_invites.html', dataset)

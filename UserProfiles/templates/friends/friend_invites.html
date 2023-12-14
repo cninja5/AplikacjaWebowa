@@ -1,12 +1,27 @@
 {% extends "main/base.html" %}
 {% load static %}
-{% block title %} Profil - {{ user_username}} {% endblock %}
+{% block title %} Zaproszenia do znajomych {{ user_username}} {% endblock %}
 {% block content %}
 <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
     <div class="card p-4">
         <div class=" image d-flex flex-column justify-content-center align-items-center">
             <p>Zaproszenia do znajomych</p>
-            </form>
+            {% if friend_invites %}
+            <ul>
+                {% for invite in friend_invites %}
+                <li>
+                    <img class="avatarFriends rounded-circle mb-3"
+                         src="{% static 'avatars/'%}{{ invite.idZapraszajacego.profiluzytkownika.avatar }}">
+                    {{ invite.idZapraszajacego.username }}
+                    <a href="/profile/{{ invite.idZapraszajacego.username }}/accept-invite/"><button>Zaakceptuj</button></a>
+                    <a href="/profile/{{ invite.idZapraszajacego.username }}/unfriend/"><button>Odrzuć</button></a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            Brak nowych zaproszeń!
+            {% endif %}
+
         </div>
     </div>
 </div>
