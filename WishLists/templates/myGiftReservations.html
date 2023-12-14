@@ -70,11 +70,11 @@
                             </td>
                             <td class="align-middle">
                                 <div class="text-center">
-                                    <a href="{{ prezent_info.2 }}">
-                                        <button class="btn btn-lg rounded-pill reservationsButton">
-                                            Prezent
-                                        </button>
-                                    </a>
+                                        {% if prezent_info.2  %}
+                                            <a href="{{ prezent_info.2 }}"><button class="btn btn-lg rounded-pill reservationsButton">Link</button></a>
+                                        {% else %}
+                                            <a href=""><button class="btn btn-lg rounded-pill reservationsButton" disabled>Link</button></a>
+                                        {% endif %}
                                 </div>
                             </td>
                             {% endfor %}
