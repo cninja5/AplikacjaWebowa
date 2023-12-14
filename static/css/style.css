@@ -938,3 +938,21 @@ td .text-center h5{
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+.friendInvitesBox{
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    margin-bottom: 3%;
+    margin-left: 18%;
+    margin-right: 18%;
+    margin-top: 5%;
+}
+
+.friendInvitesTitle{
+    margin-left: 38%;
+    font-size: 24px;
+}
+
+.friendInvitesBox ul li img{
+    width: 30%;
+    height: 30%;
+}
