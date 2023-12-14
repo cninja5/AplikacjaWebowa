@@ -65,76 +65,16 @@
         </p>
         {% endif %}
         {% if addPresent is True %}
+        {{ form.errors }}
+        {{ form }}
+
         {% csrf_token %}
-         {{ form }}
-        <a href=""><button>Dodaj prezent</button></a>
-        <a href="/edit-list/{{ lista.id }}"><button>Zakończ dodawanie</button></a>
+        {{ request.POST }}
+        <a href="/edit-list/{{ lista.id }}/add-present/"><button>Dodaj prezent</button></a>
+        <a href="/edit-list/{{ lista.id }}/"><button>Zakończ dodawanie</button></a>
         {% else %}
         <a href="add-present/"><button>Dodaj prezenty</button></a>
         {% endif %}
     </div>
-
-
-
-<!--        <div id="guzikAddPresent">-->
-<!--            <button type="button" class="btn rounded-pill btn-lg createListForm" onclick="addPresentField()">Dodaj-->
-<!--                następny prezent-->
-<!--            </button>-->
-<!--            <button type="submit" class="btn rounded-pill btn-lg createListForm hidden">Dodaj prezent do listy-->
-<!--            </button>-->
-<!--            <a href="/myLists/">-->
-<!--                <button type="button" class="btn rounded-pill btn-lg createListFormR">Zakończ wprowadzanie-->
-<!--                    prezentów-->
-<!--                </button>-->
-<!--            </a>-->
-<!--        </div>-->
-
-    </form>
 </div>
-
-<!--<script>-->
-<!--    var i = 1;-->
-
-<!--    function removePresentField(button) {-->
-<!--        button.parentNode.remove();-->
-<!--        i = 1; // Reset the flag to enable adding new presents-->
-<!--        toggleButtons();-->
-<!--    }-->
-
-<!--    function addPresentField() {-->
-<!--        const kolejnyPrezentButton = document.querySelector('#guzikAddPresent button:nth-child(1)');-->
-<!--        const dodajDoListyButton = document.querySelector('#guzikAddPresent button:nth-child(2)');-->
-
-<!--        if (i === 1) {-->
-<!--            const prezentyDiv = document.getElementById("prezenty");-->
-<!--            const newField = document.createElement("div");-->
-<!--            newField.innerHTML = `-->
-<!--                <label>Nazwa prezentu:</label>-->
-<!--                <input type="text" name="nazwaPrezentu" class="form-control">-->
-<!--                <button type="button" class="btn btn-sm deleteRightButton" onclick="removePresentField(this)">Usuń prezent</button>-->
-<!--            `;-->
-
-<!--            prezentyDiv.appendChild(newField);-->
-
-<!--            toggleButtons();-->
-<!--            i = 2;-->
-<!--        }-->
-<!--    }-->
-
-<!--    function toggleButtons() {-->
-<!--        const kolejnyPrezentButton = document.querySelector('#guzikAddPresent button:nth-child(1)');-->
-<!--        const dodajDoListyButton = document.querySelector('#guzikAddPresent button:nth-child(2)');-->
-
-<!--        kolejnyPrezentButton.classList.toggle('hidden');-->
-<!--        dodajDoListyButton.classList.toggle('hidden');-->
-<!--    }-->
-
-<!--    // Reverting to the initial state after clicking "Dodaj prezent do listy"-->
-<!--    document.querySelector('#guzikAddPresent button:nth-child(2)').addEventListener('click', function () {-->
-<!--        i = 1;-->
-<!--        toggleButtons();-->
-<!--    });-->
-<!--</script>-->
-
-
 {% endblock %}

@@ -61,17 +61,6 @@ def edit_list(request, idList):
 
     if list_object.loginWlasciciel != request.user:
         return redirect('myLists')
-    if request.method == 'POST':
-        form = DodajPrezentDoListyForm(request.POST)
-        if form.is_valid():
-            new_prezent = form.save(commit=False)
-            new_prezent.idListy = list_object
-            new_prezent.save()
-            # Możesz przekazać dodatkowe dane z obiektu Listy do szablonu
-            return render(request, 'addPresentsToList.html',
-                          dataset)
-    else:
-        form = DodajPrezentDoListyForm()
 
     return render(request, 'addPresentsToList.html',
                   dataset)
@@ -81,28 +70,29 @@ def add_present(request, idList):
     list_object = get_object_or_404(Listy, pk=idList)
     zawartosc_listy = ZawartoscListy.objects.filter(idListy=list_object)
 
-    dataset = {'form': DodajPrezentDoListyForm(),
-               'zawartosc_listy': zawartosc_listy,
-               'lista': list_object,
-               'numerListy': idList,
-               'addPresent': True}
+    dataset = {
+        'form': DodajPrezentDoListyForm(),
+        'zawartosc_listy': zawartosc_listy,
+        'lista': list_object,
+        'numerListy': idList,
+        'addPresent': True
+    }
 
     if list_object.loginWlasciciel != request.user:
         return redirect('myLists')
+
     if request.method == 'POST':
         form = DodajPrezentDoListyForm(request.POST)
         if form.is_valid():
-            new_prezent = form.save(commit=False)
-            new_prezent.idListy = list_object
-            new_prezent.save()
-            # Możesz przekazać dodatkowe dane z obiektu Listy do szablonu
-            return render(request, 'addPresentsToList.html',
-                          dataset)
+            new_present = form.save(commit=False)
+            new_present.idListy = list_object
+            new_present.save()
+            return redirect('add_present', idList=idList)
     else:
         form = DodajPrezentDoListyForm()
 
-    return render(request, 'addPresentsToList.html',
-                  dataset)
+    dataset['form'] = form
+    return render(request, 'addPresentsToList.html', dataset)
 
 
 def myLists(request):

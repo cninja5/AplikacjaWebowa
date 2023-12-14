@@ -85,7 +85,7 @@
                                                 </form>
                                             </div>
                                             <div class="col-sm-4">
-                                                <form method="POST" action="{% url 'addPresents' lista.id %}">
+                                                <form method="POST" action="{% url 'edit_list' lista.id %}">
                                                     {% csrf_token %}
                                                     <button id="poNajechaniuGreen">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"

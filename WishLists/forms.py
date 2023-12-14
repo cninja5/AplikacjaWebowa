@@ -16,9 +16,9 @@ class ListyForm(forms.ModelForm):
         }
 
 class DodajPrezentDoListyForm(forms.ModelForm):
-    nazwaPrezentu = forms.CharField(max_length=100)
-    cenaPrezentu = forms.FloatField()
-    linkDoPrezentu = forms.CharField(max_length=512)
+    nazwaPrezentu = forms.CharField(max_length=100, label="nazwa")
+    cenaPrezentu = forms.FloatField(label="cena")
+    linkDoPrezentu = forms.CharField(max_length=512, label="link do prezentu")
     class Meta:
         model = ZawartoscListy
         fields = ['nazwaPrezentu']
