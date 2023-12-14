@@ -496,13 +496,6 @@ header.masthead .bg-circle-4 {
     background-color: white !important;
     margin-top: 8%;
 }
-
-.infoListyZnajomych{
-    text-align: center;
-    margin-top: 1%;
-    margin-bottom: 1%;
-}
-
 td .text-center h5{
     margin-bottom: 0px;
 }
@@ -585,6 +578,14 @@ td .text-center h5{
     background-color: rgba(0,0,0,0.5);
     border: none;
 }
+
+.pageTitle{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 100%;
+    text-align: center;
+}
+
 /* createList.html */
 
 .createListBox{
@@ -597,13 +598,6 @@ td .text-center h5{
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     border-radius: 0.5rem;
     background: #fff;
-}
-
-.createListTitle{
-    margin-top: 1.5%;
-    margin-bottom: 1%;
-    width: 100%;
-    text-align: center;
 }
 
 .createListFormButton{
@@ -685,12 +679,6 @@ td .text-center h5{
 
 /* myGiftReservations.html */
 
-.reservationsTitle{
-    margin-top: 1.5%;
-    margin-bottom: 1%;
-    width: 100%;
-    text-align: center;
-}
 
 .reservationsBox .tab-content .table {
     margin-bottom: 0;
