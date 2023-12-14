@@ -311,7 +311,6 @@ header.masthead .bg-circle-4 {
 .profile-img img{
     width: 70%;
     height: 70%;
-    border: 1px solid black;
 }
 
 .profile-edit-btn{
@@ -365,9 +364,9 @@ header.masthead .bg-circle-4 {
     color: black;
 }
 .profilButtons{
-    background-color: #0096C7;
+    background-color: #cf057c;
     color: white;
-    border: 1px solid #0096C7;
+    border: 1px solid #cf057c;
     margin-bottom: 5%;
     float:right;
 }
@@ -389,9 +388,9 @@ header.masthead .bg-circle-4 {
 }
 
 .profilButtonsEdit{
-    background-color: #0096C7;
+    background-color: #cf057c;
     color: white;
-    border: 1px solid #0096C7;
+    border: 1px solid #cf057c;
     margin-bottom: 5%;
 }
 
@@ -531,6 +530,10 @@ td .text-center h5{
     margin-right: 18%;
 }
 
+.listyZnajomych3{
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+
 .friendsButtons{
     background-color: #cf057c;
     color: white;
@@ -566,7 +569,22 @@ td .text-center h5{
     margin-left: 0px;
     margin-top: 2%;
 }
+.nazwaZnajomy{
+   color: #cf057c;
+   text-decoration:none;
+   font-weight:bold;
+}
 
+.card-body{
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    border-radius: 0.5rem;
+}
+
+.profileHr{
+    height: 1px;
+    background-color: rgba(0,0,0,0.5);
+    border: none;
+}
 /* createList.html */
 
 .createListBox{
@@ -624,6 +642,28 @@ td .text-center h5{
     width: 80%;
 }
 
+.EditAvatarSize{
+    width:50%;
+    margin-left:25%;
+    margin-top:2%;
+}
+.EditPasswordSize{
+    width:50%;
+    margin-left:25%;
+    margin-top:2%;
+}
+
+.btn-close {
+    background-color: white !important;
+    font-size: 40px;
+    float:right;
+}
+
+.profileListScroll{
+   height: 80vh;
+   overflow-y: auto;
+   overflow-x: hidden;
+}
 .createListBox form label{
     display: block;
     margin-top: 2%;

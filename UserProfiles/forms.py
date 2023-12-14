@@ -11,15 +11,10 @@ class EditAvatarForm(forms.ModelForm):
     class Meta:
         model = ProfilUzytkownika
         fields = ['avatar']
+        labels = {
+            'avatar': 'Awatar',
+        }
 
-        def clean_picture(self):
-            avatar = self.cleaned_data.get("avatar")
-
-            if avatar:
-                image = Image.open(avatar)
-                width, height = image.size
-
-                if width != 400 or height != 400:
-                    raise forms.ValidationError("Awatar musi mieć rozdzielczość 400x400px!")
-
-            return avatar
+    def __init__(self, *args, **kwargs):
+        super(EditAvatarForm, self).__init__(*args, **kwargs)
+        self.fields['avatar'].widget.attrs.update({'class': 'form-control EditAvatarSize'})

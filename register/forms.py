@@ -42,12 +42,16 @@ class CustomPasswordChangeForm(PasswordChangeForm):
                                "Wprowadź je ponownie."),
     })
     old_password = forms.CharField(label=("Stare hasło"),
-                                   widget=forms.PasswordInput)
+                                   widget=forms.PasswordInput(attrs={'class': 'passwordinput form-control '
+                                                                              'EditPasswordSize'}))
     new_password1 = forms.CharField(label=("Nowe hasło"),
-                                    help_text="<br>Utwórz silne i unikatowe hasło składające się z kombinacji 8 znaków: liter, cyfr i symboli.",
-                                    widget=forms.PasswordInput)
+                                    help_text="<br>Utwórz silne i unikatowe hasło składające się z kombinacji 8 "
+                                              "znaków: liter, cyfr i symboli.",
+                                    widget=forms.PasswordInput(attrs={'class': 'passwordinput form-control '
+                                                                               'EditPasswordSize'}))
     new_password2 = forms.CharField(label=("Potwierdź nowe hasło"),
-                                    widget=forms.PasswordInput)
+                                    widget=forms.PasswordInput(attrs={'class': 'passwordinput form-control '
+                                                                               'EditPasswordSize'}))
 
     def clean_old_password(self):
         old_password = self.cleaned_data["old_password"]
