@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 {% block title %} Wyszukaj użytkownika {% endblock %}
+{% load static %}
 {% block content %}
 
 <h1 class="pageTitle">
@@ -9,29 +10,40 @@
         <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
     </svg>
     Wyszukaj użytkowników
-
 </h1>
 
-<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
-    <div class="card p-4">
-        <div class=" image d-flex flex-column justify-content-center align-items-center">
-            <p>Wyszukaj użytkowników</p>
-            <form method="POST" action="{% url 'search_for_user' %}">
+
+<div class="searchForUserBox">
+    <form method="post">
+        <div class="row">
+            <form method="post" action="{% url 'search_for_user' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <p style="color:red; font-size:10px; text-align:center;"> {{ warning }} </p>
-                <p style="text-align: center;">
-                    <button type="submit">Szukaj</button>
-                </p>
+                <p style="color:red; font-size:20px; text-align:center;"> {{ warning }} </p>
+                <button type="submit" class="btn btn-lg rounded-pill searchForUserBoxFormButton">
+                    Szukaj
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                         class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                </button>
             </form>
             {% if users %}
-            <ul>
-                {% for user in users %}
-                <li><a href="/profile/{{ user.username }}" style="text-decoration: none;">{{ user.username }}</a></li>
-                {% endfor %}
-            </ul>
+            <h4 style="margin-bottom: 1%;">Wyniki wyszukiwania:</h4>
+            {% for user in users %}
+            <div class="searchForUserList">
+                {% if user.profiluzytkownika.avatar %}
+                <img src="{% static 'avatars/'%}{{ user.profiluzytkownika.avatar }}"
+                     class="searchForUserAvatar rounded-circle mb-3">
+                {% else %}
+                <img src="{% static 'avatars/default_profile_pic.jpg'%}"
+                     class="searchForUserAvatar rounded-circle mb-3">
+                {% endif %}
+                <a class="searchForUserName" href="/profile/{{ user.username }}">{{ user.username }}</a>
+            </div>
+            {% endfor %}
             {% endif%}
         </div>
-    </div>
+    </form>
 </div>
 {% endblock %}
