@@ -494,8 +494,16 @@ td .text-center h5{
     color: white;
     border: 1px solid #cf057c;
     width: 20%;
-    margin-left: 2%;
     margin-top: 2%;
+}
+
+.addPresentsButtonAdd2{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 20%;
+    margin-top: 2%;
+    margin-left: 2%;
 }
 
 .addPresentsButtonAdd:hover{
@@ -684,6 +692,17 @@ td .text-center h5{
 .addPresentsContentInfo{
     font-size: 24px;
     margin-left: 2%;
+}
+
+.addPresentsContentInfo2{
+    font-size: 24px;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+.addPresentsContentInfo3{
+    margin-left: 2%;
+    margin-top: 2%;
 }
 
 .addPresentsContent ul{
@@ -933,8 +952,18 @@ td .text-center h5{
     margin-bottom:2%;
 }
 
+.addPresentsContentInfo3 label{
+    display: block;
+    margin-bottom: 0.5%;
+    font-weight: bold;
+}
+
+.addPresentsContentInfo3 label::first-letter{
+    text-transform: uppercase;
+}
+
 .addPresentsInput{
-    width: 300px;
+    width: 400px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
