@@ -32,6 +32,7 @@
             <h4 style="margin-bottom: 1%;">Wyniki wyszukiwania:</h4>
             {% for user in users %}
             <div class="searchForUserList">
+
                 {% if user.profiluzytkownika.avatar %}
                 <img src="{% static 'avatars/'%}{{ user.profiluzytkownika.avatar }}"
                      class="searchForUserAvatar rounded-circle mb-3">
