@@ -80,22 +80,24 @@
             </p>
             {% endif %}
             {% if addPresent is True %}
-            <span class="addPresentsContentInfo">
-                Podaj informacje o prezencie:
-            </span>
-            {{ form.errors }}
-            <form method="post" action="{% url 'add_present' idList=lista.id %}">
+                <h5 class="addPresentsContentInfo2">
+                    Podaj informacje o prezencie:
+                </h5>
+                {{ form.errors }}
+                <div class="addPresentsContentInfo3">
+                    <form method="post" action="{% url 'add_present' idList=lista.id %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-lg rounded-pill addPresentsButtonAdd">Dodaj Prezent</button>
+                    </form>
+                </div>
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-lg rounded-pill addPresentsButtonAdd">Dodaj Prezent</button>
-            </form>
-            {% csrf_token %}
-            <a href="/edit-list/{{ lista.id }}/">
-                <button class="btn btn-lg rounded-pill addPresentsButtonEnd">Zakończ dodawanie</button>
-            </a>
+                <a href="/edit-list/{{ lista.id }}/">
+                    <button class="btn btn-lg rounded-pill addPresentsButtonEnd">Zakończ dodawanie</button>
+                </a>
             {% else %}
             <a href="add-present/">
-                <button class="btn btn-lg rounded-pill addPresentsButtonAdd">Dodaj prezenty</button>
+                <button class="btn btn-lg rounded-pill addPresentsButtonAdd2">Dodaj prezenty</button>
             </a>
             <br>
             {% endif %}
