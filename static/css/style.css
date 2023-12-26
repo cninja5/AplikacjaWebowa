@@ -724,6 +724,11 @@ td .text-center h5{
     margin-top: 1%;
 }
 
+.addPresentsButtonMargin{
+    margin-top: 2%;
+    margin-left: 0%;
+}
+
 /* myGiftReservations.html */
 
 
@@ -955,6 +960,7 @@ td .text-center h5{
 .addPresentsContentInfo3 label{
     display: block;
     margin-bottom: 0.5%;
+    margin-top: 0.5%;
     font-weight: bold;
 }
 

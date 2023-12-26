@@ -27,11 +27,13 @@
                         <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
                     </svg>
                     {% if presentId == prezent.id %}
-                    <form method="post" action="{% url 'edit_present' idList=lista.id idPresent=presentId %}">
-                        {% csrf_token %}
-                        {{ form }}
-                        <button type="submit" class="btn btn-sm rounded-pill addPresentsButtonLink">Zapisz</button>
-                    </form>
+                    <div class="addPresentsContentInfo3">
+                        <form method="post" action="{% url 'edit_present' idList=lista.id idPresent=presentId %}">
+                            {% csrf_token %}
+                            {{ form }}
+                            <br><button type="submit" class="btn btn-sm rounded-pill addPresentsButtonLink addPresentsButtonMargin">Zapisz</button>
+                        </form>
+                    </div>
                     {% else %}
                     <span>   {{ prezent.nazwaPrezentu }} - {{ prezent.cenaPrezentu|floatformat:2 }} zł
                     {% if prezent.linkDoPrezentu %}
@@ -80,21 +82,21 @@
             </p>
             {% endif %}
             {% if addPresent is True %}
-                <h5 class="addPresentsContentInfo2">
-                    Podaj informacje o prezencie:
-                </h5>
-                {{ form.errors }}
-                <div class="addPresentsContentInfo3">
-                    <form method="post" action="{% url 'add_present' idList=lista.id %}">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-lg rounded-pill addPresentsButtonAdd">Dodaj Prezent</button>
-                    </form>
-                </div>
-                {% csrf_token %}
-                <a href="/edit-list/{{ lista.id }}/">
-                    <button class="btn btn-lg rounded-pill addPresentsButtonEnd">Zakończ dodawanie</button>
-                </a>
+            <h5 class="addPresentsContentInfo2">
+                Podaj informacje o prezencie:
+            </h5>
+            {{ form.errors }}
+            <div class="addPresentsContentInfo3">
+                <form method="post" action="{% url 'add_present' idList=lista.id %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-lg rounded-pill addPresentsButtonAdd">Dodaj Prezent</button>
+                </form>
+            </div>
+            {% csrf_token %}
+            <a href="/edit-list/{{ lista.id }}/">
+                <button class="btn btn-lg rounded-pill addPresentsButtonEnd">Zakończ dodawanie</button>
+            </a>
             {% else %}
             <a href="add-present/">
                 <button class="btn btn-lg rounded-pill addPresentsButtonAdd2">Dodaj prezenty</button>
