@@ -19,7 +19,7 @@ class ListyForm(forms.ModelForm):
 
 class DodajPrezentDoListyForm(forms.ModelForm):
     nazwaPrezentu = forms.CharField(max_length=100, required=True, label="nazwa", widget=forms.TextInput(attrs={'class': 'addPresentsInput'}))
-    cenaPrezentu = forms.FloatField(required=True, label="cena", widget=forms.TextInput(attrs={'class': 'addPresentsInput'}))
+    cenaPrezentu = forms.FloatField(required=True, label="cena", widget=forms.NumberInput(attrs={'class': 'addPresentsInput'}))
     linkDoPrezentu = forms.CharField(max_length=512, required=False, label="link do prezentu", widget=forms.TextInput(attrs={'class': 'addPresentsInput'}))
 
     class Meta:
