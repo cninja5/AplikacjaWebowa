@@ -31,16 +31,17 @@
             {% if users %}
             <h4 style="margin-bottom: 1%;">Wyniki wyszukiwania:</h4>
             {% for user in users %}
-            <div class="searchForUserList">
-
-                {% if user.profiluzytkownika.avatar %}
-                <img src="{% static 'avatars/'%}{{ user.profiluzytkownika.avatar }}"
-                     class="searchForUserAvatar rounded-circle mb-3">
-                {% else %}
-                <img src="{% static 'avatars/default_profile_pic.jpg'%}"
-                     class="searchForUserAvatar rounded-circle mb-3">
-                {% endif %}
-                <a class="searchForUserName" href="/profile/{{ user.username }}">{{ user.username }}</a>
+            <div class="col-md-6">
+                <div class="searchForUserList">
+                    {% if user.profiluzytkownika.avatar %}
+                    <img src="{% static 'avatars/'%}{{ user.profiluzytkownika.avatar }}"
+                         class="searchForUserAvatar rounded-circle mb-3">
+                    {% else %}
+                    <img src="{% static 'avatars/default_profile_pic.jpg'%}"
+                         class="searchForUserAvatar rounded-circle mb-3">
+                    {% endif %}
+                    <a class="searchForUserName" href="/profile/{{ user.username }}">{{ user.username }}</a>
+                </div>
             </div>
             {% endfor %}
             {% endif%}
