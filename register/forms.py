@@ -9,7 +9,7 @@ RODZAJE_PLCI = (
 
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(label='Nazwa użytkownika', max_length=50)
+    username = forms.CharField(label='Nazwa użytkownika', max_length=20)
     password = forms.CharField(label='Hasło', widget=forms.PasswordInput)
 
     class Meta:
@@ -19,10 +19,10 @@ class LoginForm(AuthenticationForm):
 
 class RegisterForm(UserCreationForm):
     username = forms.CharField(label='Nazwa użytkownika',
-                               help_text='Nazwa może zawierać maksymalnie 50 znaków.',
-                               max_length=50)
-    first_name = forms.CharField(label='Imię', max_length=50)
-    last_name = forms.CharField(label='Nazwisko', max_length=50)
+                               help_text='Nazwa może zawierać maksymalnie 20 znaków.',
+                               max_length=20)
+    first_name = forms.CharField(label='Imię', max_length=20)
+    last_name = forms.CharField(label='Nazwisko', max_length=20)
     email = forms.EmailField
     password1 = forms.CharField(label='Hasło', widget=forms.PasswordInput,
                                 help_text="Utwórz silne i unikatowe hasło składające się z kombinacji 8 znaków: liter, cyfr i symboli.")
