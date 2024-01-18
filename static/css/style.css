@@ -2,6 +2,8 @@
 	 font-family: Verdana, sans-serif;
 }
 
+/* MENU */
+
 .navbar-collapse img{
 	width: 3.5%;
 	height: 3.5%;
@@ -36,32 +38,6 @@
     padding: 0px 10px;
 }
 
-.witaj{
-    margin-top: 5%;
-    margin-bottom: 5%;
-    text-align: center
-}
-
-#opis{
-    padding-left: 5%;
-    padding-right: 5%;
-    text-align: center;
-}
-
-.przyciskWelcome{
-    margin-right: 5%;
-    margin-left: 5%;
-    background-color: #0096C7;
-    color: white;
-    border: 1px solid #0096C7;
-}
-
-.przyciskWelcome:hover{
-    background-color: #023E8A;
-    color: white;
-    border: 1px solid #023E8A;
-}
-
 nav{
     background-color: #023E8A;
 }
@@ -81,90 +57,6 @@ nav{
     font-weight: bold;
     color: #FF3333;
     border: 2px solid #FF3333;
-}
-
-#listy{
-
-}
-
-#brakList{
-    font-style: italic;
-    color: red;
-}
-
-
-#listy ul{
-    list-style: none;
-}
-
-#pojedynczaLista{
-    border: 2px solid black;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 8%;
-    box-shadow: 10px 10px 20px rgba(0,0,0,0.7);
-    background-color: #CAF0F8;
-}
-
-#przyciskiMojeListy{
-    text-align: center;
-}
-
-#przyciskiMojeListy button{
-    border: none;
-    background-color: #CAF0F8 !important;
-    margin-top: 8%;
-}
-
-#poNajechaniuPurple:hover{
-    color: purple;
-}
-
-#poNajechaniuGreen:hover{
-    color: green;
-}
-
-#poNajechaniuRed:hover{
-    color: red;
-}
-
-#brakList{
-    text-align: center;
-}
-
-.przyciskBrakList{
-    text-decoration: none;
-}
-
-#guzikAddPresent{
-    margin-bottom: 2%;
-}
-
-#zawartosc ul{
-    list-style-type: none;
-}
-
-#zawartosc ul li{
-    margin-bottom: 2%;
-    margin-top: 2%;
-}
-
-.elementLista{
-    margin-top: 2%;
-    padding-left: 1%;
-    margin-right: 3%;
-}
-.witaj2{
-    margin-top: 5%;
-    margin-bottom: 2%;
-}
-
-#przyciskiListy button{
-    border: none;
-    background-color: white !important;
-}
-.trashRight{
-    float: right;
 }
 
 .hidden{
@@ -527,35 +419,10 @@ td .text-center h5{
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
 }
 
-.friendsButtons{
-    background-color: #cf057c;
-    color: white;
-    border: 1px solid #cf057c;
-    margin-bottom: 5%;
-}
 
-.friendsButtons:hover{
-    background-color: #023E8A;
-    color: white;
-    border: 1px solid #023E8A;
-}
 
 .noFriends{
     margin-top: 3%;
-}
-
-.NoFriendsButtons{
-    background-color: #0096C7;
-    color: white;
-    border: 1px solid #0096C7;
-    margin-bottom: 5%;
-    margin-top: 3%;
-}
-
-.NoFriendsButtons:hover{
-    background-color: #023E8A;
-    color: white;
-    border: 1px solid #023E8A;
 }
 
 .myProfileFriends .row .col-md-4{
@@ -568,16 +435,7 @@ td .text-center h5{
    font-weight:bold;
 }
 
-.card-body{
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
-    border-radius: 0.5rem;
-}
-
-.profileHr{
-    height: 1px;
-    background-color: rgba(0,0,0,0.5);
-    border: none;
-}
+/* Common */
 
 .pageTitle{
     margin-top: 2%;
@@ -586,18 +444,18 @@ td .text-center h5{
     text-align: center;
 }
 
-/* createList.html */
+/* Buttons */
 
-.createListBox{
-    width:70%
-    padding: 3%;
-    margin-top: 2%;
-    margin-left: 3%;
-    margin-right: 3%;
-    margin-bottom: 3%;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
-    border-radius: 0.5rem;
-    background: #fff;
+.buttonRed{
+    color: red;
+}
+
+.buttonGreen{
+    color: green;
+}
+
+.buttonMagenta{
+    color: #cf057c;
 }
 
 .createListFormButton{
@@ -631,37 +489,173 @@ td .text-center h5{
     border: 1px solid #023E8A;
 }
 
+.addPresentsButtonAdd{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 20%;
+    margin-top: 2%;
+}
+
+.addPresentsButtonAdd2{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 20%;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.addPresentsButtonAdd:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.addPresentsButtonReturn{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 20%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    float: right;
+}
+
+.addPresentsButtonReturn:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.addPresentsButtonLink{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 5%;
+    margin-left: 1%;
+}
+
+.addPresentsButtonLink:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.addPresentsButtonSave{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 20%;
+    margin-left: 1%;
+}
+
+.addPresentsButtonSave:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.addPresentsButtons button{
+    border: none;
+    background-color: white !important;
+    margin-right: 2%;
+    float: right;
+}
+
+.addPresentsButtonEnd{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 20%;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+.addPresentsButtonEnd:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.reservationsButtonSearch{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+
+.reservationsButtonSearch:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+
+.reservationsButton{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 80%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.reservationsButton:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.NoFriendsButtons{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+
+.NoFriendsButtons:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.friendsButtons{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    margin-bottom: 5%;
+}
+
+.friendsButtons:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+/* createList.html */
+
+.createListBox{
+    width:70%
+    padding: 3%;
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    border-radius: 0.5rem;
+    background: #fff;
+}
+
 .createListBox form{
     margin: 0 auto;
     width: 80%;
 }
 
-.EditAvatarSize{
-    width:50%;
-    margin-left:25%;
-    margin-top:2%;
-}
-.EditPasswordSize{
-    width:50%;
-    margin-left:25%;
-    margin-top:2%;
-}
-
-.EditPasswordMargin{
-    margin-top:2%;
-}
-
-.btn-close {
-    background-color: white !important;
-    font-size: 40px;
-    float:right;
-}
-
-.profileListScroll{
-   height: 80vh;
-   overflow-y: auto;
-   overflow-x: hidden;
-}
 .createListBox form label{
     display: block;
     margin-top: 2%;
@@ -675,6 +669,64 @@ td .text-center h5{
     padding: 10px;
     margin-bottom: 2%;
     margin-left: 1%;
+}
+
+/* addPresentsToList.html */
+
+.addPresentsBox{
+    width:70%
+    padding: 3%;
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    border-radius: 0.5rem;
+    background: #fff;
+}
+
+.addPresentsDescription{
+    text-align: center;
+}
+
+.addPresentsContentInfo{
+    font-size: 24px;
+    margin-left: 2%;
+}
+
+.addPresentsContentInfo2{
+    font-size: 24px;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+.addPresentsContentInfo3{
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+.addPresentsContent ul{
+    list-style-type: none;
+}
+
+.addPresentsContent ul li{
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.addPresentsNone{
+    margin-top: 2%;
+    padding-left: 2%;
+    margin-right: 3%;
+}
+
+.addPresentsNone span{
+    margin-top: 1%;
+}
+
+.addPresentsButtonMargin{
+    margin-top: 2%;
+    margin-left: 0%;
 }
 
 /* myGiftReservations.html */
@@ -716,37 +768,6 @@ td .text-center h5{
     font-weight: normal;
 }
 
-.reservationsButtonSearch{
-    background-color: #cf057c;
-    color: white;
-    border: 1px solid #cf057c;
-    margin-bottom: 5%;
-    margin-top: 3%;
-}
-
-.reservationsButtonSearch:hover{
-    background-color: #0096C7;
-    color: white;
-    border: 1px solid #0096C7;
-    margin-bottom: 5%;
-    margin-top: 3%;
-}
-
-.reservationsButton{
-    background-color: #cf057c;
-    color: white;
-    border: 1px solid #cf057c;
-    width: 80%;
-    margin-bottom: 5%;
-    margin-top: 5%;
-}
-
-.reservationsButton:hover{
-    background-color: #023E8A;
-    color: white;
-    border: 1px solid #023E8A;
-}
-
 .reservationsBox .tab-content .table tbody tr td {
     padding: 30px 20px;
     vertical-align: middle;
@@ -761,4 +782,337 @@ td .text-center h5{
     margin-bottom: 3%;
     margin-left: 3%;
     margin-right: 3%;
+}
+
+/* profile */
+
+.EditAvatarSize{
+    width:50%;
+    margin-left:25%;
+    margin-top:2%;
+}
+.EditPasswordSize{
+    width:50%;
+    margin-left:25%;
+    margin-top:2%;
+}
+
+.EditPasswordMargin{
+    margin-top:2%;
+}
+
+.btn-close {
+    background-color: white !important;
+    font-size: 40px;
+    float:right;
+}
+
+.profileListScroll{
+   height: 80vh;
+   overflow-y: auto;
+   overflow-x: hidden;
+}
+
+.card-body{
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    border-radius: 0.5rem;
+}
+
+.profileHr{
+    height: 1px;
+    background-color: rgba(0,0,0,0.5);
+    border: none;
+}
+
+
+
+/*  mySpecificList.html       */
+
+.mySpecificListBox{
+    width:70%
+    padding: 3%;
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    border-radius: 0.5rem;
+    background: #fff;
+}
+
+.mySpecificListSpan{
+    margin-top:1%;
+}
+
+.mySpecificListButtonsReserved{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    margin-right:4%;
+    float:right;
+}
+
+
+.mySpecificListButtonsReserved:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.mySpecificListButtonsReservedCancel{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+    margin-right:4%;
+    float:right;
+}
+
+.mySpecificListButtonsReservedCancel{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+    margin-right:4%;
+    float:right;
+}
+
+.mySpecificListButtonsReservedCancel:hover{
+    background-color: #023E8A;
+    color: white;
+}
+
+.mySpecificListButtonsBack{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    margin-top:2%;
+    margin-bottom: 2%;
+}
+
+.mySpecificListButtonsBack:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.mySpecificListButtonNoneOnList{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    margin-bottom: 4%;
+    margin-top: 2%;
+}
+
+.mySpecificListButtonNoneOnList:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.mySpecificListButtonLinkOnPresent{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    margin-right:2%;
+    float:right;
+}
+
+.mySpecificListButtonLinkOnPresent:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.mySpecificListNoneElementsOnList{
+    margin-left:2%;
+    margin-bottom: 2%;
+    margin-right: 2%
+    margin-top:3%;
+}
+
+.mySpecificListElementsInListBox{
+    margin-left:2%;
+    margin-bottom: 2%;
+    margin-right: 2%
+    margin-top:3%;
+
+}
+.mySpecificListTitleBox{
+    margin-top:3%;
+    margin-left:2%;
+    margin-bottom: 2%;
+    margin-right: 2%;
+    padding-top: 2%;
+
+}
+.mySpecificListTitle{
+    margin-bottom:2%;
+}
+
+.mySpecificListElementsInListBox ul{
+    list-style:none;
+}
+
+.mySpecificListElementsInListBox ul li{
+    margin-top:2%;
+    margin-bottom:2%;
+}
+
+.addPresentsContentInfo3 label{
+    display: block;
+    margin-bottom: 0.5%;
+    margin-top: 0.5%;
+    font-weight: bold;
+}
+
+.addPresentsContentInfo3 label::first-letter{
+    text-transform: uppercase;
+}
+
+.addPresentsInput{
+    width: 700px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/*  friend_invites.html       */
+
+.friendInvitesBox{
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    margin-bottom: 3%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.friendInvitesTitle{
+    margin-left: 38%;
+    font-size: 24px;
+}
+
+.friendInvitesContent{
+    margin-bottom: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+.friendInvitesEmptyFriend{
+    margin-top:3%;
+    margin-bottom: 3%;
+    text-align:center;
+}
+
+.friendInvitesLoginUser{
+    font-weight: bold;
+    color:#cf057c;
+}
+
+.friendInvitesButtonsProfile{
+    background-color:#023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+    margin-bottom: 5%;
+}
+
+.friendInvitesButtonsAccept{
+    background-color: green;
+    color: white;
+    border: 1px solid green;
+    margin-bottom: 5%;
+}
+
+.friendInvitesButtonsCancel{
+    background-color: #DF1515;
+    color: white;
+    border: 1px solid #DF1515;
+    margin-bottom: 5%;
+}
+
+
+.friendInvitesButtonsProfile:hover{
+    background-color:#023E8A;
+    color: #CBCBCB;
+    border: 1px solid #023E8A;
+    margin-bottom: 5%;
+}
+
+.friendInvitesButtonsAccept:hover{
+    background-color: green;
+    color: #CBCBCB;
+    border: 1px solid green;
+    margin-bottom: 5%;
+}
+
+.friendInvitesButtonsCancel:hover{
+    background-color: #DF1515;
+    color: #CBCBCB;
+    border: 1px solid #DF1515;
+    margin-bottom: 5%;
+}
+
+/*  search_for_user.html       */
+
+.searchForUserBox{
+    width:70%
+    padding: 3%;
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    border-radius: 0.5rem;
+    background: #fff;
+}
+
+.searchForUserBox form{
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+}
+
+.searchForUserBox form label{
+    display: block;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: 26px;
+}
+
+.searchForUserBox form input[type="text"],
+.searchForUserBox form textarea{
+    width: 40%;
+    padding: 10px;
+    margin-bottom: 2%;
+    text-align: center;
+}
+
+.searchForUserBoxFormButton{
+    background-color: #cf057c;
+    color: white;
+    border: 1px solid #cf057c;
+    width: 20%;
+    margin-bottom: 3%;
+    text-align: center;
+    margin-left: 40%;
+}
+
+.searchForUserBoxFormButton:hover{
+    background-color: #023E8A;
+    color: white;
+    border: 1px solid #023E8A;
+}
+
+.searchForUserAvatar{
+    width: 15%;
+    margin-right: 2%;
+}
+
+.searchForUserName{
+    text-decoration: none;
+    color: #cf057c;
+    font-size: 19px;
+}
+
+.searchForUserName:hover{
+    color: #023E8A;
+}
+
+.searchForUserList{
+    margin-bottom: 1%;
 }

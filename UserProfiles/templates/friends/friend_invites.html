@@ -2,26 +2,106 @@
 {% load static %}
 {% block title %} Zaproszenia do znajomych {{ user_username}} {% endblock %}
 {% block content %}
-<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
-    <div class="card p-4">
-        <div class=" image d-flex flex-column justify-content-center align-items-center">
-            <p>Zaproszenia do znajomych</p>
-            {% if friend_invites %}
-            <ul>
-                {% for invite in friend_invites %}
-                <li>
-                    <img class="avatarFriends rounded-circle mb-3"
-                         src="{% static 'avatars/'%}{{ invite.idZapraszajacego.profiluzytkownika.avatar }}">
-                    {{ invite.idZapraszajacego.username }}
-                    <a href="/profile/{{ invite.idZapraszajacego.username }}/accept-invite/"><button>Zaakceptuj</button></a>
-                    <a href="/profile/{{ invite.idZapraszajacego.username }}/unfriend/"><button>Odrzuć</button></a>
-                </li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            Brak nowych zaproszeń!
-            {% endif %}
 
+<h1 class="pageTitle">
+    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-people-fill"
+         viewBox="0 0 16 16">
+        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+    </svg>
+    Zaproszenia do znajomych
+
+</h1>
+<div class="event-schedule-area-two friendInvitesBox">
+    <div class="row">
+        <div class="col-lg-12 ">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade active show" id="home" role="tabpanel">
+                    <div class="table-responsive ">
+
+                        {% if friend_invites %}
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="text-center col-3 align-middle">Użytkownik</th>
+                                <th class="text-center col-3 align-middle">Dane użytkownika</th>
+                                <th class="text-center col-3 align-middle">Profil</th>
+                                <th class="text-center col-3 align-middle">Akcje</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for invite in friend_invites %}
+                            <tr class="inner-box">
+                                <td class="text-center">
+                                    <img class="avatarFriends rounded-circle mb-3"
+                                         src="{% static 'avatars/'%}{{ invite.idZapraszajacego.profiluzytkownika.avatar }}">
+                                </td>
+                                <td class="text-center  ">
+                                    <h5 class="friendInvitesLoginUser">{{ invite.idZapraszajacego.username }}</h5>
+
+                                    <h5>
+                                        {{ invite.idZapraszajacego.first_name }}
+                                        {{ invite.idZapraszajacego.last_name }}
+                                    </h5>
+                                </td>
+
+                                <td class="text-center">
+                                    <a href="/profile/{{invite.idZapraszajacego.username}}/">
+                                        <button type="button"
+                                                class="btn btn-lg rounded-pill friendInvitesButtonsProfile">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                 fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                                            </svg>
+                                            Zobacz profil
+                                        </button>
+                                    </a>
+
+                                </td>
+
+                                <td class="text-center">
+
+                                    <a href="/profile/{{ invite.idZapraszajacego.username }}/accept-invite/">
+                                        <button type="button"
+                                                class="btn btn-lg rounded-pill friendInvitesButtonsAccept">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                 fill="currentColor" class="bi bi-person-fill-check"
+                                                 viewBox="0 0 16 16">
+                                                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514ZM11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                                <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4"/>
+                                            </svg>
+                                            Akceptuj
+                                        </button>
+                                    </a>
+                                    <br>
+                                    <a href="/profile/{{ invite.idZapraszajacego.username }}/unfriend/">
+                                        <button type="button"
+                                                class="btn btn-lg rounded-pill friendInvitesButtonsCancel">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                 fill="currentColor" class="bi bi-person-fill-x" viewBox="0 0 16 16">
+                                                <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m-9 8c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4"/>
+                                                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m-.646-4.854.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 0 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 .708-.708"/>
+                                            </svg>
+                                            Odrzuć
+                                        </button>
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+
+                        </table>
+                        {% else %}
+                        <h2 class="friendInvitesEmptyFriend friendInvitesContent">Brak nowych zaproszeń</h2>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

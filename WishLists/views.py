@@ -19,7 +19,7 @@ def createList(request):
             new_list.save()
             idList = new_list.id
 
-        return redirect('/addPresents/' + str(idList) + '/')
+        return redirect('/edit-list/' + str(idList) + '/')
     else:
         form = ListyForm()
     return render(request, 'createList.html', {'form': form})
@@ -146,8 +146,8 @@ def specificList(request, idList):
                    'numerListy': idList, 'ownerId': listOwnerId})
 
 
-def deletePresent(request, idPrezent, idList):
-    present = get_object_or_404(ZawartoscListy, pk=idPrezent)
+def deletePresent(request, idPresent, idList):
+    present = get_object_or_404(ZawartoscListy, pk=idPresent)
     present.delete()
 
     return redirect('edit_list', idList=idList)
