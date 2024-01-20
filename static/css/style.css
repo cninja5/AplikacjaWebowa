@@ -1051,7 +1051,7 @@ td .text-center h5{
 
 .searchForUserBox{
     width:70%
-    padding: 3%;
+    padding: 5%;
     margin-top: 2%;
     margin-left: 3%;
     margin-right: 3%;
@@ -1099,14 +1099,15 @@ td .text-center h5{
 }
 
 .searchForUserAvatar{
-    width: 15%;
+    width: 60%;
     margin-right: 2%;
 }
 
 .searchForUserName{
     text-decoration: none;
     color: #cf057c;
-    font-size: 19px;
+    font-size: 23px;
+    float: left;
 }
 
 .searchForUserName:hover{
@@ -1114,5 +1115,5 @@ td .text-center h5{
 }
 
 .searchForUserList{
-    margin-bottom: 1%;
+    margin-top: 21%;
 }

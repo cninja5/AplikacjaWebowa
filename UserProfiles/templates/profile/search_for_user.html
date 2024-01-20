@@ -31,7 +31,7 @@
             {% if users %}
             <h4 style="margin-bottom: 1%;">Wyniki wyszukiwania:</h4>
             {% for user in users %}
-            <div class="col-md-6">
+            <div class="col-md-2">
                 <div class="searchForUserList">
                     {% if user.profiluzytkownika.avatar %}
                     <img src="{% static 'avatars/'%}{{ user.profiluzytkownika.avatar }}"
@@ -40,6 +40,10 @@
                     <img src="{% static 'avatars/default_profile_pic.jpg'%}"
                          class="searchForUserAvatar rounded-circle mb-3">
                     {% endif %}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="searchForUserList">
                     <a class="searchForUserName" href="/profile/{{ user.username }}">{{ user.username }}</a>
                 </div>
             </div>
