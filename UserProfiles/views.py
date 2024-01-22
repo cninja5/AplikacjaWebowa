@@ -15,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from register.forms import CustomPasswordChangeForm
 from .forms import SearchForUserForm, EditAvatarForm
 from django.contrib import messages
+from django.db.models import Q
 
 
 # Create your views here.
@@ -185,8 +186,11 @@ def search_for_user(request):
         form = SearchForUserForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
-            if User.objects.filter(username__startswith=username).exists():
-                users = User.objects.filter(username__startswith=username)
+
+            users = User.objects.filter(Q(username__icontains=username))
+
+            if users.exists():
+                return render(request, 'profile/search_for_user.html', {'form': form, 'users': users})
             else:
                 return render(request, 'profile/search_for_user.html',
                               {'form': form, 'warning': 'Podany użytkownik nie istnieje!'})
